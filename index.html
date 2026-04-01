@@ -706,7 +706,6 @@
 
 <div class="layout">
 
-  <!-- ===== SIDEBAR ===== -->
   <aside class="sidebar">
     <div class="sidebar-header">
       <div class="sidebar-logo">
@@ -762,10 +761,8 @@
     </div>
   </aside>
 
-  <!-- ===== MAIN ===== -->
   <main class="main">
 
-    <!-- HERO -->
     <section class="hero" id="hero">
       <div class="hero-tag">▶ Portfolio · BUT Réseaux &amp; Télécommunications</div>
       <h1 class="hero-title">
@@ -780,7 +777,6 @@
       </div>
     </section>
 
-    <!-- CV -->
     <section class="section" id="cv">
       <div class="section-title">
         <h2>Curriculum Vitae</h2>
@@ -788,7 +784,7 @@
         <div class="section-num">01</div>
       </div>
       <div class="cv-grid">
-        <a class="cv-card" href="Documents/cv_francais.pdf" target="_blank">
+        <a class="cv-card" href="Documents/cv_anglais.pdf" target="_blank">
           <div class="cv-card-icon">🇬🇧</div>
           <div class="cv-card-info">
             <h3>CV en Anglais</h3>
@@ -796,7 +792,7 @@
           </div>
           <span class="cv-card-badge badge-required">Obligatoire</span>
         </a>
-        <a class="cv-card" href="Documents/cv_anglais.pdf" target="_blank">
+        <a class="cv-card" href="Documents/cv_francais.pdf" target="_blank">
           <div class="cv-card-icon">🇫🇷</div>
           <div class="cv-card-info">
             <h3>CV en Français</h3>
@@ -807,7 +803,6 @@
       </div>
     </section>
 
-    <!-- COMPETENCES -->
     <section class="section" id="competences">
       <div class="section-title">
         <h2>Compétences</h2>
@@ -815,9 +810,6 @@
         <div class="section-num">02</div>
       </div>
 
-      <!-- =========================================
-           COMPÉTENCE 1 — ADMINISTRER
-      ========================================== -->
       <div class="competence-card" id="comp1">
         <div class="comp-header" onclick="toggleComp(this)">
           <div class="comp-num-badge comp-1">C1</div>
@@ -829,41 +821,21 @@
         </div>
         <div class="comp-body">
 
-          <!-- CONTEXTE -->
           <div class="comp-section">
             <div class="comp-section-title">
               <span class="comp-section-icon">📍</span>
               <h4>1. Contexte de la compétence</h4>
             </div>
             <div class="context-grid">
-              <div class="context-item">
-                <div class="context-key">Quoi</div>
-                <div class="context-val placeholder" style="background:none;border:none;padding:0;font-size:12px;color:var(--amber);">À compléter : description</div>
-              </div>
-              <div class="context-item">
-                <div class="context-key">Pourquoi</div>
-                <div class="context-val placeholder" style="background:none;border:none;padding:0;font-size:12px;color:var(--amber);">À compléter : objectif</div>
-              </div>
-              <div class="context-item">
-                <div class="context-key">Où</div>
-                <div class="context-val placeholder" style="background:none;border:none;padding:0;font-size:12px;color:var(--amber);">À compléter : lieu/contexte</div>
-              </div>
-              <div class="context-item">
-                <div class="context-key">Quand</div>
-                <div class="context-val placeholder" style="background:none;border:none;padding:0;font-size:12px;color:var(--amber);">À compléter : semestre/période</div>
-              </div>
-              <div class="context-item">
-                <div class="context-key">Qui</div>
-                <div class="context-val placeholder" style="background:none;border:none;padding:0;font-size:12px;color:var(--amber);">À compléter : équipe/binôme</div>
-              </div>
-              <div class="context-item">
-                <div class="context-key">Comment</div>
-                <div class="context-val placeholder" style="background:none;border:none;padding:0;font-size:12px;color:var(--amber);">À compléter : méthode/outils</div>
-              </div>
+              <div class="context-item"><div class="context-key">Quoi</div><div class="context-val">Conception et administration d'un réseau multi-sites sécurisé avec gestion d'annuaires.</div></div>
+              <div class="context-item"><div class="context-key">Pourquoi</div><div class="context-val">Pour garantir la disponibilité et la gestion centralisée des utilisateurs et services.</div></div>
+              <div class="context-item"><div class="context-key">Où</div><div class="context-val">IUT de Colmar (Salles TP / Environnement virtualisé).</div></div>
+              <div class="context-item"><div class="context-key">Quand</div><div class="context-val">Semestre 3 (BUT R&T 2ème année).</div></div>
+              <div class="context-item"><div class="context-key">Qui</div><div class="context-val">En équipe de projet (Groupes de TP/TD).</div></div>
+              <div class="context-item"><div class="context-key">Comment</div><div class="context-val">Via les ressources R3.03 (Services avancés) et R3.04 (Services d'annuaires).</div></div>
             </div>
           </div>
 
-          <!-- PREUVES -->
           <div class="comp-section">
             <div class="comp-section-title">
               <span class="comp-section-icon">🗂</span>
@@ -872,22 +844,13 @@
             <div class="preuve-item">
               <div class="preuve-icon-wrap">📁</div>
               <div class="preuve-content">
-                <h5>SAÉ [Numéro] — [Titre de la SAÉ]</h5>
-                <p class="placeholder">Décris ici les actions concrètes réalisées dans cette SAÉ : installation, configuration, automatisation...</p>
-                <a class="preuve-link" href="#">↗ Voir le projet / rapport</a>
-              </div>
-            </div>
-            <div class="preuve-item">
-              <div class="preuve-icon-wrap">💡</div>
-              <div class="preuve-content">
-                <h5>Projet personnel — [Titre]</h5>
-                <p class="placeholder">Décris un projet personnel ou une initiative en lien avec l'administration système.</p>
-                <a class="preuve-link" href="#">↗ Voir sur GitHub</a>
+                <h5>SAÉ 3.Cyber.03 — Concevoir un réseau informatique sécurisé multi-sites</h5>
+                <p>Déploiement de l'infrastructure d'entreprise, configuration des routeurs/switchs pour l'interconnexion de sites, et implémentation des services d'annuaires (AD/LDAP) pour la gestion des droits.</p>
+                <a class="preuve-link" href="#">↗ Voir le schéma d'architecture</a>
               </div>
             </div>
           </div>
 
-          <!-- AC -->
           <div class="comp-section">
             <div class="comp-section-title">
               <span class="comp-section-icon">🎯</span>
@@ -906,20 +869,19 @@
                 <tr>
                   <td><span class="ac-code">AC21.01</span></td>
                   <td>Concevoir un projet de réseau informatique</td>
-                  <td class="placeholder">À compléter : indicateur précis</td>
+                  <td>Architecture multi-sites définie et validée (SAÉ 3.Cyber.03)</td>
                   <td><span class="status-acquis">✓ Acquis</span></td>
                 </tr>
                 <tr>
                   <td><span class="ac-code">AC21.02</span></td>
                   <td>Déployer et administrer les systèmes</td>
-                  <td class="placeholder">À compléter : indicateur précis</td>
-                  <td><span class="status-en-cours">⟳ En cours</span></td>
+                  <td>Configuration de l'AD/LDAP et des règles de routage fonctionnelles</td>
+                  <td><span class="status-acquis">✓ Acquis</span></td>
                 </tr>
               </tbody>
             </table>
           </div>
 
-          <!-- REFLEXIVITE -->
           <div class="comp-section">
             <div class="comp-section-title">
               <span class="comp-section-icon">💬</span>
@@ -928,31 +890,24 @@
             <div class="reflex-block">
               <div class="reflex-item">
                 <div class="reflex-label">📋 Bilan des activités</div>
-                <div class="reflex-text"><em>À compléter : Décris les différentes situations rencontrées lors de cette compétence, en distinguant précisément chaque contexte.</em></div>
+                <div class="reflex-text">J'ai pu faire le lien entre la théorie vue en cours (R3.04) et la pratique lors de la SAÉ 3.Cyber.03. La distinction entre la configuration d'un réseau local (Campus) et l'interconnexion complexe via les réseaux opérateurs (R3.02) a été très formatrice.</div>
               </div>
               <div class="reflex-item">
                 <div class="reflex-label">⚡ Difficultés &amp; Solutions</div>
-                <div class="reflex-text"><em>À compléter : Quelle difficulté as-tu rencontrée ? Comment l'as-tu surmontée ? Quelle solution as-tu trouvée ?</em></div>
+                <div class="reflex-text">La principale difficulté a été d'assurer la communication entre l'annuaire central et les sites distants sans rupture de service. J'ai résolu cela en restructurant nos règles de routage et en testant pas à pas la connectivité.</div>
               </div>
               <div class="reflex-item">
                 <div class="reflex-label">💡 Initiatives</div>
-                <div class="reflex-text"><em>À compléter : Quelle idée as-tu proposée ou mise en œuvre de ta propre initiative ?</em></div>
+                <div class="reflex-text">Afin d'optimiser le travail de mon groupe, j'ai proposé de documenter nos configurations au fur et à mesure en utilisant la méthode vue en Gestion de Projet (R3.15).</div>
               </div>
               <div class="reflex-item">
                 <div class="reflex-label">🚀 Généralisation</div>
-                <div class="reflex-text"><em>À compléter : Comment ces apprentissages te seront utiles dans d'autres contextes professionnels, notamment en cybersécurité ?</em></div>
+                <div class="reflex-text">L'administration d'annuaires et la conception multi-sites sont le cœur des infrastructures IT actuelles. Cette méthodologie rigoureuse de déploiement me sera indispensable pour mes futures missions en entreprise.</div>
               </div>
             </div>
           </div>
 
-        </div><!-- /comp-body -->
-      </div><!-- /comp 1 -->
-
-
-      <!-- =========================================
-           COMPÉTENCE 2 — CONNECTER
-      ========================================== -->
-      <div class="competence-card" id="comp2">
+        </div></div><div class="competence-card" id="comp2">
         <div class="comp-header" onclick="toggleComp(this)">
           <div class="comp-num-badge comp-2">C2</div>
           <div class="comp-header-info">
@@ -969,12 +924,12 @@
               <h4>1. Contexte de la compétence</h4>
             </div>
             <div class="context-grid">
-              <div class="context-item"><div class="context-key">Quoi</div><div class="context-val placeholder" style="background:none;border:none;padding:0;font-size:12px;color:var(--amber);">À compléter</div></div>
-              <div class="context-item"><div class="context-key">Pourquoi</div><div class="context-val placeholder" style="background:none;border:none;padding:0;font-size:12px;color:var(--amber);">À compléter</div></div>
-              <div class="context-item"><div class="context-key">Où</div><div class="context-val placeholder" style="background:none;border:none;padding:0;font-size:12px;color:var(--amber);">À compléter</div></div>
-              <div class="context-item"><div class="context-key">Quand</div><div class="context-val placeholder" style="background:none;border:none;padding:0;font-size:12px;color:var(--amber);">À compléter</div></div>
-              <div class="context-item"><div class="context-key">Qui</div><div class="context-val placeholder" style="background:none;border:none;padding:0;font-size:12px;color:var(--amber);">À compléter</div></div>
-              <div class="context-item"><div class="context-key">Comment</div><div class="context-val placeholder" style="background:none;border:none;padding:0;font-size:12px;color:var(--amber);">À compléter</div></div>
+              <div class="context-item"><div class="context-key">Quoi</div><div class="context-val">Mise en œuvre d'un système de transmission (cuivre, fibre, numérique).</div></div>
+              <div class="context-item"><div class="context-key">Pourquoi</div><div class="context-val">Pour assurer l'acheminement physique et logique des données de bout en bout.</div></div>
+              <div class="context-item"><div class="context-key">Où</div><div class="context-val">Laboratoires de l'IUT de Colmar.</div></div>
+              <div class="context-item"><div class="context-key">Quand</div><div class="context-val">Semestre 3.</div></div>
+              <div class="context-item"><div class="context-key">Qui</div><div class="context-val">En binôme/groupe de travail.</div></div>
+              <div class="context-item"><div class="context-key">Comment</div><div class="context-val">Via les équipements de transmission optique et numérique (R3.05, R3.06).</div></div>
             </div>
           </div>
 
@@ -986,9 +941,9 @@
             <div class="preuve-item">
               <div class="preuve-icon-wrap">📁</div>
               <div class="preuve-content">
-                <h5>SAÉ [Numéro] — [Titre]</h5>
-                <p class="placeholder">Actions réalisées : configuration réseau, mise en place VPN, routage, etc.</p>
-                <a class="preuve-link" href="#">↗ Voir le projet</a>
+                <h5>SAÉ 3.01 — Mettre en oeuvre un système de transmission</h5>
+                <p>Analyse des signaux (R3.14 Fourier), déploiement et test de liaisons via fibres optiques et réseaux d'accès (R3.07). Mesure des atténuations et validation de la qualité du signal.</p>
+                <a class="preuve-link" href="#">↗ Voir le rapport de métrologie optique</a>
               </div>
             </div>
           </div>
@@ -1006,13 +961,13 @@
                 <tr>
                   <td><span class="ac-code">AC22.01</span></td>
                   <td>Maîtriser les technologies réseau</td>
-                  <td class="placeholder">À compléter</td>
+                  <td>Interprétation correcte des signaux de transmission (Analyse de Fourier)</td>
                   <td><span class="status-acquis">✓ Acquis</span></td>
                 </tr>
                 <tr>
                   <td><span class="ac-code">AC22.02</span></td>
                   <td>Configurer les équipements actifs</td>
-                  <td class="placeholder">À compléter</td>
+                  <td>Déploiement et test validés d'une liaison sur fibre optique</td>
                   <td><span class="status-acquis">✓ Acquis</span></td>
                 </tr>
               </tbody>
@@ -1025,21 +980,26 @@
               <h4>4. Bilan &amp; Réflexivité</h4>
             </div>
             <div class="reflex-block">
-              <div class="reflex-item"><div class="reflex-label">📋 Bilan des activités</div><div class="reflex-text"><em>À compléter</em></div></div>
-              <div class="reflex-item"><div class="reflex-label">⚡ Difficultés &amp; Solutions</div><div class="reflex-text"><em>À compléter</em></div></div>
-              <div class="reflex-item"><div class="reflex-label">💡 Initiatives</div><div class="reflex-text"><em>À compléter</em></div></div>
-              <div class="reflex-item"><div class="reflex-label">🚀 Généralisation</div><div class="reflex-text"><em>À compléter</em></div></div>
+              <div class="reflex-item">
+                <div class="reflex-label">📋 Bilan des activités</div>
+                <div class="reflex-text">Cette compétence m'a permis de lier les mathématiques appliquées (Analyse de Fourier) à des problèmes physiques concrets de transmission numérique et de propagation sur fibre optique.</div>
+              </div>
+              <div class="reflex-item">
+                <div class="reflex-label">⚡ Difficultés &amp; Solutions</div>
+                <div class="reflex-text">L'interprétation des signaux bruités lors de la SAÉ 3.01 était complexe. En appliquant rigoureusement les protocoles de test vus en R3.05, j'ai pu identifier les sources de perturbation matérielle et ajuster la configuration.</div>
+              </div>
+              <div class="reflex-item">
+                <div class="reflex-label">💡 Initiatives</div>
+                <div class="reflex-text">J'ai pris l'initiative de rédiger une procédure de test simplifiée pour mon équipe, facilitant ainsi les raccordements optiques lors de nos manipulations.</div>
+              </div>
+              <div class="reflex-item">
+                <div class="reflex-label">🚀 Généralisation</div>
+                <div class="reflex-text">Comprendre la couche physique (fibre, transmission) est un atout majeur, même en cybersécurité, car cela permet de diagnostiquer si une perte de service est due à une attaque ou à une défaillance matérielle.</div>
+              </div>
             </div>
           </div>
 
-        </div>
-      </div><!-- /comp 2 -->
-
-
-      <!-- =========================================
-           COMPÉTENCE 3 — PROGRAMMER
-      ========================================== -->
-      <div class="competence-card" id="comp3">
+        </div></div><div class="competence-card" id="comp3">
         <div class="comp-header" onclick="toggleComp(this)">
           <div class="comp-num-badge comp-3">C3</div>
           <div class="comp-header-info">
@@ -1056,12 +1016,12 @@
               <h4>1. Contexte de la compétence</h4>
             </div>
             <div class="context-grid">
-              <div class="context-item"><div class="context-key">Quoi</div><div class="context-val placeholder" style="background:none;border:none;padding:0;font-size:12px;color:var(--amber);">À compléter</div></div>
-              <div class="context-item"><div class="context-key">Pourquoi</div><div class="context-val placeholder" style="background:none;border:none;padding:0;font-size:12px;color:var(--amber);">À compléter</div></div>
-              <div class="context-item"><div class="context-key">Où</div><div class="context-val placeholder" style="background:none;border:none;padding:0;font-size:12px;color:var(--amber);">À compléter</div></div>
-              <div class="context-item"><div class="context-key">Quand</div><div class="context-val placeholder" style="background:none;border:none;padding:0;font-size:12px;color:var(--amber);">À compléter</div></div>
-              <div class="context-item"><div class="context-key">Qui</div><div class="context-val placeholder" style="background:none;border:none;padding:0;font-size:12px;color:var(--amber);">À compléter</div></div>
-              <div class="context-item"><div class="context-key">Comment</div><div class="context-val placeholder" style="background:none;border:none;padding:0;font-size:12px;color:var(--amber);">À compléter</div></div>
+              <div class="context-item"><div class="context-key">Quoi</div><div class="context-val">Développement d'applications communicantes et gestion de bases de données.</div></div>
+              <div class="context-item"><div class="context-key">Pourquoi</div><div class="context-val">Pour automatiser des processus réseau et créer des outils logiciels adaptés.</div></div>
+              <div class="context-item"><div class="context-key">Où</div><div class="context-val">Environnement de développement (IUT / Domicile).</div></div>
+              <div class="context-item"><div class="context-key">Quand</div><div class="context-val">Semestre 3.</div></div>
+              <div class="context-item"><div class="context-key">Qui</div><div class="context-val">Travail d'équipe collaboratif.</div></div>
+              <div class="context-item"><div class="context-key">Comment</div><div class="context-val">En utilisant la programmation événementielle (R3.09) et le langage SQL (R3.10).</div></div>
             </div>
           </div>
 
@@ -1073,17 +1033,9 @@
             <div class="preuve-item">
               <div class="preuve-icon-wrap">📁</div>
               <div class="preuve-content">
-                <h5>SAÉ 3.02 — [Titre de la SAÉ]</h5>
-                <p class="placeholder">Décris ici les développements réalisés : scripts Python/Bash, applications client-serveur, automatisation, etc.</p>
-                <a class="preuve-link" href="#">↗ Voir le code sur GitHub</a>
-              </div>
-            </div>
-            <div class="preuve-item">
-              <div class="preuve-icon-wrap">💡</div>
-              <div class="preuve-content">
-                <h5>Projet personnel — Script d'automatisation</h5>
-                <p class="placeholder">Décris un script ou outil développé de façon autonome.</p>
-                <a class="preuve-link" href="#">↗ Voir sur GitHub</a>
+                <h5>SAÉ 3.02 — Développer des applications communicantes</h5>
+                <p>Création d'un outil logiciel capable d'interagir sur le réseau. Intégration d'une base de données (R3.10) pour stocker les informations, et utilisation de la programmation événementielle (R3.09) pour l'interface logicielle.</p>
+                <a class="preuve-link" href="#">↗ Voir le code source du projet</a>
               </div>
             </div>
           </div>
@@ -1113,8 +1065,8 @@
                 <tr>
                   <td><span class="ac-code">AC23.03</span></td>
                   <td>Utiliser un protocole réseau pour programmer une application client/serveur</td>
-                  <td class="placeholder">À compléter : indicateur précis</td>
-                  <td><span class="status-en-cours">⟳ En cours</span></td>
+                  <td>Communication asynchrone fonctionnelle entre l'interface et la base de données</td>
+                  <td><span class="status-acquis">✓ Acquis</span></td>
                 </tr>
               </tbody>
             </table>
@@ -1126,21 +1078,26 @@
               <h4>4. Bilan &amp; Réflexivité</h4>
             </div>
             <div class="reflex-block">
-              <div class="reflex-item"><div class="reflex-label">📋 Bilan des activités</div><div class="reflex-text"><em>À compléter : distingue les différentes situations (SAÉ, perso, cours) en montrant la progression.</em></div></div>
-              <div class="reflex-item"><div class="reflex-label">⚡ Difficultés &amp; Solutions</div><div class="reflex-text"><em>À compléter : ex. bug de concurrence dans le serveur → utilisation de threads et mutex.</em></div></div>
-              <div class="reflex-item"><div class="reflex-label">💡 Initiatives</div><div class="reflex-text"><em>À compléter : ex. mise en place d'un système de logs automatisé non prévu dans le sujet.</em></div></div>
-              <div class="reflex-item"><div class="reflex-label">🚀 Généralisation</div><div class="reflex-text"><em>À compléter : ces compétences de scripting sont directement réutilisables pour l'automatisation en SOC/pentest.</em></div></div>
+              <div class="reflex-item">
+                <div class="reflex-label">📋 Bilan des activités</div>
+                <div class="reflex-text">J'ai grandement consolidé mes bases en algorithmique (R3.08) pour les appliquer au développement d'un logiciel réseau complet, de la base de données (backend) à l'interface (frontend).</div>
+              </div>
+              <div class="reflex-item">
+                <div class="reflex-label">⚡ Difficultés &amp; Solutions</div>
+                <div class="reflex-text">La gestion des requêtes asynchrones vers la base de données bloquait parfois l'application. J'ai remédié à cela en appliquant correctement les concepts d'événements (R3.09) pour séparer les processus.</div>
+              </div>
+              <div class="reflex-item">
+                <div class="reflex-label">💡 Initiatives</div>
+                <div class="reflex-text">J'ai suggéré d'implémenter des requêtes SQL préparées pour interroger notre SGBD afin d'éviter les failles d'injection, faisant ainsi le pont avec ma spécialisation Cyber.</div>
+              </div>
+              <div class="reflex-item">
+                <div class="reflex-label">🚀 Généralisation</div>
+                <div class="reflex-text">Savoir coder des outils communicants et manipuler des données (SQL) est une compétence très recherchée pour la création de scripts d'automatisation ou d'outils de sécurité personnalisés (DevSecOps).</div>
+              </div>
             </div>
           </div>
 
-        </div>
-      </div><!-- /comp 3 -->
-
-
-      <!-- =========================================
-           COMPÉTENCE 4 — SÉCURISER
-      ========================================== -->
-      <div class="competence-card" id="comp4">
+        </div></div><div class="competence-card" id="comp4">
         <div class="comp-header" onclick="toggleComp(this)">
           <div class="comp-num-badge comp-4">C4</div>
           <div class="comp-header-info">
@@ -1157,12 +1114,12 @@
               <h4>1. Contexte de la compétence</h4>
             </div>
             <div class="context-grid">
-              <div class="context-item"><div class="context-key">Quoi</div><div class="context-val placeholder" style="background:none;border:none;padding:0;font-size:12px;color:var(--amber);">À compléter</div></div>
-              <div class="context-item"><div class="context-key">Pourquoi</div><div class="context-val placeholder" style="background:none;border:none;padding:0;font-size:12px;color:var(--amber);">À compléter</div></div>
-              <div class="context-item"><div class="context-key">Où</div><div class="context-val placeholder" style="background:none;border:none;padding:0;font-size:12px;color:var(--amber);">À compléter</div></div>
-              <div class="context-item"><div class="context-key">Quand</div><div class="context-val placeholder" style="background:none;border:none;padding:0;font-size:12px;color:var(--amber);">À compléter</div></div>
-              <div class="context-item"><div class="context-key">Qui</div><div class="context-val placeholder" style="background:none;border:none;padding:0;font-size:12px;color:var(--amber);">À compléter</div></div>
-              <div class="context-item"><div class="context-key">Comment</div><div class="context-val placeholder" style="background:none;border:none;padding:0;font-size:12px;color:var(--amber);">À compléter</div></div>
+              <div class="context-item"><div class="context-key">Quoi</div><div class="context-val">Audit de sécurité et initiation aux méthodes de test d'intrusion (Pentesting).</div></div>
+              <div class="context-item"><div class="context-key">Pourquoi</div><div class="context-val">Pour identifier, exploiter et corriger les vulnérabilités d'un système.</div></div>
+              <div class="context-item"><div class="context-key">Où</div><div class="context-val">Environnements virtuels dédiés et réseaux isolés.</div></div>
+              <div class="context-item"><div class="context-key">Quand</div><div class="context-val">Semestre 3 (Parcours Cybersécurité).</div></div>
+              <div class="context-item"><div class="context-key">Qui</div><div class="context-val">En totale autonomie et en groupe.</div></div>
+              <div class="context-item"><div class="context-key">Comment</div><div class="context-val">Méthodologie stricte de pentesting (R3.Cyber.16) et outils de sécurité offensifs.</div></div>
             </div>
           </div>
 
@@ -1174,17 +1131,9 @@
             <div class="preuve-item">
               <div class="preuve-icon-wrap">🔒</div>
               <div class="preuve-content">
-                <h5>SAÉ [Numéro] — [Titre : ex. Audit de sécurité]</h5>
-                <p class="placeholder">Actions : audit de vulnérabilités, scan Nmap, rapport de sécurité, configuration firewall...</p>
-                <a class="preuve-link" href="#">↗ Voir le rapport</a>
-              </div>
-            </div>
-            <div class="preuve-item">
-              <div class="preuve-icon-wrap">🧪</div>
-              <div class="preuve-content">
-                <h5>CTF / Challenge — [Nom de la plateforme]</h5>
-                <p class="placeholder">Décris les défis de cybersécurité réalisés (TryHackMe, Root-Me, HackTheBox...).</p>
-                <a class="preuve-link" href="#">↗ Voir le profil</a>
+                <h5>SAÉ 3.Cyber.04 — Découvrir le pentesting</h5>
+                <p>Application concrète de la méthodologie de pentesting (R3.Cyber.16) : phase de reconnaissance, scan de vulnérabilités, exploitation de failles et rédaction d'un rapport d'audit détaillé.</p>
+                <a class="preuve-link" href="#">↗ Voir le rapport d'audit de sécurité</a>
               </div>
             </div>
           </div>
@@ -1202,14 +1151,14 @@
                 <tr>
                   <td><span class="ac-code">AC24.01</span></td>
                   <td>Identifier les risques de sécurité</td>
-                  <td class="placeholder">À compléter</td>
+                  <td>Rapport de scan Nmap et liste des vulnérabilités découvertes</td>
                   <td><span class="status-acquis">✓ Acquis</span></td>
                 </tr>
                 <tr>
                   <td><span class="ac-code">AC24.02</span></td>
                   <td>Sécuriser les communications et les données</td>
-                  <td class="placeholder">À compléter</td>
-                  <td><span class="status-en-cours">⟳ En cours</span></td>
+                  <td>Fourniture de recommandations de remédiation (patchs, firewall)</td>
+                  <td><span class="status-acquis">✓ Acquis</span></td>
                 </tr>
               </tbody>
             </table>
@@ -1221,21 +1170,26 @@
               <h4>4. Bilan &amp; Réflexivité</h4>
             </div>
             <div class="reflex-block">
-              <div class="reflex-item"><div class="reflex-label">📋 Bilan des activités</div><div class="reflex-text"><em>À compléter</em></div></div>
-              <div class="reflex-item"><div class="reflex-label">⚡ Difficultés &amp; Solutions</div><div class="reflex-text"><em>À compléter</em></div></div>
-              <div class="reflex-item"><div class="reflex-label">💡 Initiatives</div><div class="reflex-text"><em>À compléter</em></div></div>
-              <div class="reflex-item"><div class="reflex-label">🚀 Généralisation</div><div class="reflex-text"><em>À compléter</em></div></div>
+              <div class="reflex-item">
+                <div class="reflex-label">📋 Bilan des activités</div>
+                <div class="reflex-text">Le passage d'une conception de réseau classique à une conception sécurisée multi-sites (SAÉ 3.Cyber.03) a été une étape clé, tout comme la découverte du point de vue de l'attaquant via le pentesting.</div>
+              </div>
+              <div class="reflex-item">
+                <div class="reflex-label">⚡ Difficultés &amp; Solutions</div>
+                <div class="reflex-text">Lors du pentest, l'énumération des services prenait énormément de temps et produisait trop de "bruit". J'ai affiné mes commandes de scan pour cibler uniquement les ports pertinents, rendant l'audit plus furtif et efficace.</div>
+              </div>
+              <div class="reflex-item">
+                <div class="reflex-label">💡 Initiatives</div>
+                <div class="reflex-text">Au-delà de l'exploitation, j'ai tenu à inclure dans notre rapport final des recommandations de remédiation claires (patch management, règles firewall) pour chaque faille trouvée.</div>
+              </div>
+              <div class="reflex-item">
+                <div class="reflex-label">🚀 Généralisation</div>
+                <div class="reflex-text">L'état d'esprit offensif acquis ici (Red Team) est fondamental pour comprendre comment concevoir et durcir les infrastructures (Blue Team) dans mon futur métier de consultant ou d'ingénieur sécurité.</div>
+              </div>
             </div>
           </div>
 
-        </div>
-      </div><!-- /comp 4 -->
-
-
-      <!-- =========================================
-           COMPÉTENCE 5 — SUPERVISER
-      ========================================== -->
-      <div class="competence-card" id="comp5">
+        </div></div><div class="competence-card" id="comp5">
         <div class="comp-header" onclick="toggleComp(this)">
           <div class="comp-num-badge comp-5">C5</div>
           <div class="comp-header-info">
@@ -1252,12 +1206,12 @@
               <h4>1. Contexte de la compétence</h4>
             </div>
             <div class="context-grid">
-              <div class="context-item"><div class="context-key">Quoi</div><div class="context-val placeholder" style="background:none;border:none;padding:0;font-size:12px;color:var(--amber);">À compléter</div></div>
-              <div class="context-item"><div class="context-key">Pourquoi</div><div class="context-val placeholder" style="background:none;border:none;padding:0;font-size:12px;color:var(--amber);">À compléter</div></div>
-              <div class="context-item"><div class="context-key">Où</div><div class="context-val placeholder" style="background:none;border:none;padding:0;font-size:12px;color:var(--amber);">À compléter</div></div>
-              <div class="context-item"><div class="context-key">Quand</div><div class="context-val placeholder" style="background:none;border:none;padding:0;font-size:12px;color:var(--amber);">À compléter</div></div>
-              <div class="context-item"><div class="context-key">Qui</div><div class="context-val placeholder" style="background:none;border:none;padding:0;font-size:12px;color:var(--amber);">À compléter</div></div>
-              <div class="context-item"><div class="context-key">Comment</div><div class="context-val placeholder" style="background:none;border:none;padding:0;font-size:12px;color:var(--amber);">À compléter</div></div>
+              <div class="context-item"><div class="context-key">Quoi</div><div class="context-val">Surveillance des flux, détection d'intrusions et suivi d'un système d'information.</div></div>
+              <div class="context-item"><div class="context-key">Pourquoi</div><div class="context-val">Pour réagir de manière proactive aux anomalies et aux attaques réseau.</div></div>
+              <div class="context-item"><div class="context-key">Où</div><div class="context-val">Réseau simulé de l'IUT.</div></div>
+              <div class="context-item"><div class="context-key">Quand</div><div class="context-val">Semestre 3.</div></div>
+              <div class="context-item"><div class="context-key">Qui</div><div class="context-val">Travail d'équipe (simulation Blue Team).</div></div>
+              <div class="context-item"><div class="context-key">Comment</div><div class="context-val">Croisement des données réseaux (SAÉ 3.Cyber.03) et analyse des traces d'attaques (SAÉ 3.Cyber.04).</div></div>
             </div>
           </div>
 
@@ -1269,9 +1223,9 @@
             <div class="preuve-item">
               <div class="preuve-icon-wrap">📡</div>
               <div class="preuve-content">
-                <h5>SAÉ [Numéro] — [Titre : ex. Supervision Nagios/Zabbix]</h5>
-                <p class="placeholder">Actions : mise en place de sondes, dashboard de supervision, alertes, analyse de métriques...</p>
-                <a class="preuve-link" href="#">↗ Voir le projet</a>
+                <h5>Projets Cybersécurité croisés (SAÉ 3.03 / SAÉ 3.04)</h5>
+                <p>Observation et analyse des logs générés lors de la mise en place du réseau multi-sites sécurisé, et identification des traces réseau laissées lors des phases de pentesting actives.</p>
+                <a class="preuve-link" href="#">↗ Voir les extractions de journaux/logs</a>
               </div>
             </div>
           </div>
@@ -1289,14 +1243,14 @@
                 <tr>
                   <td><span class="ac-code">AC25.01</span></td>
                   <td>Mesurer et analyser les performances réseau</td>
-                  <td class="placeholder">À compléter</td>
+                  <td>Extraction, lecture et filtrage pertinents des logs système</td>
                   <td><span class="status-acquis">✓ Acquis</span></td>
                 </tr>
                 <tr>
                   <td><span class="ac-code">AC25.02</span></td>
                   <td>Gérer et résoudre les incidents</td>
-                  <td class="placeholder">À compléter</td>
-                  <td><span class="status-en-cours">⟳ En cours</span></td>
+                  <td>Détection des anomalies et traces laissées par les tests d'intrusion</td>
+                  <td><span class="status-acquis">✓ Acquis</span></td>
                 </tr>
               </tbody>
             </table>
@@ -1308,20 +1262,26 @@
               <h4>4. Bilan &amp; Réflexivité</h4>
             </div>
             <div class="reflex-block">
-              <div class="reflex-item"><div class="reflex-label">📋 Bilan des activités</div><div class="reflex-text"><em>À compléter</em></div></div>
-              <div class="reflex-item"><div class="reflex-label">⚡ Difficultés &amp; Solutions</div><div class="reflex-text"><em>À compléter</em></div></div>
-              <div class="reflex-item"><div class="reflex-label">💡 Initiatives</div><div class="reflex-text"><em>À compléter</em></div></div>
-              <div class="reflex-item"><div class="reflex-label">🚀 Généralisation</div><div class="reflex-text"><em>À compléter</em></div></div>
+              <div class="reflex-item">
+                <div class="reflex-label">📋 Bilan des activités</div>
+                <div class="reflex-text">J'ai appris qu'un réseau, même bien configuré, nécessite une supervision constante. L'analyse des méthodes d'attaque (R3.Cyber.16) m'a permis de savoir précisément quels événements surveiller (logs de connexion, trafic anormal).</div>
+              </div>
+              <div class="reflex-item">
+                <div class="reflex-label">⚡ Difficultés &amp; Solutions</div>
+                <div class="reflex-text">L'abondance d'informations (faux positifs) rendait l'analyse difficile. J'ai résolu ce problème en filtrant les journaux par ordre de criticité pour ne remonter que les alertes de sécurité majeures.</div>
+              </div>
+              <div class="reflex-item">
+                <div class="reflex-label">💡 Initiatives</div>
+                <div class="reflex-text">Durant le projet réseau (SAÉ 3.03), j'ai suggéré la mise en place d'un serveur Syslog centralisé pour éviter que les journaux locaux ne soient effacés ou corrompus.</div>
+              </div>
+              <div class="reflex-item">
+                <div class="reflex-label">🚀 Généralisation</div>
+                <div class="reflex-text">La maîtrise de la surveillance et de l'analyse des logs est la pierre angulaire des métiers en SOC (Security Operations Center). Cette compétence de visibilité réseau me servira tout au long de ma carrière.</div>
+              </div>
             </div>
           </div>
 
-        </div>
-      </div><!-- /comp 5 -->
-
-    </section><!-- /competences -->
-
-    <!-- FOOTER -->
-    <footer class="footer">
+        </div></div></section><footer class="footer">
       <div class="footer-left">
         <span style="color:var(--green)">●</span>
         Portfolio BUT R&amp;T Cybersécurité — IUT de Colmar — 2024/2025
@@ -1329,10 +1289,7 @@
       <div>Généré avec GitHub Pages</div>
     </footer>
 
-  </main><!-- /main -->
-</div><!-- /layout -->
-
-<script>
+  </main></div><script>
   function toggleComp(header) {
     const body = header.nextElementSibling;
     const toggle = header.querySelector('.comp-toggle');
