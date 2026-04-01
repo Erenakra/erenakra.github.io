@@ -815,7 +815,7 @@
           <div class="comp-num-badge comp-1">C1</div>
           <div class="comp-header-info">
             <div class="comp-title">Administrer les réseaux et systèmes</div>
-            <div class="comp-subtitle">Administration système · Scripts · Gestion serveur</div>
+            <div class="comp-subtitle">Administration système · Haute Disponibilité · Interconnexion LAN/WAN</div>
           </div>
           <div class="comp-toggle">▾</div>
         </div>
@@ -827,12 +827,12 @@
               <h4>1. Contexte de la compétence</h4>
             </div>
             <div class="context-grid">
-              <div class="context-item"><div class="context-key">Quoi</div><div class="context-val">Conception et administration d'un réseau multi-sites sécurisé avec gestion d'annuaires.</div></div>
-              <div class="context-item"><div class="context-key">Pourquoi</div><div class="context-val">Pour garantir la disponibilité et la gestion centralisée des utilisateurs et services.</div></div>
-              <div class="context-item"><div class="context-key">Où</div><div class="context-val">IUT de Colmar (Salles TP / Environnement virtualisé).</div></div>
-              <div class="context-item"><div class="context-key">Quand</div><div class="context-val">Semestre 3 (BUT R&T 2ème année).</div></div>
-              <div class="context-item"><div class="context-key">Qui</div><div class="context-val">En équipe de projet (Groupes de TP/TD).</div></div>
-              <div class="context-item"><div class="context-key">Comment</div><div class="context-val">Via les ressources R3.03 (Services avancés) et R3.04 (Services d'annuaires).</div></div>
+              <div class="context-item"><div class="context-key">Quoi</div><div class="context-val">Conception et déploiement de l'infrastructure LAN multi-sites (UC Exchange) avec topologie hiérarchique[cite: 205, 224, 226].</div></div>
+              <div class="context-item"><div class="context-key">Pourquoi</div><div class="context-val">Assurer une connectivité robuste, sécurisée et tolérante aux pannes pour les utilisateurs et serveurs[cite: 206, 225].</div></div>
+              <div class="context-item"><div class="context-key">Où</div><div class="context-val">Environnement virtualisé EVE-NG avec interconnexion physique en mode Bridged[cite: 566, 568].</div></div>
+              <div class="context-item"><div class="context-key">Quand</div><div class="context-val">Semestre 3 (SAÉ Multi-sites)[cite: 224].</div></div>
+              <div class="context-item"><div class="context-key">Qui</div><div class="context-val">En groupe, rôle d'Administrateur LAN et Interconnexion[cite: 198, 201, 205].</div></div>
+              <div class="context-item"><div class="context-key">Comment</div><div class="context-val">Via des équipements Cisco (VRRP, MSTP, VTP, IP SLA) et un serveur Linux Debian[cite: 295, 412, 447, 526, 594].</div></div>
             </div>
           </div>
 
@@ -844,9 +844,17 @@
             <div class="preuve-item">
               <div class="preuve-icon-wrap">📁</div>
               <div class="preuve-content">
-                <h5>SAÉ 3.Cyber.03 — Concevoir un réseau informatique sécurisé multi-sites</h5>
-                <p>Déploiement de l'infrastructure d'entreprise, configuration des routeurs/switchs pour l'interconnexion de sites, et implémentation des services d'annuaires (AD/LDAP) pour la gestion des droits.</p>
+                <h5>SAÉ 3.Cyber.03 — Infrastructure LAN & Haute Disponibilité</h5>
+                <p>Déploiement d'une architecture hiérarchique avec segmentation en VLANs gérée de façon centralisée par VTP[cite: 226, 289, 412]. Mise en œuvre du protocole MSTP pour éviter les boucles et répartir la charge, et de VRRP pour la redondance des passerelles par défaut[cite: 295, 296, 447, 449].</p>
                 <a class="preuve-link" href="#">↗ Voir le schéma d'architecture</a>
+              </div>
+            </div>
+            <div class="preuve-item">
+              <div class="preuve-icon-wrap">⚙️</div>
+              <div class="preuve-content">
+                <h5>SAÉ 3.Cyber.03 — Services Systèmes & Interconnexion</h5>
+                <p>Installation d'un serveur DHCP sous Debian 12 avec configuration des relais DHCP (IP Helper) sur les routeurs Cisco[cite: 526, 560, 561]. Configuration du routage de bordure sécurisé par une surveillance IP SLA pour le basculement dynamique des routes[cite: 576, 594, 601].</p>
+                <a class="preuve-link" href="#">↗ Voir le rapport technique LAN</a>
               </div>
             </div>
           </div>
@@ -869,13 +877,13 @@
                 <tr>
                   <td><span class="ac-code">AC21.01</span></td>
                   <td>Concevoir un projet de réseau informatique</td>
-                  <td>Architecture multi-sites définie et validée (SAÉ 3.Cyber.03)</td>
+                  <td>Topologie hiérarchique et plan d'adressage (10.242.x.x/17) définis et validés[cite: 226, 290].</td>
                   <td><span class="status-acquis">✓ Acquis</span></td>
                 </tr>
                 <tr>
                   <td><span class="ac-code">AC21.02</span></td>
                   <td>Déployer et administrer les systèmes</td>
-                  <td>Configuration de l'AD/LDAP et des règles de routage fonctionnelles</td>
+                  <td>Fonctionnement effectif de la redondance (VRRP/MSTP) et du serveur Debian (DHCP)[cite: 623, 624, 625].</td>
                   <td><span class="status-acquis">✓ Acquis</span></td>
                 </tr>
               </tbody>
@@ -890,19 +898,19 @@
             <div class="reflex-block">
               <div class="reflex-item">
                 <div class="reflex-label">📋 Bilan des activités</div>
-                <div class="reflex-text">J'ai pu faire le lien entre la théorie vue en cours (R3.04) et la pratique lors de la SAÉ 3.Cyber.03. La distinction entre la configuration d'un réseau local (Campus) et l'interconnexion complexe via les réseaux opérateurs (R3.02) a été très formatrice.</div>
+                <div class="reflex-text">L'architecture hiérarchique mise en place a assuré une robustesse optimale pour le réseau[cite: 622]. De plus, la phase d'interconnexion (en mode Bridged) a permis d'unifier les infrastructures et a validé la cohérence globale du projet avec le réseau opérateur et les services distants[cite: 626, 627, 628].</div>
               </div>
               <div class="reflex-item">
                 <div class="reflex-label">⚡ Difficultés &amp; Solutions</div>
-                <div class="reflex-text">La principale difficulté a été d'assurer la communication entre l'annuaire central et les sites distants sans rupture de service. J'ai résolu cela en restructurant nos règles de routage et en testant pas à pas la connectivité.</div>
+                <div class="reflex-text">Le routage statique classique présentait un risque de "Blackhole" si le routeur maître tombait en panne[cite: 593]. J'ai pallié ce problème en configurant un mécanisme de surveillance active IP SLA couplé à du Tracking, permettant de retirer automatiquement la route défaillante et d'activer la route de secours[cite: 594, 597, 601, 602]. Un autre défi fut le blocage des requêtes DHCP par les routeurs, résolu par l'intégration d'agents de relais (IP Helper)[cite: 559, 560].</div>
               </div>
               <div class="reflex-item">
                 <div class="reflex-label">💡 Initiatives</div>
-                <div class="reflex-text">Afin d'optimiser le travail de mon groupe, j'ai proposé de documenter nos configurations au fur et à mesure en utilisant la méthode vue en Gestion de Projet (R3.15).</div>
+                <div class="reflex-text">J'ai fait le choix délibéré de dissocier le service DHCP des équipements de routage en le déployant sur un serveur Linux dédié (Debian 12)[cite: 524, 526]. Cela m'a permis de centraliser l'administration et de mieux gérer notre environnement hétérogène[cite: 523, 625].</div>
               </div>
               <div class="reflex-item">
                 <div class="reflex-label">🚀 Généralisation</div>
-                <div class="reflex-text">L'administration d'annuaires et la conception multi-sites sont le cœur des infrastructures IT actuelles. Cette méthodologie rigoureuse de déploiement me sera indispensable pour mes futures missions en entreprise.</div>
+                <div class="reflex-text">Déployer des protocoles de haute disponibilité (VRRP, MSTP) et de la surveillance de liens (IP SLA) garantit la continuité de service[cite: 623, 624]. Savoir sécuriser et interconnecter des environnements hétérogènes (Cisco et Linux) est une compétence d'administration système absolument indispensable pour concevoir des réseaux d'entreprise modernes et résilients[cite: 621, 625].</div>
               </div>
             </div>
           </div>
