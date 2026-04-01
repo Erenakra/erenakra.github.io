@@ -907,12 +907,12 @@
             </div>
           </div>
 
-        </div></div><div class="competence-card" id="comp2">
+        <div class="competence-card" id="comp2">
         <div class="comp-header" onclick="toggleComp(this)">
           <div class="comp-num-badge comp-2">C2</div>
           <div class="comp-header-info">
             <div class="comp-title">Connecter les entreprises et les usagers</div>
-            <div class="comp-subtitle">Réseaux LAN/WAN · Protocoles · Infrastructure</div>
+            <div class="comp-subtitle">Réseaux LAN/WAN · Conception IoT · PCB & Transmission</div>
           </div>
           <div class="comp-toggle">▾</div>
         </div>
@@ -924,12 +924,12 @@
               <h4>1. Contexte de la compétence</h4>
             </div>
             <div class="context-grid">
-              <div class="context-item"><div class="context-key">Quoi</div><div class="context-val">Mise en œuvre d'un système de transmission (cuivre, fibre, numérique).</div></div>
-              <div class="context-item"><div class="context-key">Pourquoi</div><div class="context-val">Pour assurer l'acheminement physique et logique des données de bout en bout.</div></div>
-              <div class="context-item"><div class="context-key">Où</div><div class="context-val">Laboratoires de l'IUT de Colmar.</div></div>
-              <div class="context-item"><div class="context-key">Quand</div><div class="context-val">Semestre 3.</div></div>
-              <div class="context-item"><div class="context-key">Qui</div><div class="context-val">En binôme/groupe de travail.</div></div>
-              <div class="context-item"><div class="context-key">Comment</div><div class="context-val">Via les équipements de transmission optique et numérique (R3.05, R3.06).</div></div>
+              <div class="context-item"><div class="context-key">Quoi</div><div class="context-val">Conception de la carte électronique d'une prise connectée WiFi[cite: 38].</div></div>
+              <div class="context-item"><div class="context-key">Pourquoi</div><div class="context-val">Créer un dispositif répondant à des critères de compacité, de coût optimisé et de sécurité électrique (isolation 230V/basse tension)[cite: 39, 50].</div></div>
+              <div class="context-item"><div class="context-key">Où</div><div class="context-val">Sur la plateforme web EasyEDA (Conception CAO)[cite: 39].</div></div>
+              <div class="context-item"><div class="context-key">Quand</div><div class="context-val">Semestre 3 (SAÉ 3.01).</div></div>
+              <div class="context-item"><div class="context-key">Qui</div><div class="context-val">Rôle de développeur technique en autonomie[cite: 33].</div></div>
+              <div class="context-item"><div class="context-key">Comment</div><div class="context-val">Par l'analyse des besoins, la conception schématique, et le routage PCB[cite: 41, 42, 43].</div></div>
             </div>
           </div>
 
@@ -939,11 +939,11 @@
               <h4>2. Actions &amp; Preuves</h4>
             </div>
             <div class="preuve-item">
-              <div class="preuve-icon-wrap">📁</div>
+              <div class="preuve-icon-wrap">⚡</div>
               <div class="preuve-content">
-                <h5>SAÉ 3.01 — Mettre en oeuvre un système de transmission</h5>
-                <p>Analyse des signaux (R3.14 Fourier), déploiement et test de liaisons via fibres optiques et réseaux d'accès (R3.07). Mesure des atténuations et validation de la qualité du signal.</p>
-                <a class="preuve-link" href="#">↗ Voir le rapport de métrologie optique</a>
+                <h5>SAÉ 3.01 — Mettre en oeuvre un système de transmission (Prise Connectée)</h5>
+                <p>Conception schématique et routage double couche intégrant un ESP8266 (WiFi), un capteur de température DS18B20 et un relais de puissance 230V/16A[cite: 118, 119, 121, 161]. Application stricte de règles de routage : pistes secteur de 3mm et signaux de 0.3mm[cite: 163].</p>
+                <a class="preuve-link" href="https://github.com/AnonymousApexio/SAE-Mise-En-Oeuvre-Systeme-De-Transmission/blob/main/PCB%20PROJET%202025.json" target="_blank">↗ Voir le routage PCB sur GitHub</a>
               </div>
             </div>
           </div>
@@ -961,13 +961,13 @@
                 <tr>
                   <td><span class="ac-code">AC22.01</span></td>
                   <td>Maîtriser les technologies réseau</td>
-                  <td>Interprétation correcte des signaux de transmission (Analyse de Fourier)</td>
+                  <td>Intégration et communication réussies du module ESP8266 au réseau WiFi local[cite: 118].</td>
                   <td><span class="status-acquis">✓ Acquis</span></td>
                 </tr>
                 <tr>
                   <td><span class="ac-code">AC22.02</span></td>
                   <td>Configurer les équipements actifs</td>
-                  <td>Déploiement et test validés d'une liaison sur fibre optique</td>
+                  <td>Validation des vérifications de conception (DRC/ERC) sans erreurs électriques[cite: 169, 173].</td>
                   <td><span class="status-acquis">✓ Acquis</span></td>
                 </tr>
               </tbody>
@@ -982,22 +982,24 @@
             <div class="reflex-block">
               <div class="reflex-item">
                 <div class="reflex-label">📋 Bilan des activités</div>
-                <div class="reflex-text">Cette compétence m'a permis de lier les mathématiques appliquées (Analyse de Fourier) à des problèmes physiques concrets de transmission numérique et de propagation sur fibre optique.</div>
+                <div class="reflex-text">J'ai acquis une solide maîtrise des outils de conception CAO (EasyEDA / Altium Designer) et j'ai réussi à intégrer l'intégralité des fonctionnalités demandées tout en optimisant la compacité de la carte[cite: 184, 185].</div>
               </div>
               <div class="reflex-item">
                 <div class="reflex-label">⚡ Difficultés &amp; Solutions</div>
-                <div class="reflex-text">L'interprétation des signaux bruités lors de la SAÉ 3.01 était complexe. En appliquant rigoureusement les protocoles de test vus en R3.05, j'ai pu identifier les sources de perturbation matérielle et ajuster la configuration.</div>
+                <div class="reflex-text">Les contraintes d'espacement entre le secteur (230V) et la basse tension ont généré plusieurs erreurs DRC[cite: 187]. J'ai résolu ce problème en adaptant manuellement les empreintes THT des composants et en recalculant les valeurs des composants de protection (fusible, varistance)[cite: 188].</div>
               </div>
               <div class="reflex-item">
                 <div class="reflex-label">💡 Initiatives</div>
-                <div class="reflex-text">J'ai pris l'initiative de rédiger une procédure de test simplifiée pour mon équipe, facilitant ainsi les raccordements optiques lors de nos manipulations.</div>
+                <div class="reflex-text">Lors du routage, j'ai pris l'initiative d'optimiser le placement des composants critiques en priorisant les pistes secteur et en minimisant la longueur des pistes pour les signaux sensibles afin d'éviter les interférences[cite: 165, 166].</div>
               </div>
               <div class="reflex-item">
                 <div class="reflex-label">🚀 Généralisation</div>
-                <div class="reflex-text">Comprendre la couche physique (fibre, transmission) est un atout majeur, même en cybersécurité, car cela permet de diagnostiquer si une perte de service est due à une attaque ou à une défaillance matérielle.</div>
+                <div class="reflex-text">Travailler sur ce PCB m'a permis de comprendre l'importance critique de l'isolation galvanique pour la sécurité[cite: 50, 173]. Comprendre l'architecture matérielle (Hardware) des objets connectés est une compétence très précieuse en cybersécurité pour mener à bien des audits d'équipements IoT.</div>
               </div>
             </div>
           </div>
+
+        </div></div>```
 
         </div></div><div class="competence-card" id="comp3">
         <div class="comp-header" onclick="toggleComp(this)">
