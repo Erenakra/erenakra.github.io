@@ -1,1332 +1,1563 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfolio BUT R&T Cybersécurité</title>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg: #080c10;
-      --surface: #0d1117;
-      --surface2: #161b22;
-      --border: #21262d;
-      --green: #39d353;
-      --green-dim: #1a4a27;
-      --cyan: #58a6ff;
-      --cyan-dim: #0d2540;
-      --amber: #e3b341;
-      --red: #f85149;
-      --text: #c9d1d9;
-      --text-dim: #6e7681;
-      --text-bright: #f0f6fc;
-      --font-mono: 'JetBrains Mono', monospace;
-      --font-display: 'Syne', sans-serif;
-    }
-
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: var(--font-mono);
-      background: var(--bg);
-      color: var(--text);
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-
-    /* Scanline overlay */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background: repeating-linear-gradient(
-        0deg,
-        transparent,
-        transparent 2px,
-        rgba(0,0,0,0.03) 2px,
-        rgba(0,0,0,0.03) 4px
-      );
-      pointer-events: none;
-      z-index: 9999;
-    }
-
-    /* Grid background */
-    body::after {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(57,211,83,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(57,211,83,0.03) 1px, transparent 1px);
-      background-size: 40px 40px;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    /* ========== LAYOUT ========== */
-    .layout {
-      display: flex;
-      min-height: 100vh;
-      position: relative;
-      z-index: 1;
-    }
-
-    /* ========== SIDEBAR ========== */
-    .sidebar {
-      width: 260px;
-      flex-shrink: 0;
-      background: var(--surface);
-      border-right: 1px solid var(--border);
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 100vh;
-      overflow-y: auto;
-      display: flex;
-      flex-direction: column;
-      z-index: 100;
-    }
-
-    .sidebar-header {
-      padding: 24px 20px 20px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .sidebar-logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 12px;
-    }
-
-    .logo-icon {
-      width: 32px;
-      height: 32px;
-      background: var(--green);
-      border-radius: 6px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--bg);
-    }
-
-    .logo-text {
-      font-family: var(--font-display);
-      font-weight: 800;
-      font-size: 14px;
-      color: var(--text-bright);
-    }
-
-    .sidebar-name {
-      font-family: var(--font-display);
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--text-bright);
-      line-height: 1.2;
-    }
-
-    .sidebar-sub {
-      font-size: 10px;
-      color: var(--text-dim);
-      margin-top: 4px;
-      letter-spacing: 0.5px;
-    }
-
-    .status-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: var(--green-dim);
-      border: 1px solid var(--green);
-      border-radius: 20px;
-      padding: 3px 10px;
-      font-size: 10px;
-      color: var(--green);
-      margin-top: 10px;
-    }
-
-    .status-dot {
-      width: 6px;
-      height: 6px;
-      background: var(--green);
-      border-radius: 50%;
-      animation: pulse 2s ease-in-out infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.3; }
-    }
-
-    .sidebar-nav {
-      flex: 1;
-      padding: 16px 12px;
-    }
-
-    .nav-section {
-      margin-bottom: 20px;
-    }
-
-    .nav-label {
-      font-size: 9px;
-      color: var(--text-dim);
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      padding: 0 8px;
-      margin-bottom: 6px;
-    }
-
-    .nav-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 8px 10px;
-      border-radius: 6px;
-      color: var(--text-dim);
-      text-decoration: none;
-      font-size: 12px;
-      transition: all 0.2s;
-      cursor: pointer;
-    }
-
-    .nav-item:hover, .nav-item.active {
-      background: var(--surface2);
-      color: var(--green);
-    }
-
-    .nav-item.active {
-      border-left: 2px solid var(--green);
-    }
-
-    .nav-icon { font-size: 14px; width: 18px; text-align: center; }
-
-    .nav-comp-num {
-      margin-left: auto;
-      background: var(--surface2);
-      border-radius: 4px;
-      padding: 1px 6px;
-      font-size: 9px;
-      color: var(--text-dim);
-    }
-
-    .sidebar-footer {
-      padding: 16px;
-      border-top: 1px solid var(--border);
-      font-size: 10px;
-      color: var(--text-dim);
-    }
-
-    /* ========== MAIN ========== */
-    .main {
-      margin-left: 260px;
-      flex: 1;
-      padding: 40px 48px;
-      max-width: calc(100% - 260px);
-    }
-
-    /* ========== HERO ========== */
-    .hero {
-      padding: 60px 0 48px;
-      border-bottom: 1px solid var(--border);
-      margin-bottom: 48px;
-      animation: fadeIn 0.8s ease;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .hero-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 11px;
-      color: var(--green);
-      background: var(--green-dim);
-      border: 1px solid var(--green);
-      border-radius: 4px;
-      padding: 4px 12px;
-      margin-bottom: 20px;
-      letter-spacing: 1px;
-    }
-
-    .hero-title {
-      font-family: var(--font-display);
-      font-size: 52px;
-      font-weight: 800;
-      color: var(--text-bright);
-      line-height: 1.05;
-      margin-bottom: 8px;
-    }
-
-    .hero-title span {
-      color: var(--green);
-      position: relative;
-    }
-
-    .hero-sub {
-      font-family: var(--font-display);
-      font-size: 18px;
-      font-weight: 400;
-      color: var(--text-dim);
-      margin-bottom: 24px;
-    }
-
-    .hero-meta {
-      display: flex;
-      gap: 24px;
-      flex-wrap: wrap;
-    }
-
-    .hero-meta-item {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 12px;
-      color: var(--text-dim);
-    }
-
-    .hero-meta-item span:first-child { color: var(--cyan); }
-
-    /* ========== SECTION ========== */
-    .section {
-      margin-bottom: 56px;
-      animation: fadeIn 0.6s ease;
-    }
-
-    .section-title {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 24px;
-    }
-
-    .section-title h2 {
-      font-family: var(--font-display);
-      font-size: 22px;
-      font-weight: 700;
-      color: var(--text-bright);
-    }
-
-    .section-line {
-      flex: 1;
-      height: 1px;
-      background: var(--border);
-    }
-
-    .section-num {
-      font-size: 11px;
-      color: var(--text-dim);
-      font-family: var(--font-mono);
-    }
-
-    /* ========== CV CARDS ========== */
-    .cv-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-    }
-
-    .cv-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 20px;
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      text-decoration: none;
-      transition: all 0.2s;
-      cursor: pointer;
-    }
-
-    .cv-card:hover {
-      border-color: var(--green);
-      background: var(--green-dim);
-    }
-
-    .cv-card-icon {
-      font-size: 28px;
-    }
-
-    .cv-card-info h3 {
-      font-family: var(--font-display);
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--text-bright);
-    }
-
-    .cv-card-info p {
-      font-size: 11px;
-      color: var(--text-dim);
-      margin-top: 2px;
-    }
-
-    .cv-card-badge {
-      margin-left: auto;
-      font-size: 9px;
-      padding: 3px 8px;
-      border-radius: 4px;
-    }
-
-    .badge-required { background: rgba(232,65,66,0.15); color: var(--red); border: 1px solid rgba(232,65,66,0.3); }
-    .badge-optional { background: var(--surface2); color: var(--text-dim); border: 1px solid var(--border); }
-
-    /* ========== COMPETENCE CARD ========== */
-    .competence-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      margin-bottom: 24px;
-      overflow: hidden;
-      transition: border-color 0.2s;
-    }
-
-    .competence-card:hover { border-color: var(--cyan); }
-
-    .comp-header {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      padding: 20px 24px;
-      background: var(--surface2);
-      border-bottom: 1px solid var(--border);
-      cursor: pointer;
-      user-select: none;
-    }
-
-    .comp-num-badge {
-      width: 36px;
-      height: 36px;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--font-mono);
-      font-weight: 700;
-      font-size: 14px;
-      flex-shrink: 0;
-    }
-
-    .comp-1 { background: rgba(57,211,83,0.15); color: var(--green); border: 1px solid var(--green); }
-    .comp-2 { background: rgba(88,166,255,0.15); color: var(--cyan); border: 1px solid var(--cyan); }
-    .comp-3 { background: rgba(227,179,65,0.15); color: var(--amber); border: 1px solid var(--amber); }
-    .comp-4 { background: rgba(248,81,73,0.15); color: var(--red); border: 1px solid var(--red); }
-    .comp-5 { background: rgba(188,140,255,0.15); color: #bc8cff; border: 1px solid #bc8cff; }
-
-    .comp-header-info { flex: 1; }
-
-    .comp-title {
-      font-family: var(--font-display);
-      font-size: 17px;
-      font-weight: 700;
-      color: var(--text-bright);
-    }
-
-    .comp-subtitle {
-      font-size: 11px;
-      color: var(--text-dim);
-      margin-top: 2px;
-    }
-
-    .comp-toggle {
-      font-size: 18px;
-      color: var(--text-dim);
-      transition: transform 0.3s;
-    }
-
-    .comp-toggle.open { transform: rotate(180deg); }
-
-    .comp-body {
-      display: none;
-      padding: 24px;
-    }
-
-    .comp-body.open { display: block; }
-
-    /* ========== COMP SECTIONS ========== */
-    .comp-section {
-      margin-bottom: 24px;
-    }
-
-    .comp-section:last-child { margin-bottom: 0; }
-
-    .comp-section-title {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 12px;
-      padding-bottom: 8px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .comp-section-icon { font-size: 15px; }
-
-    .comp-section-title h4 {
-      font-family: var(--font-display);
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--text-bright);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .context-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      margin-top: 12px;
-    }
-
-    .context-item {
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 10px 12px;
-    }
-
-    .context-key {
-      font-size: 9px;
-      color: var(--green);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: 4px;
-    }
-
-    .context-val {
-      font-size: 12px;
-      color: var(--text);
-    }
-
-    /* PREUVES */
-    .preuve-item {
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 14px;
-      margin-bottom: 10px;
-      display: flex;
-      gap: 14px;
-      align-items: flex-start;
-    }
-
-    .preuve-item:last-child { margin-bottom: 0; }
-
-    .preuve-icon-wrap {
-      width: 32px;
-      height: 32px;
-      border-radius: 6px;
-      background: var(--cyan-dim);
-      border: 1px solid var(--cyan);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
-      flex-shrink: 0;
-    }
-
-    .preuve-content h5 {
-      font-size: 13px;
-      color: var(--cyan);
-      margin-bottom: 4px;
-    }
-
-    .preuve-content p {
-      font-size: 12px;
-      color: var(--text);
-      line-height: 1.6;
-    }
-
-    .preuve-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      font-size: 11px;
-      color: var(--green);
-      text-decoration: none;
-      margin-top: 6px;
-      border-bottom: 1px solid transparent;
-      transition: border-color 0.2s;
-    }
-
-    .preuve-link:hover { border-color: var(--green); }
-
-    /* AC TABLE */
-    .ac-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 12px;
-    }
-
-    .ac-table th {
-      background: var(--surface2);
-      color: var(--text-dim);
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      padding: 8px 12px;
-      text-align: left;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .ac-table td {
-      padding: 10px 12px;
-      border-bottom: 1px solid var(--border);
-      color: var(--text);
-      vertical-align: top;
-    }
-
-    .ac-table tr:last-child td { border-bottom: none; }
-
-    .ac-code {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      color: var(--amber);
-      white-space: nowrap;
-    }
-
-    .status-acquis {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      background: var(--green-dim);
-      color: var(--green);
-      border: 1px solid var(--green);
-      border-radius: 4px;
-      padding: 2px 8px;
-      font-size: 10px;
-      white-space: nowrap;
-    }
-
-    .status-en-cours {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      background: rgba(227,179,65,0.1);
-      color: var(--amber);
-      border: 1px solid var(--amber);
-      border-radius: 4px;
-      padding: 2px 8px;
-      font-size: 10px;
-      white-space: nowrap;
-    }
-
-    /* REFLEXIVITE */
-    .reflex-block {
-      background: linear-gradient(135deg, rgba(57,211,83,0.04), rgba(88,166,255,0.04));
-      border: 1px solid var(--border);
-      border-left: 3px solid var(--green);
-      border-radius: 8px;
-      padding: 18px 20px;
-    }
-
-    .reflex-item {
-      margin-bottom: 16px;
-    }
-
-    .reflex-item:last-child { margin-bottom: 0; }
-
-    .reflex-label {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 11px;
-      color: var(--green);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: 6px;
-    }
-
-    .reflex-text {
-      font-size: 13px;
-      color: var(--text);
-      line-height: 1.7;
-      font-family: var(--font-display);
-      font-weight: 400;
-    }
-
-    .reflex-text em {
-      color: var(--text-dim);
-      font-style: italic;
-    }
-
-    /* ========== PLACEHOLDER HINT ========== */
-    .placeholder {
-      background: rgba(227,179,65,0.07);
-      border: 1px dashed rgba(227,179,65,0.4);
-      border-radius: 6px;
-      padding: 10px 14px;
-      font-size: 12px;
-      color: var(--amber);
-      margin-top: 8px;
-    }
-
-    .placeholder::before { content: '✏️  À compléter : '; font-weight: 600; }
-
-    /* ========== FOOTER ========== */
-    .footer {
-      border-top: 1px solid var(--border);
-      padding-top: 24px;
-      margin-top: 32px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-size: 11px;
-      color: var(--text-dim);
-    }
-
-    .footer-left {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    /* ========== SCROLLBAR ========== */
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: var(--bg); }
-    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
-    ::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
-
-    /* ========== RESPONSIVE ========== */
-    @media (max-width: 900px) {
-      .sidebar { display: none; }
-      .main { margin-left: 0; max-width: 100%; padding: 24px 20px; }
-      .context-grid { grid-template-columns: 1fr 1fr; }
-      .cv-grid { grid-template-columns: 1fr; }
-      .hero-title { font-size: 36px; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio BUT R&T Cybersécurité</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+          --bg: #080c10;
+          --surface: #0d1117;
+          --surface2: #161b22;
+          --border: #21262d;
+          --green: #39d353;
+          --green-dim: #1a4a27;
+          --cyan: #58a6ff;
+          --cyan-dim: #0d2540;
+          --amber: #e3b341;
+          --red: #f85149;
+          --text: #c9d1d9;
+          --text-dim: #6e7681;
+          --text-bright: #f0f6fc;
+          --font-mono: 'JetBrains Mono', monospace;
+          --font-display: 'Syne', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+          font-family: var(--font-mono);
+          background: var(--bg);
+          color: var(--text);
+          min-height: 100vh;
+          overflow-x: hidden;
+        }
+
+        /* Scanline overlay */
+        body::before {
+          content: '';
+          position: fixed;
+          inset: 0;
+          background: repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 2px,
+            rgba(0,0,0,0.03) 2px,
+            rgba(0,0,0,0.03) 4px
+          );
+          pointer-events: none;
+          z-index: 9999;
+        }
+
+        /* Grid background */
+        body::after {
+          content: '';
+          position: fixed;
+          inset: 0;
+          background-image:
+            linear-gradient(rgba(57,211,83,0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(57,211,83,0.03) 1px, transparent 1px);
+          background-size: 40px 40px;
+          pointer-events: none;
+          z-index: 0;
+        }
+
+        /* ========== LAYOUT ========== */
+        .layout {
+          display: flex;
+          min-height: 100vh;
+          position: relative;
+          z-index: 1;
+        }
+
+        /* ========== SIDEBAR ========== */
+        .sidebar {
+          width: 260px;
+          flex-shrink: 0;
+          background: var(--surface);
+          border-right: 1px solid var(--border);
+          position: fixed;
+          top: 0;
+          left: 0;
+          height: 100vh;
+          overflow-y: auto;
+          display: flex;
+          flex-direction: column;
+          z-index: 100;
+        }
+
+        .sidebar-header {
+          padding: 24px 20px 20px;
+          border-bottom: 1px solid var(--border);
+        }
+
+        .sidebar-logo {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          margin-bottom: 12px;
+        }
+
+        .logo-icon {
+          width: 32px;
+          height: 32px;
+          background: var(--green);
+          border-radius: 6px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 14px;
+          font-weight: 700;
+          color: var(--bg);
+        }
+
+        .logo-text {
+          font-family: var(--font-display);
+          font-weight: 800;
+          font-size: 14px;
+          color: var(--text-bright);
+        }
+
+        .sidebar-name {
+          font-family: var(--font-display);
+          font-size: 18px;
+          font-weight: 700;
+          color: var(--text-bright);
+          line-height: 1.2;
+        }
+
+        .sidebar-sub {
+          font-size: 10px;
+          color: var(--text-dim);
+          margin-top: 4px;
+          letter-spacing: 0.5px;
+        }
+
+        .status-badge {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          background: var(--green-dim);
+          border: 1px solid var(--green);
+          border-radius: 20px;
+          padding: 3px 10px;
+          font-size: 10px;
+          color: var(--green);
+          margin-top: 10px;
+        }
+
+        .status-dot {
+          width: 6px;
+          height: 6px;
+          background: var(--green);
+          border-radius: 50%;
+          animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.3; }
+        }
+
+        .sidebar-nav {
+          flex: 1;
+          padding: 16px 12px;
+        }
+
+        .nav-section {
+          margin-bottom: 20px;
+        }
+
+        .nav-label {
+          font-size: 9px;
+          color: var(--text-dim);
+          text-transform: uppercase;
+          letter-spacing: 1.5px;
+          padding: 0 8px;
+          margin-bottom: 6px;
+        }
+
+        .nav-item {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          padding: 8px 10px;
+          border-radius: 6px;
+          color: var(--text-dim);
+          text-decoration: none;
+          font-size: 12px;
+          transition: all 0.2s;
+          cursor: pointer;
+        }
+
+        .nav-item:hover, .nav-item.active {
+          background: var(--surface2);
+          color: var(--green);
+        }
+
+        .nav-item.active {
+          border-left: 2px solid var(--green);
+        }
+
+        .nav-icon { font-size: 14px; width: 18px; text-align: center; }
+
+        .nav-comp-num {
+          margin-left: auto;
+          background: var(--surface2);
+          border-radius: 4px;
+          padding: 1px 6px;
+          font-size: 9px;
+          color: var(--text-dim);
+        }
+
+        .sidebar-footer {
+          padding: 16px;
+          border-top: 1px solid var(--border);
+          font-size: 10px;
+          color: var(--text-dim);
+        }
+
+        /* ========== MAIN ========== */
+        .main {
+          margin-left: 260px;
+          flex: 1;
+          padding: 40px 48px;
+          max-width: calc(100% - 260px);
+        }
+
+        /* ========== HERO ========== */
+        .hero {
+          padding: 60px 0 48px;
+          border-bottom: 1px solid var(--border);
+          margin-bottom: 48px;
+          animation: fadeIn 0.8s ease;
+        }
+
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-tag {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          font-size: 11px;
+          color: var(--green);
+          background: var(--green-dim);
+          border: 1px solid var(--green);
+          border-radius: 4px;
+          padding: 4px 12px;
+          margin-bottom: 20px;
+          letter-spacing: 1px;
+        }
+
+        .hero-title {
+          font-family: var(--font-display);
+          font-size: 52px;
+          font-weight: 800;
+          color: var(--text-bright);
+          line-height: 1.05;
+          margin-bottom: 8px;
+        }
+
+        .hero-title span {
+          color: var(--green);
+          position: relative;
+        }
+
+        .hero-sub {
+          font-family: var(--font-display);
+          font-size: 18px;
+          font-weight: 400;
+          color: var(--text-dim);
+          margin-bottom: 24px;
+        }
+
+        .hero-meta {
+          display: flex;
+          gap: 24px;
+          flex-wrap: wrap;
+        }
+
+        .hero-meta-item {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          font-size: 12px;
+          color: var(--text-dim);
+        }
+
+        .hero-meta-item span:first-child { color: var(--cyan); }
+
+        /* ========== SECTION ========== */
+        .section {
+          margin-bottom: 56px;
+          animation: fadeIn 0.6s ease;
+        }
+
+        .section-title {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          margin-bottom: 24px;
+        }
+
+        .section-title h2 {
+          font-family: var(--font-display);
+          font-size: 22px;
+          font-weight: 700;
+          color: var(--text-bright);
+        }
+
+        .section-line {
+          flex: 1;
+          height: 1px;
+          background: var(--border);
+        }
+
+        .section-num {
+          font-size: 11px;
+          color: var(--text-dim);
+          font-family: var(--font-mono);
+        }
+
+        /* ========== CV CARDS ========== */
+        .cv-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 16px;
+          margin-bottom: 32px;
+        }
+
+        /* ========== EXPERIENCE CARD ========== */
+        .experience-card {
+          background: var(--surface);
+          border: 1px solid var(--border);
+          border-radius: 12px;
+          padding: 28px;
+          transition: border-color 0.2s, transform 0.2s;
+          position: relative;
+          overflow: hidden;
+        }
+
+        .experience-card:hover {
+          border-color: var(--green);
+        }
+
+        .exp-header {
+          margin-bottom: 24px;
+          padding-bottom: 18px;
+          border-bottom: 1px solid var(--border);
+        }
+
+        .exp-title-row {
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-start;
+          margin-bottom: 8px;
+        }
+
+        .exp-role {
+          font-family: var(--font-display);
+          font-size: 22px;
+          font-weight: 700;
+          color: var(--text-bright);
+        }
+
+        .exp-duration {
+          font-size: 11px;
+          color: var(--green);
+          background: var(--green-dim);
+          padding: 4px 12px;
+          border-radius: 4px;
+          border: 1px solid var(--green);
+          font-family: var(--font-mono);
+          white-space: nowrap;
+        }
+
+        .exp-company {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          font-size: 14px;
+        }
+
+        .company-name {
+          color: var(--cyan);
+          font-weight: 600;
+        }
+
+        .company-loc {
+          color: var(--text-dim);
+        }
+
+        .exp-body {
+          font-size: 13px;
+          line-height: 1.7;
+        }
+
+        .exp-objective {
+          margin-bottom: 20px;
+          color: var(--text);
+          padding: 12px 16px;
+          background: var(--surface2);
+          border-left: 3px solid var(--amber);
+          border-radius: 4px;
+        }
+
+        .exp-section-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 24px;
+          margin-bottom: 24px;
+        }
+
+        .exp-body h4 {
+          font-family: var(--font-display);
+          font-size: 13px;
+          color: var(--text-bright);
+          margin-bottom: 12px;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+        }
+
+        .exp-body h4::before {
+          content: '';
+          width: 4px;
+          height: 14px;
+          background: var(--green);
+          display: inline-block;
+          border-radius: 2px;
+        }
+
+        .exp-body ul {
+          list-style: none;
+          padding-left: 0;
+        }
+
+        .exp-body li {
+          position: relative;
+          padding-left: 18px;
+          margin-bottom: 8px;
+          color: var(--text);
+        }
+
+        .exp-body li::before {
+          content: '▹';
+          position: absolute;
+          left: 0;
+          color: var(--green);
+        }
+
+        .exp-tech-stack {
+          margin-top: 24px;
+          padding: 14px 18px;
+          background: rgba(88,166,255,0.05);
+          border-radius: 8px;
+          border: 1px solid var(--border);
+          font-size: 12px;
+          display: flex;
+          flex-wrap: wrap;
+          gap: 8px;
+          align-items: center;
+        }
+
+        .exp-tech-stack strong { color: var(--cyan); margin-right: 4px; }
+
+        .exp-tags {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 10px;
+          margin-top: 24px;
+        }
+
+        .exp-tag {
+          background: var(--surface2);
+          border: 1px solid var(--border);
+          color: var(--text-dim);
+          padding: 4px 12px;
+          border-radius: 20px;
+          font-size: 10px;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+          transition: all 0.2s;
+        }
+
+        .exp-tag:hover {
+          border-color: var(--green);
+          color: var(--green);
+          background: var(--green-dim);
+        }
+
+        @media (max-width: 768px) {
+          .exp-section-grid { grid-template-columns: 1fr; }
+          .exp-title-row { flex-direction: column; gap: 10px; }
+        }
+
+        .cv-card {
+          background: var(--surface);
+          border: 1px solid var(--border);
+          border-radius: 8px;
+          padding: 20px;
+          display: flex;
+          align-items: center;
+          gap: 16px;
+          text-decoration: none;
+          transition: all 0.2s;
+          cursor: pointer;
+        }
+
+        .cv-card:hover {
+          border-color: var(--green);
+          background: var(--green-dim);
+        }
+
+        .cv-card-icon {
+          font-size: 28px;
+        }
+
+        .cv-card-info h3 {
+          font-family: var(--font-display);
+          font-size: 14px;
+          font-weight: 600;
+          color: var(--text-bright);
+        }
+
+        .cv-card-info p {
+          font-size: 11px;
+          color: var(--text-dim);
+          margin-top: 2px;
+        }
+
+        .cv-card-badge {
+          margin-left: auto;
+          font-size: 9px;
+          padding: 3px 8px;
+          border-radius: 4px;
+        }
+
+        .badge-required { background: rgba(232,65,66,0.15); color: var(--red); border: 1px solid rgba(232,65,66,0.3); }
+        .badge-optional { background: var(--surface2); color: var(--text-dim); border: 1px solid var(--border); }
+
+        /* ========== COMPETENCE CARD ========== */
+        .competence-card {
+          background: var(--surface);
+          border: 1px solid var(--border);
+          border-radius: 10px;
+          margin-bottom: 24px;
+          overflow: hidden;
+          transition: border-color 0.2s;
+        }
+
+        .competence-card:hover { border-color: var(--cyan); }
+
+        .comp-header {
+          display: flex;
+          align-items: center;
+          gap: 16px;
+          padding: 20px 24px;
+          background: var(--surface2);
+          border-bottom: 1px solid var(--border);
+          cursor: pointer;
+          user-select: none;
+        }
+
+        .comp-num-badge {
+          width: 36px;
+          height: 36px;
+          border-radius: 8px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-family: var(--font-mono);
+          font-weight: 700;
+          font-size: 14px;
+          flex-shrink: 0;
+        }
+
+        .comp-1 { background: rgba(57,211,83,0.15); color: var(--green); border: 1px solid var(--green); }
+        .comp-2 { background: rgba(88,166,255,0.15); color: var(--cyan); border: 1px solid var(--cyan); }
+        .comp-3 { background: rgba(227,179,65,0.15); color: var(--amber); border: 1px solid var(--amber); }
+        .comp-4 { background: rgba(248,81,73,0.15); color: var(--red); border: 1px solid var(--red); }
+        .comp-5 { background: rgba(188,140,255,0.15); color: #bc8cff; border: 1px solid #bc8cff; }
+
+        .comp-header-info { flex: 1; }
+
+        .comp-title {
+          font-family: var(--font-display);
+          font-size: 17px;
+          font-weight: 700;
+          color: var(--text-bright);
+        }
+
+        .comp-subtitle {
+          font-size: 11px;
+          color: var(--text-dim);
+          margin-top: 2px;
+        }
+
+        .comp-toggle {
+          font-size: 18px;
+          color: var(--text-dim);
+          transition: transform 0.3s;
+        }
+
+        .comp-toggle.open { transform: rotate(180deg); }
+
+        .comp-body {
+          display: none;
+          padding: 24px;
+        }
+
+        .comp-body.open { display: block; }
+
+        /* ========== COMP SECTIONS ========== */
+        .comp-section {
+          margin-bottom: 24px;
+        }
+
+        .comp-section:last-child { margin-bottom: 0; }
+
+        .comp-section-title {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          margin-bottom: 12px;
+          padding-bottom: 8px;
+          border-bottom: 1px solid var(--border);
+        }
+
+        .comp-section-icon { font-size: 15px; }
+
+        .comp-section-title h4 {
+          font-family: var(--font-display);
+          font-size: 13px;
+          font-weight: 600;
+          color: var(--text-bright);
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+        }
+
+        .context-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 10px;
+          margin-top: 12px;
+        }
+
+        .context-item {
+          background: var(--surface2);
+          border: 1px solid var(--border);
+          border-radius: 6px;
+          padding: 10px 12px;
+        }
+
+        .context-key {
+          font-size: 9px;
+          color: var(--green);
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          margin-bottom: 4px;
+        }
+
+        .context-val {
+          font-size: 12px;
+          color: var(--text);
+        }
+
+        /* PREUVES */
+        .preuve-item {
+          background: var(--surface2);
+          border: 1px solid var(--border);
+          border-radius: 6px;
+          padding: 14px;
+          margin-bottom: 10px;
+          display: flex;
+          gap: 14px;
+          align-items: flex-start;
+        }
+
+        .preuve-item:last-child { margin-bottom: 0; }
+
+        .preuve-icon-wrap {
+          width: 32px;
+          height: 32px;
+          border-radius: 6px;
+          background: var(--cyan-dim);
+          border: 1px solid var(--cyan);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 14px;
+          flex-shrink: 0;
+        }
+
+        .preuve-content h5 {
+          font-size: 13px;
+          color: var(--cyan);
+          margin-bottom: 4px;
+        }
+
+        .preuve-content p {
+          font-size: 12px;
+          color: var(--text);
+          line-height: 1.6;
+        }
+
+        .preuve-link {
+          display: inline-flex;
+          align-items: center;
+          gap: 4px;
+          font-size: 11px;
+          color: var(--green);
+          text-decoration: none;
+          margin-top: 6px;
+          border-bottom: 1px solid transparent;
+          transition: border-color 0.2s;
+        }
+
+        .preuve-link:hover { border-color: var(--green); }
+
+        /* AC TABLE */
+        .ac-table {
+          width: 100%;
+          border-collapse: collapse;
+          font-size: 12px;
+        }
+
+        .ac-table th {
+          background: var(--surface2);
+          color: var(--text-dim);
+          font-size: 10px;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          padding: 8px 12px;
+          text-align: left;
+          border-bottom: 1px solid var(--border);
+        }
+
+        .ac-table td {
+          padding: 10px 12px;
+          border-bottom: 1px solid var(--border);
+          color: var(--text);
+          vertical-align: top;
+        }
+
+        .ac-table tr:last-child td { border-bottom: none; }
+
+        .ac-code {
+          font-family: var(--font-mono);
+          font-size: 11px;
+          color: var(--amber);
+          white-space: nowrap;
+        }
+
+        .status-acquis {
+          display: inline-flex;
+          align-items: center;
+          gap: 5px;
+          background: var(--green-dim);
+          color: var(--green);
+          border: 1px solid var(--green);
+          border-radius: 4px;
+          padding: 2px 8px;
+          font-size: 10px;
+          white-space: nowrap;
+        }
+
+        .status-en-cours {
+          display: inline-flex;
+          align-items: center;
+          gap: 5px;
+          background: rgba(227,179,65,0.1);
+          color: var(--amber);
+          border: 1px solid var(--amber);
+          border-radius: 4px;
+          padding: 2px 8px;
+          font-size: 10px;
+          white-space: nowrap;
+        }
+
+        /* REFLEXIVITE */
+        .reflex-block {
+          background: linear-gradient(135deg, rgba(57,211,83,0.04), rgba(88,166,255,0.04));
+          border: 1px solid var(--border);
+          border-left: 3px solid var(--green);
+          border-radius: 8px;
+          padding: 18px 20px;
+        }
+
+        .reflex-item {
+          margin-bottom: 16px;
+        }
+
+        .reflex-item:last-child { margin-bottom: 0; }
+
+        .reflex-label {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          font-size: 11px;
+          color: var(--green);
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          margin-bottom: 6px;
+        }
+
+        .reflex-text {
+          font-size: 13px;
+          color: var(--text);
+          line-height: 1.7;
+          font-family: var(--font-display);
+          font-weight: 400;
+        }
+
+        .reflex-text em {
+          color: var(--text-dim);
+          font-style: italic;
+        }
+
+        /* ========== PLACEHOLDER HINT ========== */
+        .placeholder {
+          background: rgba(227,179,65,0.07);
+          border: 1px dashed rgba(227,179,65,0.4);
+          border-radius: 6px;
+          padding: 10px 14px;
+          font-size: 12px;
+          color: var(--amber);
+          margin-top: 8px;
+        }
+
+        .placeholder::before { content: '✏️  À compléter : '; font-weight: 600; }
+
+        /* ========== FOOTER ========== */
+        .footer {
+          border-top: 1px solid var(--border);
+          padding-top: 24px;
+          margin-top: 32px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          font-size: 11px;
+          color: var(--text-dim);
+        }
+
+        .footer-left {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+        }
+
+        /* ========== SCROLLBAR ========== */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 900px) {
+          .sidebar { display: none; }
+          .main { margin-left: 0; max-width: 100%; padding: 24px 20px; }
+          .context-grid { grid-template-columns: 1fr 1fr; }
+          .cv-grid { grid-template-columns: 1fr; }
+          .hero-title { font-size: 36px; }
+        }
+    </style>
 </head>
 <body>
 
 <div class="layout">
 
-  <aside class="sidebar">
-    <div class="sidebar-header">
-      <div class="sidebar-logo">
-        <div class="logo-icon">R&amp;T</div>
-        <span class="logo-text">Portfolio 2A</span>
-      </div>
-      <div class="sidebar-name">Eren KARA</div>
-      <div class="sidebar-sub">IUT DE COLMAR — RÉSEAUX & TÉLÉCOMMUNICATIONS PARCOURS CYBERSÉCURITÉ</div>
-      <div class="status-badge">
-        <div class="status-dot"></div>
-        Promotion 2024–2025
-      </div>
-    </div>
-
-    <nav class="sidebar-nav">
-      <div class="nav-section">
-        <div class="nav-label">Navigation</div>
-        <a class="nav-item active" href="#hero">
-          <span class="nav-icon">⌂</span> Accueil
-        </a>
-        <a class="nav-item" href="#cv">
-          <span class="nav-icon">📄</span> CV
-        </a>
-      </div>
-
-      <div class="nav-section">
-        <div class="nav-label">Compétences</div>
-        <a class="nav-item" href="#comp1">
-          <span class="nav-icon">🛠</span> Administrer
-          <span class="nav-comp-num">C1</span>
-        </a>
-        <a class="nav-item" href="#comp2">
-          <span class="nav-icon">🔗</span> Connecter
-          <span class="nav-comp-num">C2</span>
-        </a>
-        <a class="nav-item" href="#comp3">
-          <span class="nav-icon">💻</span> Programmer
-          <span class="nav-comp-num">C3</span>
-        </a>
-        <a class="nav-item" href="#comp4">
-          <span class="nav-icon">🔒</span> Sécuriser
-          <span class="nav-comp-num">C4</span>
-        </a>
-        <a class="nav-item" href="#comp5">
-          <span class="nav-icon">📡</span> Surveiller
-          <span class="nav-comp-num">C5</span>
-        </a>
-      </div>
-    </nav>
-
-    <div class="sidebar-footer">
-      BUT R&amp;T · Parcours Cybersécurité · 2ème Année
-    </div>
-  </aside>
-
-  <main class="main">
-
-    <!-- HERO -->
-    <section class="hero" id="hero">
-      <div class="hero-tag">Portfolio · BUT Réseaux &amp; Télécommunications</div>
-      <h1 class="hero-title">
-        <span>Eren</span><br>Kara
-      </h1>
-      <p class="hero-sub">Étudiant en Cybersécurité — IUT de Colmar</p>
-      <div class="hero-meta">
-        <div class="hero-meta-item"><span>●</span> IUT de Colmar</div>
-        <div class="hero-meta-item"><span>●</span> BUT R&amp;T — Parcours Cybersécurité</div>
-        <div class="hero-meta-item"><span>●</span> 2ème Année — 2024/2025</div>
-        <div class="hero-meta-item"><span>🔗</span> <a href="https://github.com/erenakra" style="color:var(--cyan); text-decoration:none;">Github</a></div>
-      </div>
-    </section>
-
-    <section class="section" id="cv">
-      <div class="section-title">
-        <h2>Curriculum Vitae</h2>
-        <div class="section-line"></div>
-        <div class="section-num">01</div>
-      </div>
-      <div class="cv-grid">
-        <a class="cv-card" href="Documents/cv_anglais.pdf" target="_blank">
-          <div class="cv-card-icon">EN</div>
-          <div class="cv-card-info">
-            <h3>CV en Anglais</h3>
-            <p>Télécharger le PDF (EN)</p>
-          </div>
-          <span class="cv-card-badge badge-required">Obligatoire</span>
-        </a>
-        <a class="cv-card" href="Documents/cv_francais.pdf" target="_blank">
-          <div class="cv-card-icon">🇫🇷</div>
-          <div class="cv-card-info">
-            <h3>CV en Français</h3>
-            <p>Télécharger le PDF (FR)</p>
-          </div>
-          <span class="cv-card-badge badge-optional">Optionnel</span>
-        </a>
-      </div>
-    </section>
-
-    <section class="section" id="competences">
-      <div class="section-title">
-        <h2>Compétences</h2>
-        <div class="section-line"></div>
-        <div class="section-num">02</div>
-      </div>
-
-      <div class="competence-card" id="comp1">
-        <div class="comp-header" onclick="toggleComp(this)">
-          <div class="comp-num-badge comp-1">C1</div>
-          <div class="comp-header-info">
-            <div class="comp-title">[Administrer] - Administrer les réseaux et l'Internet</div>
-            <div class="comp-subtitle">Administration système · Haute Disponibilité · Interconnexion LAN/WAN</div>
-          </div>
-          <div class="comp-toggle">▾</div>
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-logo">
+                <div class="logo-icon">R&amp;T</div>
+                <span class="logo-text">Portfolio 2A</span>
+            </div>
+            <div class="sidebar-name">Eren KARA</div>
+            <div class="sidebar-sub">IUT DE COLMAR — RÉSEAUX & TÉLÉCOMMUNICATIONS PARCOURS CYBERSÉCURITÉ</div>
+            <div class="status-badge">
+                <div class="status-dot"></div>
+                Promotion 2024–2025
+            </div>
         </div>
-        <div class="comp-body">
 
-          <div class="comp-section">
-            <div class="comp-section-title">
-               
-              <h4>1. Contexte de la compétence</h4>
+        <nav class="sidebar-nav">
+            <div class="nav-section">
+                <div class="nav-label">Navigation</div>
+                <a class="nav-item active" href="#hero">
+                    <span class="nav-icon">⌂</span> Accueil
+                </a>
+                <a class="nav-item" href="#cv">
+                    <span class="nav-icon">📄</span> CV
+                </a>
+                <a class="nav-item" href="#stages">
+                    <span class="nav-icon">💼</span> Stages
+                </a>
             </div>
-            <div class="context-grid">
-              <div class="context-item"><div class="context-key">Quoi</div><div class="context-val">Conception et déploiement de l'infrastructure LAN multi-sites (UC Exchange) avec topologie hiérarchique.</div></div>
-              <div class="context-item"><div class="context-key">Pourquoi</div><div class="context-val">Assurer une connectivité robuste, sécurisée et tolérante aux pannes pour les utilisateurs et serveurs.</div></div>
-              <div class="context-item"><div class="context-key">Où</div><div class="context-val">Environnement virtualisé EVE-NG avec interconnexion physique en mode Bridged.</div></div>
-              <div class="context-item"><div class="context-key">Quand</div><div class="context-val">Semestre 3.</div></div>
-              <div class="context-item"><div class="context-key">Qui</div><div class="context-val">En groupe, rôle d'Administrateur LAN et Interconnexion.</div></div>
-              <div class="context-item"><div class="context-key">Comment</div><div class="context-val">Via des équipements Cisco (VRRP, MSTP, VTP, IP SLA) et un serveur Linux Debian.</div></div>
-            </div>
-          </div>
 
-          <div class="comp-section">
-            <div class="comp-section-title">
-               
-              <h4>2. Actions &amp; Preuves</h4>
+            <div class="nav-section">
+                <div class="nav-label">Compétences</div>
+                <a class="nav-item" href="#comp1">
+                    <span class="nav-icon">🛠</span> Administrer
+                    <span class="nav-comp-num">C1</span>
+                </a>
+                <a class="nav-item" href="#comp2">
+                    <span class="nav-icon">🔗</span> Connecter
+                    <span class="nav-comp-num">C2</span>
+                </a>
+                <a class="nav-item" href="#comp3">
+                    <span class="nav-icon">💻</span> Programmer
+                    <span class="nav-comp-num">C3</span>
+                </a>
+                <a class="nav-item" href="#comp4">
+                    <span class="nav-icon">🔒</span> Sécuriser
+                    <span class="nav-comp-num">C4</span>
+                </a>
+                <a class="nav-item" href="#comp5">
+                    <span class="nav-icon">📡</span> Surveiller
+                    <span class="nav-comp-num">C5</span>
+                </a>
             </div>
-            <div class="preuve-item">
-              <div class="preuve-icon-wrap">▪</div>
-              <div class="preuve-content">
-                <h5>SAÉ 3.Cyber.03 — Concevoir un réseau informatique sécurisé multi-sites</h5>
-                <p>Déploiement d'une architecture hiérarchique avec segmentation en VLANs gérée par VTP. Mise en œuvre de MSTP (répartition de charge) et VRRP (redondance des passerelles). Installation d'un serveur DHCP sous Debian avec relais IP Helper. Configuration du routage de bordure sécurisé par une surveillance IP SLA pour le basculement dynamique des routes.</p>
-                <a class="preuve-link" href="#">↗ Voir le schéma d'architecture et rapport technique</a>
-              </div>
-            </div>
-          </div>
+        </nav>
 
-          <div class="comp-section">
-            <div class="comp-section-title">
-               
-              <h4>3. Apprentissages Critiques &amp; Indicateurs</h4>
-            </div>
-            <table class="ac-table">
-              <thead>
-                <tr>
-                  <th>Code AC</th>
-                  <th>Intitulé</th>
-                  <th>Indicateur / preuve</th>
-                  <th>Statut</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><span class="ac-code">AC21.01</span></td>
-                  <td>Concevoir un projet de réseau informatique</td>
-                  <td>Topologie hiérarchique et plan d'adressage (10.242.x.x/17) définis et validés.</td>
-                  <td><span class="status-acquis">✓ Acquis</span></td>
-                </tr>
-                <tr>
-                  <td><span class="ac-code">AC21.02</span></td>
-                  <td>Déployer et administrer les systèmes</td>
-                  <td>Fonctionnement effectif de la redondance (VRRP/MSTP) et du serveur Debian (DHCP).</td>
-                  <td><span class="status-acquis">✓ Acquis</span></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <div class="comp-section">
-            <div class="comp-section-title">
-               
-              <h4>4. Bilan &amp; Réflexivité</h4>
-            </div>
-            <div class="reflex-block">
-              <div class="reflex-item">
-                <div class="reflex-label">▪ Bilan des activités</div>
-                <div class="reflex-text">L'architecture hiérarchique mise en place a assuré une robustesse optimale pour le réseau. De plus, la phase d'interconnexion (en mode Bridged) a permis d'unifier les infrastructures et a validé la cohérence globale du projet avec le réseau opérateur et les services distants.</div>
-              </div>
-              <div class="reflex-item">
-                <div class="reflex-label">▪ Difficultés &amp; Solutions</div>
-                <div class="reflex-text">Le routage statique classique présentait un risque de "Blackhole" si le routeur maître tombait en panne. J'ai pallié ce problème en configurant un mécanisme de surveillance active IP SLA couplé à du Tracking, permettant de retirer automatiquement la route défaillante et d'activer la route de secours. Un autre défi fut le blocage des requêtes DHCP par les routeurs, résolu par l'intégration d'agents de relais (IP Helper).</div>
-              </div>
-              <div class="reflex-item">
-                <div class="reflex-label">▪ Initiatives</div>
-                <div class="reflex-text">J'ai fait le choix délibéré de dissocier le service DHCP des équipements de routage en le déployant sur un serveur Linux dédié (Debian 12). Cela m'a permis de centraliser l'administration et de mieux gérer notre environnement hétérogène.</div>
-              </div>
-              <div class="reflex-item">
-                <div class="reflex-label">▪ Généralisation</div>
-                <div class="reflex-text">Déployer des protocoles de haute disponibilité (VRRP, MSTP) et de la surveillance de liens (IP SLA) garantit la continuity de service. Savoir sécuriser et interconnecter des environnements hétérogènes (Cisco et Linux) est une compétence d'administration système absolument indispensable pour concevoir des réseaux d'entreprise modernes et résilients.</div>
-              </div>
-            </div>
-          </div>
+        <div class="sidebar-footer">
+            BUT R&amp;T · Parcours Cybersécurité · 2ème Année
         </div>
-      </div>
+    </aside>
 
-      <div class="competence-card" id="comp2">
-        <div class="comp-header" onclick="toggleComp(this)">
-          <div class="comp-num-badge comp-2">C2</div>
-          <div class="comp-header-info">
-            <div class="comp-title">[Programmer] - Créer des outils et applications informatiques pour les R&T</div>
-            <div class="comp-subtitle">Réseaux LAN/WAN · Conception IoT · PCB & Transmission</div>
-          </div>
-          <div class="comp-toggle">▾</div>
-        </div>
-        <div class="comp-body">
+    <main class="main">
 
-          <div class="comp-section">
-            <div class="comp-section-title">
-               
-              <h4>1. Contexte de la compétence</h4>
+        <!-- HERO -->
+        <section class="hero" id="hero">
+            <div class="hero-tag">Portfolio · BUT Réseaux &amp; Télécommunications</div>
+            <h1 class="hero-title">
+                <span>Eren</span><br>Kara
+            </h1>
+            <p class="hero-sub">Étudiant en Cybersécurité — IUT de Colmar</p>
+            <div class="hero-meta">
+                <div class="hero-meta-item"><span>●</span> IUT de Colmar</div>
+                <div class="hero-meta-item"><span>●</span> BUT R&amp;T — Parcours Cybersécurité</div>
+                <div class="hero-meta-item"><span>●</span> 2ème Année — 2024/2025</div>
+                <div class="hero-meta-item"><span>🔗</span> <a href="https://github.com/erenakra" style="color:var(--cyan); text-decoration:none;">Github</a></div>
             </div>
-            <div class="context-grid">
-              <div class="context-item"><div class="context-key">Quoi</div><div class="context-val">Conception de la carte électronique d'une prise connectée WiFi.</div></div>
-              <div class="context-item"><div class="context-key">Pourquoi</div><div class="context-val">Créer un dispositif répondant à des critères de compacité, de coût optimisé et de sécurité électrique (isolation 230V/basse tension).</div></div>
-              <div class="context-item"><div class="context-key">Où</div><div class="context-val">Sur la plateforme web EasyEDA (Conception CAO).</div></div>
-              <div class="context-item"><div class="context-key">Quand</div><div class="context-val">Semestre 3 (SAÉ 3.01).</div></div>
-              <div class="context-item"><div class="context-key">Qui</div><div class="context-val">Rôle de développeur technique en autonomie.</div></div>
-              <div class="context-item"><div class="context-key">Comment</div><div class="context-val">Par l'analyse des besoins, la conception schématique, et le routage PCB.</div></div>
-            </div>
-          </div>
+        </section>
 
-          <div class="comp-section">
-            <div class="comp-section-title">
-              
-              <h4>2. Actions &amp; Preuves</h4>
+        <section class="section" id="cv">
+            <div class="section-title">
+                <h2>Curriculum Vitae</h2>
+                <div class="section-line"></div>
+                <div class="section-num">01</div>
             </div>
-            <div class="preuve-item">
-              <div class="preuve-icon-wrap">▪</div>
-              <div class="preuve-content">
-                <h5>SAÉ 3.01 — Mettre en oeuvre un système de transmission (Prise Connectée)</h5>
-                <p>Conception schématique et routage double couche intégrant un ESP8266 (WiFi), un capteur de température DS18B20 et un relais de puissance 230V/16A. Application stricte de règles de routage : pistes secteur de 3mm et signaux de 0.3mm.</p>
-                <a class="preuve-link" href="https://github.com/AnonymousApexio/SAE-Mise-En-Oeuvre-Systeme-De-Transmission/blob/main/PCB%20PROJET%202025.json" target="_blank">↗ Voir le routage PCB sur GitHub</a>
-              </div>
+            <div class="cv-grid">
+                <a class="cv-card" href="cv_anglais.pdf" target="_blank">
+                    <div class="cv-card-icon">EN</div>
+                    <div class="cv-card-info">
+                        <h3>CV en Anglais</h3>
+                        <p>Télécharger le PDF (EN)</p>
+                    </div>
+                    <span class="cv-card-badge badge-required">Obligatoire</span>
+                </a>
+                <a class="cv-card" href="cv_francais.pdf" target="_blank">
+                    <div class="cv-card-icon">🇫🇷</div>
+                    <div class="cv-card-info">
+                        <h3>CV en Français</h3>
+                        <p>Télécharger le PDF (FR)</p>
+                    </div>
+                    <span class="cv-card-badge badge-optional">Optionnel</span>
+                </a>
             </div>
-          </div>
+        </section>
 
-          <div class="comp-section">
-            <div class="comp-section-title">
-              
-              <h4>3. Apprentissages Critiques &amp; Indicateurs</h4>
+        <section class="section" id="stages">
+            <div class="section-title">
+                <h2>Stages &amp; Expériences</h2>
+                <div class="section-line"></div>
+                <div class="section-num">02</div>
             </div>
-            <table class="ac-table">
-              <thead>
-                <tr><th>Code AC</th><th>Intitulé</th><th>Indicateur</th><th>Statut</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><span class="ac-code">AC22.01</span></td>
-                  <td>Maîtriser les technologies réseau</td>
-                  <td>Intégration et communication réussies du module ESP8266 au réseau WiFi local.</td>
-                  <td><span class="status-acquis">✓ Acquis</span></td>
-                </tr>
-                <tr>
-                  <td><span class="ac-code">AC22.02</span></td>
-                  <td>Configurer les équipements actifs</td>
-                  <td>Validation des vérifications de conception (DRC/ERC) sans erreurs électriques.</td>
-                  <td><span class="status-acquis">✓ Acquis</span></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
 
-          <div class="comp-section">
-            <div class="comp-section-title">
-              
-              <h4>4. Bilan &amp; Réflexivité</h4>
-            </div>
-            <div class="reflex-block">
-              <div class="reflex-item">
-                <div class="reflex-label">▪ Bilan des activités</div>
-                <div class="reflex-text">J'ai acquis une solide maîtrise des outils de conception CAO (EasyEDA / Altium Designer) et j'ai réussi à intégrer l'intégralité des fonctionnalités demandées tout en optimisant la compacité de la carte.</div>
-              </div>
-              <div class="reflex-item">
-                <div class="reflex-label">▪ Difficultés &amp; Solutions</div>
-                <div class="reflex-text">Les contraintes d'espacement entre le secteur (230V) et la basse tension ont généré plusieurs erreurs DRC. J'ai résolu ce problème en adaptant manuellement les empreintes THT des composants et en recalculant les valeurs des composants de protection (fusible, varistance).</div>
-              </div>
-              <div class="reflex-item">
-                <div class="reflex-label">▪ Initiatives</div>
-                <div class="reflex-text">Lors du routage, j'ai pris l'initiative d'optimiser le placement des composants critiques en priorisant les pistes secteur et en minimisant la longueur des pistes pour les signaux sensibles afin d'éviter les interférences.</div>
-              </div>
-              <div class="reflex-item">
-                <div class="reflex-label">▪ Généralisation</div>
-                <div class="reflex-text">Travailler sur ce PCB m'a permis de comprendre l'importance critique de l'isolation galvanique pour la sécurité. Comprendre l'architecture matérielle (Hardware) des objets connectés est une compétence très précieuse en cybersécurité pour mener à bien des audits d'équipements IoT.</div>
-              </div>
-            </div>
-          </div>
+            <div class="experience-card">
+                <div class="exp-header">
+                    <div class="exp-title-row">
+                        <h3 class="exp-role">Stagiaire Technicien Réseaux &amp; Support</h3>
+                        <span class="exp-duration">8 Semaines</span>
+                    </div>
+                    <div class="exp-company">
+                        <span class="company-name">CIRTEL (Cernay, Alsace)</span>
+                        <span class="company-loc">PME spécialisée IT &amp; Télécoms</span>
+                    </div>
+                </div>
 
-        </div>
-      </div>
+                <div class="exp-body">
+                    <div class="exp-objective">
+                        <strong>Objectif :</strong> Allier théorie et pratique en administration système, support IT et cybersécurité.
+                    </div>
 
-      <div class="competence-card" id="comp3">
-        <div class="comp-header" onclick="toggleComp(this)">
-          <div class="comp-num-badge comp-3">C3</div>
-          <div class="comp-header-info">
-            <div class="comp-title">[Programmer] - Créer des outils et applications informatiques pour les R&T</div>
-            <div class="comp-subtitle">Scripts · Développement · Automatisation</div>
-          </div>
-          <div class="comp-toggle">▾</div>
-        </div>
-        <div class="comp-body">
+                    <div class="exp-section-grid">
+                        <div class="exp-main-missions">
+                            <h4>Développement &amp; Sécurité</h4>
+                            <ul>
+                                <li>Développement d'outils d'aide à la décision et refonte du portail SAV interne.</li>
+                                <li>Sécurisation des accès au portail via une connexion Active Directory (AD).</li>
+                                <li>Amélioration de l'UX/UI avec routage ciblé (Gain de productivité : ~1 min/ticket).</li>
+                            </ul>
+                        </div>
+                        <div class="exp-sub-missions">
+                            <h4>Administration &amp; Support</h4>
+                            <ul>
+                                <li><strong>Automatisation :</strong> Scripts PowerShell de gestion des groupes AD via CSV et nettoyage des doublons.</li>
+                                <li><strong>Dépannage :</strong> Diagnostic pannes matérielles/logicielles (Win 11) et mise à niveau SSD/Wi-Fi.</li>
+                            </ul>
+                        </div>
+                    </div>
 
-          <div class="comp-section">
-            <div class="comp-section-title">
-              
-              <h4>1. Contexte de la compétence</h4>
-            </div>
-            <div class="context-grid">
-              <div class="context-item"><div class="context-key">Quoi</div><div class="context-val">Développement d'applications communicantes et gestion de bases de données.</div></div>
-              <div class="context-item"><div class="context-key">Pourquoi</div><div class="context-val">Pour automatiser des processus réseau et créer des outils logiciels adaptés.</div></div>
-              <div class="context-item"><div class="context-key">Où</div><div class="context-val">Environnement de développement (IUT / Domicile).</div></div>
-              <div class="context-item"><div class="context-key">Quand</div><div class="context-val">Semestre 3.</div></div>
-              <div class="context-item"><div class="context-key">Qui</div><div class="context-val">Travail d'équipe collaboratif.</div></div>
-              <div class="context-item"><div class="context-key">Comment</div><div class="context-val">En utilisant la programmation événementielle (R3.09) et le langage SQL (R3.10).</div></div>
-            </div>
-          </div>
+                    <div class="exp-tech-stack">
+                        <strong>Stack &amp; Outils :</strong>
+                        <span>Visual Studio Code</span> •
+                        <span>Docker (Web local)</span> •
+                        <span>VM Windows Server (AD)</span>
+                    </div>
 
-          <div class="comp-section">
-            <div class="comp-section-title">
-              
-              <h4>2. Actions &amp; Preuves</h4>
+                    <div class="exp-tags">
+                        <span class="exp-tag">Docker</span>
+                        <span class="exp-tag">Active Directory</span>
+                        <span class="exp-tag">Scripts</span>
+                        <span class="exp-tag">Support IT</span>
+                    </div>
+                </div>
             </div>
-            <div class="preuve-item">
-              <div class="preuve-icon-wrap">▪</div>
-              <div class="preuve-content">
-                <h5>SAÉ 3.02 — Développer des applications communicantes</h5>
-                <p>Création d'un outil logiciel capable d'interagir sur le réseau. Intégration d'une base de données (R3.10) pour stocker les informations, et utilisation de la programmation événementielle (R3.09) pour l'interface logicielle.</p>
-                <a class="preuve-link" href="#">↗ Voir le code source du projet</a>
-              </div>
-            </div>
-          </div>
+        </section>
 
-          <div class="comp-section">
-            <div class="comp-section-title">
-              
-              <h4>3. Apprentissages Critiques &amp; Indicateurs</h4>
+        <section class="section" id="competences">
+            <div class="section-title">
+                <h2>Compétences</h2>
+                <div class="section-line"></div>
+                <div class="section-num">03</div>
             </div>
-            <table class="ac-table">
-              <thead>
-                <tr><th>Code AC</th><th>Intitulé</th><th>Indicateur / preuve</th><th>Statut</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><span class="ac-code">AC23.01</span></td>
-                  <td>Automatiser l'administration système avec des scripts</td>
-                  <td>Exécution correcte des programmes via le serveur</td>
-                  <td><span class="status-acquis">✓ Acquis</span></td>
-                </tr>
-                <tr>
-                  <td><span class="ac-code">AC23.02</span></td>
-                  <td>Développer une application à partir d'un cahier des charges</td>
-                  <td>Le système délègue les tâches à d'autres serveurs (load balancing)</td>
-                  <td><span class="status-acquis">✓ Acquis</span></td>
-                </tr>
-                <tr>
-                  <td><span class="ac-code">AC23.03</span></td>
-                  <td>Utiliser un protocole réseau pour programmer une application client/serveur</td>
-                  <td>Communication asynchrone fonctionnelle entre l'interface et la base de données</td>
-                  <td><span class="status-acquis">✓ Acquis</span></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
 
-          <div class="comp-section">
-            <div class="comp-section-title">
-               
-              <h4>4. Bilan &amp; Réflexivité</h4>
+            <div class="competence-card" id="comp1">
+                <div class="comp-header" onclick="toggleComp(this)">
+                    <div class="comp-num-badge comp-1">C1</div>
+                    <div class="comp-header-info">
+                        <div class="comp-title">[Administrer] - Administrer les réseaux et l'Internet</div>
+                        <div class="comp-subtitle">Administration système · Haute Disponibilité · Interconnexion LAN/WAN</div>
+                    </div>
+                    <div class="comp-toggle">▾</div>
+                </div>
+                <div class="comp-body">
+
+                    <div class="comp-section">
+                        <div class="comp-section-title">
+
+                            <h4>1. Contexte de la compétence</h4>
+                        </div>
+                        <div class="context-grid">
+                            <div class="context-item"><div class="context-key">Quoi</div><div class="context-val">Conception et déploiement de l'infrastructure LAN multi-sites (UC Exchange) avec topologie hiérarchique.</div></div>
+                            <div class="context-item"><div class="context-key">Pourquoi</div><div class="context-val">Assurer une connectivité robuste, sécurisée et tolérante aux pannes pour les utilisateurs et serveurs.</div></div>
+                            <div class="context-item"><div class="context-key">Où</div><div class="context-val">Environnement virtualisé EVE-NG avec interconnexion physique en mode Bridged.</div></div>
+                            <div class="context-item"><div class="context-key">Quand</div><div class="context-val">Semestre 3.</div></div>
+                            <div class="context-item"><div class="context-key">Qui</div><div class="context-val">En groupe, rôle d'Administrateur LAN et Interconnexion.</div></div>
+                            <div class="context-item"><div class="context-key">Comment</div><div class="context-val">Via des équipements Cisco (VRRP, MSTP, VTP, IP SLA) et un serveur Linux Debian.</div></div>
+                        </div>
+                    </div>
+
+                    <div class="comp-section">
+                        <div class="comp-section-title">
+
+                            <h4>2. Actions &amp; Preuves</h4>
+                        </div>
+                        <div class="preuve-item">
+                            <div class="preuve-icon-wrap">▪</div>
+                            <div class="preuve-content">
+                                <h5>SAÉ 3.Cyber.03 — Concevoir un réseau informatique sécurisé multi-sites</h5>
+                                <p>Déploiement d'une architecture hiérarchique avec segmentation en VLANs gérée par VTP. Mise en œuvre de MSTP (répartition de charge) et VRRP (redondance des passerelles). Installation d'un serveur DHCP sous Debian avec relais IP Helper. Configuration du routage de bordure sécurisé par une surveillance IP SLA pour le basculement dynamique des routes.</p>
+                                <a class="preuve-link" href="#">↗ Voir le schéma d'architecture et rapport technique</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="comp-section">
+                        <div class="comp-section-title">
+
+                            <h4>3. Apprentissages Critiques &amp; Indicateurs</h4>
+                        </div>
+                        <table class="ac-table">
+                            <thead>
+                            <tr>
+                                <th>Code AC</th>
+                                <th>Intitulé</th>
+                                <th>Indicateur / preuve</th>
+                                <th>Statut</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td><span class="ac-code">AC21.01</span></td>
+                                <td>Concevoir un projet de réseau informatique</td>
+                                <td>Topologie hiérarchique et plan d'adressage (10.242.x.x/17) définis et validés.</td>
+                                <td><span class="status-acquis">✓ Acquis</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="ac-code">AC21.02</span></td>
+                                <td>Déployer et administrer les systèmes</td>
+                                <td>Fonctionnement effectif de la redondance (VRRP/MSTP) et du serveur Debian (DHCP).</td>
+                                <td><span class="status-acquis">✓ Acquis</span></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="comp-section">
+                        <div class="comp-section-title">
+
+                            <h4>4. Bilan &amp; Réflexivité</h4>
+                        </div>
+                        <div class="reflex-block">
+                            <div class="reflex-item">
+                                <div class="reflex-label">▪ Bilan des activités</div>
+                                <div class="reflex-text">L'architecture hiérarchique mise en place a assuré une robustesse optimale pour le réseau. De plus, la phase d'interconnexion (en mode Bridged) a permis d'unifier les infrastructures et a validé la cohérence globale du projet avec le réseau opérateur et les services distants.</div>
+                            </div>
+                            <div class="reflex-item">
+                                <div class="reflex-label">▪ Difficultés &amp; Solutions</div>
+                                <div class="reflex-text">Le routage statique classique présentait un risque de "Blackhole" si le routeur maître tombait en panne. J'ai pallié ce problème en configurant un mécanisme de surveillance active IP SLA couplé à du Tracking, permettant de retirer automatiquement la route défaillante et d'activer la route de secours. Un autre défi fut le blocage des requêtes DHCP par les routeurs, résolu par l'intégration d'agents de relais (IP Helper).</div>
+                            </div>
+                            <div class="reflex-item">
+                                <div class="reflex-label">▪ Initiatives</div>
+                                <div class="reflex-text">J'ai fait le choix délibéré de dissocier le service DHCP des équipements de routage en le déployant sur un serveur Linux dédié (Debian 12). Cela m'a permis de centraliser l'administration et de mieux gérer notre environnement hétérogène.</div>
+                            </div>
+                            <div class="reflex-item">
+                                <div class="reflex-label">▪ Généralisation</div>
+                                <div class="reflex-text">Déployer des protocoles de haute disponibilité (VRRP, MSTP) et de la surveillance de liens (IP SLA) garantit la continuity de service. Savoir sécuriser et interconnecter des environnements hétérogènes (Cisco et Linux) est une compétence d'administration système absolument indispensable pour concevoir des réseaux d'entreprise modernes et résilients.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="reflex-block">
-              <div class="reflex-item">
-                <div class="reflex-label">▪ Bilan des activités</div>
-                <div class="reflex-text">J'ai grandement consolidé mes bases en algorithmique (R3.08) pour les appliquer au développement d'un logiciel réseau complet, de la base de données (backend) à l'interface (frontend).</div>
-              </div>
-              <div class="reflex-item">
-                <div class="reflex-label">▪ Difficultés &amp; Solutions</div>
-                <div class="reflex-text">La gestion des requêtes asynchrones vers la base de données bloquait parfois l'application. J'ai remédié à cela en appliquant correctement les concepts d'événements (R3.09) pour séparer les processus.</div>
-              </div>
-              <div class="reflex-item">
-                <div class="reflex-label">▪ Initiatives</div>
-                <div class="reflex-text">J'ai suggéré d'implémenter des requêtes SQL préparées pour interroger notre SGBD afin d'éviter les failles d'injection, faisant ainsi le pont avec ma spécialisation Cyber.</div>
-              </div>
-              <div class="reflex-item">
-                <div class="reflex-label">▪ Généralisation</div>
-                <div class="reflex-text">Savoir coder des outils communicants et manipuler des données (SQL) est une compétence très recherchée pour la création de scripts d'automatisation ou d'outils de sécurité personnalisés (DevSecOps).</div>
-              </div>
+
+            <div class="competence-card" id="comp2">
+                <div class="comp-header" onclick="toggleComp(this)">
+                    <div class="comp-num-badge comp-2">C2</div>
+                    <div class="comp-header-info">
+                        <div class="comp-title">[Programmer] - Créer des outils et applications informatiques pour les R&T</div>
+                        <div class="comp-subtitle">Réseaux LAN/WAN · Conception IoT · PCB & Transmission</div>
+                    </div>
+                    <div class="comp-toggle">▾</div>
+                </div>
+                <div class="comp-body">
+
+                    <div class="comp-section">
+                        <div class="comp-section-title">
+
+                            <h4>1. Contexte de la compétence</h4>
+                        </div>
+                        <div class="context-grid">
+                            <div class="context-item"><div class="context-key">Quoi</div><div class="context-val">Conception de la carte électronique d'une prise connectée WiFi.</div></div>
+                            <div class="context-item"><div class="context-key">Pourquoi</div><div class="context-val">Créer un dispositif répondant à des critères de compacité, de coût optimisé et de sécurité électrique (isolation 230V/basse tension).</div></div>
+                            <div class="context-item"><div class="context-key">Où</div><div class="context-val">Sur la plateforme web EasyEDA (Conception CAO).</div></div>
+                            <div class="context-item"><div class="context-key">Quand</div><div class="context-val">Semestre 3 (SAÉ 3.01).</div></div>
+                            <div class="context-item"><div class="context-key">Qui</div><div class="context-val">Rôle de développeur technique en autonomie.</div></div>
+                            <div class="context-item"><div class="context-key">Comment</div><div class="context-val">Par l'analyse des besoins, la conception schématique, et le routage PCB.</div></div>
+                        </div>
+                    </div>
+
+                    <div class="comp-section">
+                        <div class="comp-section-title">
+
+                            <h4>2. Actions &amp; Preuves</h4>
+                        </div>
+                        <div class="preuve-item">
+                            <div class="preuve-icon-wrap">▪</div>
+                            <div class="preuve-content">
+                                <h5>SAÉ 3.01 — Mettre en oeuvre un système de transmission (Prise Connectée)</h5>
+                                <p>Conception schématique et routage double couche intégrant un ESP8266 (WiFi), un capteur de température DS18B20 et un relais de puissance 230V/16A. Application stricte de règles de routage : pistes secteur de 3mm et signaux de 0.3mm.</p>
+                                <a class="preuve-link" href="https://github.com/AnonymousApexio/SAE-Mise-En-Oeuvre-Systeme-De-Transmission/blob/main/PCB%20PROJET%202025.json" target="_blank">↗ Voir le routage PCB sur GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="comp-section">
+                        <div class="comp-section-title">
+
+                            <h4>3. Apprentissages Critiques &amp; Indicateurs</h4>
+                        </div>
+                        <table class="ac-table">
+                            <thead>
+                            <tr><th>Code AC</th><th>Intitulé</th><th>Indicateur</th><th>Statut</th></tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td><span class="ac-code">AC22.01</span></td>
+                                <td>Maîtriser les technologies réseau</td>
+                                <td>Intégration et communication réussies du module ESP8266 au réseau WiFi local.</td>
+                                <td><span class="status-acquis">✓ Acquis</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="ac-code">AC22.02</span></td>
+                                <td>Configurer les équipements actifs</td>
+                                <td>Validation des vérifications de conception (DRC/ERC) sans erreurs électriques.</td>
+                                <td><span class="status-acquis">✓ Acquis</span></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="comp-section">
+                        <div class="comp-section-title">
+
+                            <h4>4. Bilan &amp; Réflexivité</h4>
+                        </div>
+                        <div class="reflex-block">
+                            <div class="reflex-item">
+                                <div class="reflex-label">▪ Bilan des activités</div>
+                                <div class="reflex-text">J'ai acquis une solide maîtrise des outils de conception CAO (EasyEDA / Altium Designer) et j'ai réussi à intégrer l'intégralité des fonctionnalités demandées tout en optimisant la compacité de la carte.</div>
+                            </div>
+                            <div class="reflex-item">
+                                <div class="reflex-label">▪ Difficultés &amp; Solutions</div>
+                                <div class="reflex-text">Les contraintes d'espacement entre le secteur (230V) et la basse tension ont généré plusieurs erreurs DRC. J'ai résolu ce problème en adaptant manuellement les empreintes THT des composants et en recalculant les valeurs des composants de protection (fusible, varistance).</div>
+                            </div>
+                            <div class="reflex-item">
+                                <div class="reflex-label">▪ Initiatives</div>
+                                <div class="reflex-text">Lors du routage, j'ai pris l'initiative d'optimiser le placement des composants critiques en priorisant les pistes secteur et en minimisant la longueur des pistes pour les signaux sensibles afin d'éviter les interférences.</div>
+                            </div>
+                            <div class="reflex-item">
+                                <div class="reflex-label">▪ Généralisation</div>
+                                <div class="reflex-text">Travailler sur ce PCB m'a permis de comprendre l'importance critique de l'isolation galvanique pour la sécurité. Comprendre l'architecture matérielle (Hardware) des objets connectés est une compétence très précieuse en cybersécurité pour mener à bien des audits d'équipements IoT.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
 
-      <div class="competence-card" id="comp4">
-        <div class="comp-header" onclick="toggleComp(this)">
-          <div class="comp-num-badge comp-4">C4</div>
-          <div class="comp-header-info">
-            <div class="comp-title">[Sécuriser] - Administrer un système d’information sécurisé</div>
-            <div class="comp-subtitle">Cybersécurité · Audit · Pentest · SIEM</div>
-          </div>
-          <div class="comp-toggle">▾</div>
-        </div>
-        <div class="comp-body">
+            <div class="competence-card" id="comp3">
+                <div class="comp-header" onclick="toggleComp(this)">
+                    <div class="comp-num-badge comp-3">C3</div>
+                    <div class="comp-header-info">
+                        <div class="comp-title">[Programmer] - Créer des outils et applications informatiques pour les R&T</div>
+                        <div class="comp-subtitle">Scripts · Développement · Automatisation</div>
+                    </div>
+                    <div class="comp-toggle">▾</div>
+                </div>
+                <div class="comp-body">
 
-          <div class="comp-section">
-            <div class="comp-section-title">
-               
-              <h4>1. Contexte de la compétence</h4>
+                    <div class="comp-section">
+                        <div class="comp-section-title">
+
+                            <h4>1. Contexte de la compétence</h4>
+                        </div>
+                        <div class="context-grid">
+                            <div class="context-item"><div class="context-key">Quoi</div><div class="context-val">Développement d'applications communicantes et gestion de bases de données.</div></div>
+                            <div class="context-item"><div class="context-key">Pourquoi</div><div class="context-val">Pour automatiser des processus réseau et créer des outils logiciels adaptés.</div></div>
+                            <div class="context-item"><div class="context-key">Où</div><div class="context-val">Environnement de développement (IUT / Domicile).</div></div>
+                            <div class="context-item"><div class="context-key">Quand</div><div class="context-val">Semestre 3.</div></div>
+                            <div class="context-item"><div class="context-key">Qui</div><div class="context-val">Travail d'équipe collaboratif.</div></div>
+                            <div class="context-item"><div class="context-key">Comment</div><div class="context-val">En utilisant la programmation événementielle (R3.09) et le langage SQL (R3.10).</div></div>
+                        </div>
+                    </div>
+
+                    <div class="comp-section">
+                        <div class="comp-section-title">
+
+                            <h4>2. Actions &amp; Preuves</h4>
+                        </div>
+                        <div class="preuve-item">
+                            <div class="preuve-icon-wrap">▪</div>
+                            <div class="preuve-content">
+                                <h5>SAÉ 3.02 — Développer des applications communicantes</h5>
+                                <p>Création d'un outil logiciel capable d'interagir sur le réseau. Intégration d'une base de données (R3.10) pour stocker les informations, et utilisation de la programmation événementielle (R3.09) pour l'interface logicielle.</p>
+                                <a class="preuve-link" href="#">↗ Voir le code source du projet</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="comp-section">
+                        <div class="comp-section-title">
+
+                            <h4>3. Apprentissages Critiques &amp; Indicateurs</h4>
+                        </div>
+                        <table class="ac-table">
+                            <thead>
+                            <tr><th>Code AC</th><th>Intitulé</th><th>Indicateur / preuve</th><th>Statut</th></tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td><span class="ac-code">AC23.01</span></td>
+                                <td>Automatiser l'administration système avec des scripts</td>
+                                <td>Exécution correcte des programmes via le serveur</td>
+                                <td><span class="status-acquis">✓ Acquis</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="ac-code">AC23.02</span></td>
+                                <td>Développer une application à partir d'un cahier des charges</td>
+                                <td>Le système délègue les tâches à d'autres serveurs (load balancing)</td>
+                                <td><span class="status-acquis">✓ Acquis</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="ac-code">AC23.03</span></td>
+                                <td>Utiliser un protocole réseau pour programmer une application client/serveur</td>
+                                <td>Communication asynchrone fonctionnelle entre l'interface et la base de données</td>
+                                <td><span class="status-acquis">✓ Acquis</span></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="comp-section">
+                        <div class="comp-section-title">
+
+                            <h4>4. Bilan &amp; Réflexivité</h4>
+                        </div>
+                        <div class="reflex-block">
+                            <div class="reflex-item">
+                                <div class="reflex-label">▪ Bilan des activités</div>
+                                <div class="reflex-text">J'ai grandement consolidé mes bases en algorithmique (R3.08) pour les appliquer au développement d'un logiciel réseau complet, de la base de données (backend) à l'interface (frontend).</div>
+                            </div>
+                            <div class="reflex-item">
+                                <div class="reflex-label">▪ Difficultés &amp; Solutions</div>
+                                <div class="reflex-text">La gestion des requêtes asynchrones vers la base de données bloquait parfois l'application. J'ai remédié à cela en appliquant correctement les concepts d'événements (R3.09) pour séparer les processus.</div>
+                            </div>
+                            <div class="reflex-item">
+                                <div class="reflex-label">▪ Initiatives</div>
+                                <div class="reflex-text">J'ai suggéré d'implémenter des requêtes SQL préparées pour interroger notre SGBD afin d'éviter les failles d'injection, faisant ainsi le pont avec ma spécialisation Cyber.</div>
+                            </div>
+                            <div class="reflex-item">
+                                <div class="reflex-label">▪ Généralisation</div>
+                                <div class="reflex-text">Savoir coder des outils communicants et manipuler des données (SQL) est une compétence très recherchée pour la création de scripts d'automatisation ou d'outils de sécurité personnalisés (DevSecOps).</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="context-grid">
-              <div class="context-item"><div class="context-key">Quoi</div><div class="context-val">Audit de sécurité et initiation aux méthodes de test d'intrusion (Pentesting).</div></div>
-              <div class="context-item"><div class="context-key">Pourquoi</div><div class="context-val">Pour identifier, exploiter et corriger les vulnérabilités d'un système.</div></div>
-              <div class="context-item"><div class="context-key">Où</div><div class="context-val">Environnements virtuels dédiés et réseaux isolés.</div></div>
-              <div class="context-item"><div class="context-key">Quand</div><div class="context-val">Semestre 3 (Parcours Cybersécurité).</div></div>
-              <div class="context-item"><div class="context-key">Qui</div><div class="context-val">En totale autonomie et en groupe.</div></div>
-              <div class="context-item"><div class="context-key">Comment</div><div class="context-val">Méthodologie stricte de pentesting (R3.Cyber.16) et outils de sécurité offensifs.</div></div>
+
+            <div class="competence-card" id="comp4">
+                <div class="comp-header" onclick="toggleComp(this)">
+                    <div class="comp-num-badge comp-4">C4</div>
+                    <div class="comp-header-info">
+                        <div class="comp-title">[Sécuriser] - Administrer un système d’information sécurisé</div>
+                        <div class="comp-subtitle">Cybersécurité · Audit · Pentest · SIEM</div>
+                    </div>
+                    <div class="comp-toggle">▾</div>
+                </div>
+                <div class="comp-body">
+
+                    <div class="comp-section">
+                        <div class="comp-section-title">
+
+                            <h4>1. Contexte de la compétence</h4>
+                        </div>
+                        <div class="context-grid">
+                            <div class="context-item"><div class="context-key">Quoi</div><div class="context-val">Audit de sécurité et initiation aux méthodes de test d'intrusion (Pentesting).</div></div>
+                            <div class="context-item"><div class="context-key">Pourquoi</div><div class="context-val">Pour identifier, exploiter et corriger les vulnérabilités d'un système.</div></div>
+                            <div class="context-item"><div class="context-key">Où</div><div class="context-val">Environnements virtuels dédiés et réseaux isolés.</div></div>
+                            <div class="context-item"><div class="context-key">Quand</div><div class="context-val">Semestre 3 (Parcours Cybersécurité).</div></div>
+                            <div class="context-item"><div class="context-key">Qui</div><div class="context-val">En totale autonomie et en groupe.</div></div>
+                            <div class="context-item"><div class="context-key">Comment</div><div class="context-val">Méthodologie stricte de pentesting (R3.Cyber.16) et outils de sécurité offensifs.</div></div>
+                        </div>
+                    </div>
+
+                    <div class="comp-section">
+                        <div class="comp-section-title">
+
+                            <h4>2. Actions &amp; Preuves</h4>
+                        </div>
+                        <div class="preuve-item">
+                            <div class="preuve-icon-wrap">🔒</div>
+                            <div class="preuve-content">
+                                <h5>SAÉ 3.Cyber.04 — Découvrir le pentesting</h5>
+                                <p>Application concrète de la méthodologie de pentesting (R3.Cyber.16) : phase de reconnaissance, scan de vulnérabilités, exploitation de failles et rédaction d'un rapport d'audit détaillé.</p>
+                                <a class="preuve-link" href="#">↗ Voir le rapport d'audit de sécurité</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="comp-section">
+                        <div class="comp-section-title">
+
+                            <h4>3. Apprentissages Critiques &amp; Indicateurs</h4>
+                        </div>
+                        <table class="ac-table">
+                            <thead>
+                            <tr><th>Code AC</th><th>Intitulé</th><th>Indicateur</th><th>Statut</th></tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td><span class="ac-code">AC24.01</span></td>
+                                <td>Identifier les risques de sécurité</td>
+                                <td>Rapport de scan Nmap et liste des vulnérabilités découvertes</td>
+                                <td><span class="status-acquis">✓ Acquis</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="ac-code">AC24.02</span></td>
+                                <td>Sécuriser les communications et les données</td>
+                                <td>Fourniture de recommandations de remédiation (patchs, firewall)</td>
+                                <td><span class="status-acquis">✓ Acquis</span></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="comp-section">
+                        <div class="comp-section-title">
+
+                            <h4>4. Bilan &amp; Réflexivité</h4>
+                        </div>
+                        <div class="reflex-block">
+                            <div class="reflex-item">
+                                <div class="reflex-label">▪ Bilan des activités</div>
+                                <div class="reflex-text">Le passage d'une conception de réseau classique à une conception sécurisée multi-sites (SAÉ 3.Cyber.03) a été une étape clé, tout comme la découverte du point de vue de l'attaquant via le pentesting.</div>
+                            </div>
+                            <div class="reflex-item">
+                                <div class="reflex-label">▪ Difficultés &amp; Solutions</div>
+                                <div class="reflex-text">Lors du pentest, l'énumération des services prenait énormément de temps et produisait trop de "bruit". J'ai affiné mes commandes de scan pour cibler uniquement les ports pertinents, rendant l'audit plus furtif et efficace.</div>
+                            </div>
+                            <div class="reflex-item">
+                                <div class="reflex-label">▪ Initiatives</div>
+                                <div class="reflex-text">Au-delà de l'exploitation, j'ai tenu à inclure dans notre rapport final des recommandations de remédiation claires (patch management, règles firewall) pour chaque faille trouvée.</div>
+                            </div>
+                            <div class="reflex-item">
+                                <div class="reflex-label">▪ Généralisation</div>
+                                <div class="reflex-text">L'état d'esprit offensif acquis ici (Red Team) est fondamental pour comprendre comment concevoir et durcir les infrastructures (Blue Team) dans mon futur métier de consultant ou d'ingénieur sécurité.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
 
-          <div class="comp-section">
-            <div class="comp-section-title">
-               
-              <h4>2. Actions &amp; Preuves</h4>
+            <div class="competence-card" id="comp5">
+                <div class="comp-header" onclick="toggleComp(this)">
+                    <div class="comp-num-badge comp-5">C5</div>
+                    <div class="comp-header-info">
+                        <div class="comp-title">[Surveiller] - Surveiller un système d’information sécurisé</div>
+                        <div class="comp-subtitle">Monitoring · Métrologie · Gestion des incidents</div>
+                    </div>
+                    <div class="comp-toggle">▾</div>
+                </div>
+                <div class="comp-body">
+
+                    <div class="comp-section">
+                        <div class="comp-section-title">
+
+                            <h4>1. Contexte de la compétence</h4>
+                        </div>
+                        <div class="context-grid">
+                            <div class="context-item"><div class="context-key">Quoi</div><div class="context-val">Surveillance des flux, détection d'intrusions et suivi d'un système d'information.</div></div>
+                            <div class="context-item"><div class="context-key">Pourquoi</div><div class="context-val">Pour réagir de manière proactive aux anomalies et aux attaques réseau.</div></div>
+                            <div class="context-item"><div class="context-key">Où</div><div class="context-val">Réseau simulé de l'IUT.</div></div>
+                            <div class="context-item"><div class="context-key">Quand</div><div class="context-val">Semestre 3.</div></div>
+                            <div class="context-item"><div class="context-key">Qui</div><div class="context-val">Travail d'équipe (simulation Blue Team).</div></div>
+                            <div class="context-item"><div class="context-key">Comment</div><div class="context-val">Croisement des données réseaux (SAÉ 3.Cyber.03) et analyse des traces d'attaques (SAÉ 3.Cyber.04).</div></div>
+                        </div>
+                    </div>
+
+                    <div class="comp-section">
+                        <div class="comp-section-title">
+
+                            <h4>2. Actions &amp; Preuves</h4>
+                        </div>
+                        <div class="preuve-item">
+                            <div class="preuve-icon-wrap">📡</div>
+                            <div class="preuve-content">
+                                <h5>Projets Cybersécurité croisés (SAÉ 3.03 / SAÉ 3.04)</h5>
+                                <p>Observation et analyse des logs générés lors de la mise en place du réseau multi-sites sécurisé, et identification des traces réseau laissées lors des phases de pentesting actives.</p>
+                                <a class="preuve-link" href="#">↗ Voir les extractions de journaux/logs</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="comp-section">
+                        <div class="comp-section-title">
+
+                            <h4>3. Apprentissages Critiques &amp; Indicateurs</h4>
+                        </div>
+                        <table class="ac-table">
+                            <thead>
+                            <tr><th>Code AC</th><th>Intitulé</th><th>Indicateur</th><th>Statut</th></tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td><span class="ac-code">AC25.01</span></td>
+                                <td>Mesurer et analyser les performances réseau</td>
+                                <td>Extraction, lecture et filtrage pertinents des logs système</td>
+                                <td><span class="status-acquis">✓ Acquis</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="ac-code">AC25.02</span></td>
+                                <td>Gérer et résoudre les incidents</td>
+                                <td>Détection des anomalies et traces laissées par les tests d'intrusion</td>
+                                <td><span class="status-acquis">✓ Acquis</span></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="comp-section">
+                        <div class="comp-section-title">
+
+                            <h4>4. Bilan &amp; Réflexivité</h4>
+                        </div>
+                        <div class="reflex-block">
+                            <div class="reflex-item">
+                                <div class="reflex-label">▪ Bilan des activités</div>
+                                <div class="reflex-text">J'ai appris qu'un réseau, même bien configuré, nécessite une supervision constante. L'analyse des méthodes d'attaque (R3.Cyber.16) m'a permis de savoir précisément quels événements surveiller (logs de connexion, trafic anormal).</div>
+                            </div>
+                            <div class="reflex-item">
+                                <div class="reflex-label">▪ Difficultés &amp; Solutions</div>
+                                <div class="reflex-text">L'abondance d'informations (faux positifs) rendait l'analyse difficile. J'ai résolu ce problème en filtrant les journaux par ordre de criticité pour ne remonter que les alertes de sécurité majeures.</div>
+                            </div>
+                            <div class="reflex-item">
+                                <div class="reflex-label">▪ Initiatives</div>
+                                <div class="reflex-text">Durant le projet réseau (SAÉ 3.03), j'ai suggéré la mise en place d'un serveur Syslog centralisé pour éviter que les journaux locaux ne soient effacés ou corrompus.</div>
+                            </div>
+                            <div class="reflex-item">
+                                <div class="reflex-label">▪ Généralisation</div>
+                                <div class="reflex-text">La maîtrise de la surveillance et de l'analyse des logs est la pierre angulaire des métiers en SOC (Security Operations Center). Cette compétence de visibilité réseau me servira tout au long de ma carrière.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="preuve-item">
-              <div class="preuve-icon-wrap">🔒</div>
-              <div class="preuve-content">
-                <h5>SAÉ 3.Cyber.04 — Découvrir le pentesting</h5>
-                <p>Application concrète de la méthodologie de pentesting (R3.Cyber.16) : phase de reconnaissance, scan de vulnérabilités, exploitation de failles et rédaction d'un rapport d'audit détaillé.</p>
-                <a class="preuve-link" href="#">↗ Voir le rapport d'audit de sécurité</a>
-              </div>
+        </section>
+
+        <footer class="footer">
+            <div class="footer-left">
+                <span style="color:var(--green)">●</span>
+                Portfolio BUT R&amp;T Cybersécurité — IUT de Colmar — 2025/2026
             </div>
-          </div>
+            <div>Généré avec GitHub Pages</div>
+        </footer>
 
-          <div class="comp-section">
-            <div class="comp-section-title">
-               
-              <h4>3. Apprentissages Critiques &amp; Indicateurs</h4>
-            </div>
-            <table class="ac-table">
-              <thead>
-                <tr><th>Code AC</th><th>Intitulé</th><th>Indicateur</th><th>Statut</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><span class="ac-code">AC24.01</span></td>
-                  <td>Identifier les risques de sécurité</td>
-                  <td>Rapport de scan Nmap et liste des vulnérabilités découvertes</td>
-                  <td><span class="status-acquis">✓ Acquis</span></td>
-                </tr>
-                <tr>
-                  <td><span class="ac-code">AC24.02</span></td>
-                  <td>Sécuriser les communications et les données</td>
-                  <td>Fourniture de recommandations de remédiation (patchs, firewall)</td>
-                  <td><span class="status-acquis">✓ Acquis</span></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+    </main></div><script>
+    function toggleComp(header) {
+      const body = header.nextElementSibling;
+      const toggle = header.querySelector('.comp-toggle');
+      const isOpen = body.classList.contains('open');
 
-          <div class="comp-section">
-            <div class="comp-section-title">
-               
-              <h4>4. Bilan &amp; Réflexivité</h4>
-            </div>
-            <div class="reflex-block">
-              <div class="reflex-item">
-                <div class="reflex-label">▪ Bilan des activités</div>
-                <div class="reflex-text">Le passage d'une conception de réseau classique à une conception sécurisée multi-sites (SAÉ 3.Cyber.03) a été une étape clé, tout comme la découverte du point de vue de l'attaquant via le pentesting.</div>
-              </div>
-              <div class="reflex-item">
-                <div class="reflex-label">▪ Difficultés &amp; Solutions</div>
-                <div class="reflex-text">Lors du pentest, l'énumération des services prenait énormément de temps et produisait trop de "bruit". J'ai affiné mes commandes de scan pour cibler uniquement les ports pertinents, rendant l'audit plus furtif et efficace.</div>
-              </div>
-              <div class="reflex-item">
-                <div class="reflex-label">▪ Initiatives</div>
-                <div class="reflex-text">Au-delà de l'exploitation, j'ai tenu à inclure dans notre rapport final des recommandations de remédiation claires (patch management, règles firewall) pour chaque faille trouvée.</div>
-              </div>
-              <div class="reflex-item">
-                <div class="reflex-label">▪ Généralisation</div>
-                <div class="reflex-text">L'état d'esprit offensif acquis ici (Red Team) est fondamental pour comprendre comment concevoir et durcir les infrastructures (Blue Team) dans mon futur métier de consultant ou d'ingénieur sécurité.</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      body.classList.toggle('open', !isOpen);
+      toggle.classList.toggle('open', !isOpen);
+    }
 
-      <div class="competence-card" id="comp5">
-        <div class="comp-header" onclick="toggleComp(this)">
-          <div class="comp-num-badge comp-5">C5</div>
-          <div class="comp-header-info">
-            <div class="comp-title">[Surveiller] - Surveiller un système d’information sécurisé</div>
-            <div class="comp-subtitle">Monitoring · Métrologie · Gestion des incidents</div>
-          </div>
-          <div class="comp-toggle">▾</div>
-        </div>
-        <div class="comp-body">
+    // Active nav highlighting on scroll
+    const sections = document.querySelectorAll('[id]');
+    const navItems = document.querySelectorAll('.nav-item');
 
-          <div class="comp-section">
-            <div class="comp-section-title">
-               
-              <h4>1. Contexte de la compétence</h4>
-            </div>
-            <div class="context-grid">
-              <div class="context-item"><div class="context-key">Quoi</div><div class="context-val">Surveillance des flux, détection d'intrusions et suivi d'un système d'information.</div></div>
-              <div class="context-item"><div class="context-key">Pourquoi</div><div class="context-val">Pour réagir de manière proactive aux anomalies et aux attaques réseau.</div></div>
-              <div class="context-item"><div class="context-key">Où</div><div class="context-val">Réseau simulé de l'IUT.</div></div>
-              <div class="context-item"><div class="context-key">Quand</div><div class="context-val">Semestre 3.</div></div>
-              <div class="context-item"><div class="context-key">Qui</div><div class="context-val">Travail d'équipe (simulation Blue Team).</div></div>
-              <div class="context-item"><div class="context-key">Comment</div><div class="context-val">Croisement des données réseaux (SAÉ 3.Cyber.03) et analyse des traces d'attaques (SAÉ 3.Cyber.04).</div></div>
-            </div>
-          </div>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navItems.forEach(item => item.classList.remove('active'));
+          const active = document.querySelector(`.nav-item[href="#${entry.target.id}"]`);
+          if (active) active.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-30% 0px -60% 0px' });
 
-          <div class="comp-section">
-            <div class="comp-section-title">
-               
-              <h4>2. Actions &amp; Preuves</h4>
-            </div>
-            <div class="preuve-item">
-              <div class="preuve-icon-wrap">📡</div>
-              <div class="preuve-content">
-                <h5>Projets Cybersécurité croisés (SAÉ 3.03 / SAÉ 3.04)</h5>
-                <p>Observation et analyse des logs générés lors de la mise en place du réseau multi-sites sécurisé, et identification des traces réseau laissées lors des phases de pentesting actives.</p>
-                <a class="preuve-link" href="#">↗ Voir les extractions de journaux/logs</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="comp-section">
-            <div class="comp-section-title">
-               
-              <h4>3. Apprentissages Critiques &amp; Indicateurs</h4>
-            </div>
-            <table class="ac-table">
-              <thead>
-                <tr><th>Code AC</th><th>Intitulé</th><th>Indicateur</th><th>Statut</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><span class="ac-code">AC25.01</span></td>
-                  <td>Mesurer et analyser les performances réseau</td>
-                  <td>Extraction, lecture et filtrage pertinents des logs système</td>
-                  <td><span class="status-acquis">✓ Acquis</span></td>
-                </tr>
-                <tr>
-                  <td><span class="ac-code">AC25.02</span></td>
-                  <td>Gérer et résoudre les incidents</td>
-                  <td>Détection des anomalies et traces laissées par les tests d'intrusion</td>
-                  <td><span class="status-acquis">✓ Acquis</span></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <div class="comp-section">
-            <div class="comp-section-title">
-               
-              <h4>4. Bilan &amp; Réflexivité</h4>
-            </div>
-            <div class="reflex-block">
-              <div class="reflex-item">
-                <div class="reflex-label">▪ Bilan des activités</div>
-                <div class="reflex-text">J'ai appris qu'un réseau, même bien configuré, nécessite une supervision constante. L'analyse des méthodes d'attaque (R3.Cyber.16) m'a permis de savoir précisément quels événements surveiller (logs de connexion, trafic anormal).</div>
-              </div>
-              <div class="reflex-item">
-                <div class="reflex-label">▪ Difficultés &amp; Solutions</div>
-                <div class="reflex-text">L'abondance d'informations (faux positifs) rendait l'analyse difficile. J'ai résolu ce problème en filtrant les journaux par ordre de criticité pour ne remonter que les alertes de sécurité majeures.</div>
-              </div>
-              <div class="reflex-item">
-                <div class="reflex-label">▪ Initiatives</div>
-                <div class="reflex-text">Durant le projet réseau (SAÉ 3.03), j'ai suggéré la mise en place d'un serveur Syslog centralisé pour éviter que les journaux locaux ne soient effacés ou corrompus.</div>
-              </div>
-              <div class="reflex-item">
-                <div class="reflex-label">▪ Généralisation</div>
-                <div class="reflex-text">La maîtrise de la surveillance et de l'analyse des logs est la pierre angulaire des métiers en SOC (Security Operations Center). Cette compétence de visibilité réseau me servira tout au long de ma carrière.</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <footer class="footer">
-      <div class="footer-left">
-        <span style="color:var(--green)">●</span>
-        Portfolio BUT R&amp;T Cybersécurité — IUT de Colmar — 2025/2026
-      </div>
-      <div>Généré avec GitHub Pages</div>
-    </footer>
-
-  </main></div><script>
-  function toggleComp(header) {
-    const body = header.nextElementSibling;
-    const toggle = header.querySelector('.comp-toggle');
-    const isOpen = body.classList.contains('open');
-
-    body.classList.toggle('open', !isOpen);
-    toggle.classList.toggle('open', !isOpen);
-  }
-
-  // Active nav highlighting on scroll
-  const sections = document.querySelectorAll('[id]');
-  const navItems = document.querySelectorAll('.nav-item');
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        navItems.forEach(item => item.classList.remove('active'));
-        const active = document.querySelector(`.nav-item[href="#${entry.target.id}"]`);
-        if (active) active.classList.add('active');
-      }
-    });
-  }, { rootMargin: '-30% 0px -60% 0px' });
-
-  sections.forEach(s => observer.observe(s));
+    sections.forEach(s => observer.observe(s));
 </script>
 </body>
 </html>
