@@ -325,180 +325,63 @@
           font-family: var(--font-mono);
         }
 
+        /* ========== SECTION ACCORDION ========== */
+        .section-accordion {
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            background: var(--surface);
+            overflow: hidden;
+            margin-bottom: 32px;
+        }
+
+        .section-trigger {
+            padding: 24px 32px;
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--surface2);
+            transition: background 0.2s;
+        }
+
+        .section-trigger:hover {
+            background: rgba(57,211,83,0.05);
+        }
+
+        .section-trigger::-webkit-details-marker {
+            display: none;
+        }
+
+        .section-trigger .trigger-title {
+            font-family: var(--font-display);
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--text-bright);
+            margin: 0;
+        }
+
+        .section-trigger .trigger-icon {
+            font-size: 20px;
+            color: var(--text-dim);
+            transition: transform 0.3s ease;
+        }
+
+        .section-accordion[open] .trigger-icon {
+            transform: rotate(180deg);
+        }
+
+        .section-content {
+            padding: 32px;
+            border-top: 1px solid var(--border);
+        }
+
         /* ========== CV CARDS ========== */
         .cv-grid {
           display: grid;
           grid-template-columns: 1fr 1fr;
           gap: 16px;
           margin-bottom: 32px;
-        }
-
-        /* ========== EXPERIENCE CARD ========== */
-        .experience-card {
-          background: var(--surface);
-          border: 1px solid var(--border);
-          border-radius: 12px;
-          padding: 28px;
-          transition: border-color 0.2s, transform 0.2s;
-          position: relative;
-          overflow: hidden;
-        }
-
-        .experience-card:hover {
-          border-color: var(--green);
-        }
-
-        .exp-header {
-          margin-bottom: 24px;
-          padding-bottom: 18px;
-          border-bottom: 1px solid var(--border);
-        }
-
-        .exp-title-row {
-          display: flex;
-          justify-content: space-between;
-          align-items: flex-start;
-          margin-bottom: 8px;
-        }
-
-        .exp-role {
-          font-family: var(--font-display);
-          font-size: 22px;
-          font-weight: 700;
-          color: var(--text-bright);
-        }
-
-        .exp-duration {
-          font-size: 11px;
-          color: var(--green);
-          background: var(--green-dim);
-          padding: 4px 12px;
-          border-radius: 4px;
-          border: 1px solid var(--green);
-          font-family: var(--font-mono);
-          white-space: nowrap;
-        }
-
-        .exp-company {
-          display: flex;
-          align-items: center;
-          gap: 12px;
-          font-size: 14px;
-        }
-
-        .company-name {
-          color: var(--cyan);
-          font-weight: 600;
-        }
-
-        .company-loc {
-          color: var(--text-dim);
-        }
-
-        .exp-body {
-          font-size: 13px;
-          line-height: 1.7;
-        }
-
-        .exp-objective {
-          margin-bottom: 20px;
-          color: var(--text);
-          padding: 12px 16px;
-          background: var(--surface2);
-          border-left: 3px solid var(--amber);
-          border-radius: 4px;
-        }
-
-        .exp-section-grid {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 24px;
-          margin-bottom: 24px;
-        }
-
-        .exp-body h4 {
-          font-family: var(--font-display);
-          font-size: 13px;
-          color: var(--text-bright);
-          margin-bottom: 12px;
-          text-transform: uppercase;
-          letter-spacing: 1px;
-          display: flex;
-          align-items: center;
-          gap: 8px;
-        }
-
-        .exp-body h4::before {
-          content: '';
-          width: 4px;
-          height: 14px;
-          background: var(--green);
-          display: inline-block;
-          border-radius: 2px;
-        }
-
-        .exp-body ul {
-          list-style: none;
-          padding-left: 0;
-        }
-
-        .exp-body li {
-          position: relative;
-          padding-left: 18px;
-          margin-bottom: 8px;
-          color: var(--text);
-        }
-
-        .exp-body li::before {
-          content: '▹';
-          position: absolute;
-          left: 0;
-          color: var(--green);
-        }
-
-        .exp-tech-stack {
-          margin-top: 24px;
-          padding: 14px 18px;
-          background: rgba(88,166,255,0.05);
-          border-radius: 8px;
-          border: 1px solid var(--border);
-          font-size: 12px;
-          display: flex;
-          flex-wrap: wrap;
-          gap: 8px;
-          align-items: center;
-        }
-
-        .exp-tech-stack strong { color: var(--cyan); margin-right: 4px; }
-
-        .exp-tags {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 10px;
-          margin-top: 24px;
-        }
-
-        .exp-tag {
-          background: var(--surface2);
-          border: 1px solid var(--border);
-          color: var(--text-dim);
-          padding: 4px 12px;
-          border-radius: 20px;
-          font-size: 10px;
-          text-transform: uppercase;
-          letter-spacing: 0.5px;
-          transition: all 0.2s;
-        }
-
-        .exp-tag:hover {
-          border-color: var(--green);
-          color: var(--green);
-          background: var(--green-dim);
-        }
-
-        @media (max-width: 768px) {
-          .exp-section-grid { grid-template-columns: 1fr; }
-          .exp-title-row { flex-direction: column; gap: 10px; }
         }
 
         .cv-card {
@@ -545,6 +428,221 @@
 
         .badge-required { background: rgba(232,65,66,0.15); color: var(--red); border: 1px solid rgba(232,65,66,0.3); }
         .badge-optional { background: var(--surface2); color: var(--text-dim); border: 1px solid var(--border); }
+
+        /* ========== EXPERIENCE CARD ========== */
+.experience-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 32px;
+    margin-bottom: 32px;
+    transition: all 0.3s ease;
+}
+
+.experience-card:hover {
+    border-color: var(--green);
+}
+
+.exp-header {
+    margin-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 20px;
+}
+
+.exp-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.exp-role {
+    font-family: var(--font-display);
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-bright);
+}
+
+.exp-duration {
+    background: var(--green-dim);
+    color: var(--green);
+    border: 1px solid var(--green);
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-family: var(--font-mono);
+}
+
+.exp-company {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 8px;
+    font-size: 14px;
+}
+
+.company-name { color: var(--cyan); font-weight: 600; text-decoration: none; }
+.company-name:hover { text-decoration: underline; }
+.company-loc { color: var(--text-dim); }
+
+.exp-objective {
+    background: var(--surface2);
+    border-left: 3px solid var(--amber);
+    padding: 12px 16px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: var(--text);
+}
+
+.exp-summary {
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    color: var(--text);
+}
+
+.exp-tech-stack {
+    margin-bottom: 20px;
+    font-size: 13px;
+}
+
+.tech-tag {
+    color: var(--cyan);
+    font-family: var(--font-mono);
+    font-size: 12px;
+}
+
+.tech-tag:not(:last-child)::after {
+    content: ' • ';
+    color: var(--text-dim);
+}
+
+.exp-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.badge {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.2s ease;
+}
+
+.badge:hover {
+    border-color: var(--green);
+    color: var(--green);
+}
+
+/* ========== CHANGELOG ACCORDION ========== */
+.changelog-accordion {
+    margin-top: 32px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: rgba(0,0,0,0.2);
+    overflow: hidden;
+}
+
+.changelog-trigger {
+    padding: 16px 20px;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--surface2);
+    transition: background 0.2s;
+}
+
+.changelog-trigger:hover {
+    background: rgba(57,211,83,0.05);
+}
+
+.changelog-trigger::-webkit-details-marker {
+    display: none;
+}
+
+.trigger-text {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--green);
+}
+
+.trigger-icon {
+    font-size: 18px;
+    color: var(--text-dim);
+    transition: transform 0.3s ease;
+}
+
+.changelog-accordion[open] .trigger-icon {
+    transform: rotate(180deg);
+}
+
+.changelog-content {
+    padding: 24px;
+    border-top: 1px solid var(--border);
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.changelog-content h2 {
+    font-family: var(--font-display);
+    font-size: 18px;
+    color: var(--text-bright);
+    margin-bottom: 20px;
+}
+
+.changelog-content h3 {
+    font-family: var(--font-display);
+    font-size: 15px;
+    color: var(--green);
+    margin: 24px 0 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.changelog-content h4 {
+    font-size: 13px;
+    color: var(--cyan);
+    margin: 16px 0 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.changelog-content ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.changelog-content li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 8px;
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--text);
+}
+
+.changelog-content li::before {
+    content: '▹';
+    position: absolute;
+    left: 0;
+    color: var(--green);
+}
+
+.changelog-content strong {
+    color: var(--text-bright);
+}
 
         /* ========== COMPETENCE CARD ========== */
         .competence-card {
@@ -597,19 +695,74 @@
           color: var(--text-bright);
         }
 
+        .ue-badge {
+          display: inline-flex;
+          align-items: center;
+          background: var(--cyan-dim);
+          color: var(--cyan);
+          border: 1px solid rgba(88,166,255,0.2);
+          border-radius: 4px;
+          padding: 1px 6px;
+          font-size: 9px;
+          font-weight: 700;
+          font-family: var(--font-mono);
+          margin-right: 8px;
+          letter-spacing: 0.5px;
+          vertical-align: middle;
+        }
+
         .comp-subtitle {
           font-size: 11px;
           color: var(--text-dim);
-          margin-top: 2px;
+          margin-top: 4px;
+          display: flex;
+          align-items: center;
         }
 
-        .comp-toggle {
-          font-size: 18px;
+        .comp-toggle-wrap {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          margin-left: auto;
+          padding: 6px 14px;
+          background: rgba(255,255,255,0.03);
+          border: 1px solid var(--border);
+          border-radius: 8px;
+          transition: all 0.2s ease;
           color: var(--text-dim);
-          transition: transform 0.3s;
         }
 
-        .comp-toggle.open { transform: rotate(180deg); }
+        .comp-header:hover .comp-toggle-wrap {
+          background: rgba(57,211,83,0.08);
+          border-color: var(--green);
+          color: var(--green);
+        }
+
+        .toggle-text {
+          font-size: 10px;
+          font-weight: 700;
+          letter-spacing: 0.5px;
+        }
+
+        .toggle-text::after { content: "Voir plus"; }
+        .comp-header.open .toggle-text::after { content: "Masquer"; }
+
+        .comp-toggle-icon {
+          width: 20px;
+          height: 20px;
+          transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+          stroke: currentColor;
+        }
+
+        .comp-header.open .comp-toggle-icon {
+          transform: rotate(180deg);
+          color: var(--green);
+        }
+
+        .comp-header.open .toggle-text {
+          color: var(--green);
+          opacity: 1;
+        }
 
         .comp-body {
           display: none;
@@ -709,6 +862,15 @@
           font-size: 12px;
           color: var(--text);
           line-height: 1.6;
+        }
+
+        .preuve-links-list {
+          list-style: none;
+          padding: 0;
+          margin-top: 8px;
+          display: flex;
+          flex-direction: column;
+          gap: 6px;
         }
 
         .preuve-link {
@@ -824,19 +986,6 @@
           font-style: italic;
         }
 
-        /* ========== PLACEHOLDER HINT ========== */
-        .placeholder {
-          background: rgba(227,179,65,0.07);
-          border: 1px dashed rgba(227,179,65,0.4);
-          border-radius: 6px;
-          padding: 10px 14px;
-          font-size: 12px;
-          color: var(--amber);
-          margin-top: 8px;
-        }
-
-        .placeholder::before { content: '✏️  À compléter : '; font-weight: 600; }
-
         /* ========== FOOTER ========== */
         .footer {
           border-top: 1px solid var(--border);
@@ -869,6 +1018,223 @@
           .cv-grid { grid-template-columns: 1fr; }
           .hero-title { font-size: 36px; }
         }
+
+        /* Mobile Adjustments */
+@media (max-width: 768px) {
+    .exp-title-row { flex-direction: column; }
+    .exp-role { font-size: 20px; }
+    .experience-card { padding: 24px; }
+}
+
+/* ========== COMP REFERENTIEL ========== */
+.comp-referentiel {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 18px;
+  margin-bottom: 24px;
+}
+
+.comp-referentiel h4 {
+  color: var(--green);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.comp-referentiel h4::before {
+  content: '•';
+  color: var(--green);
+}
+
+.comp-referentiel-title {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-bright);
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+.comp-realisations-title {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--cyan);
+  margin: 32px 0 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.comp-realisations-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, var(--cyan), transparent);
+}
+
+.ac-table-list {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 16px;
+}
+
+.ac-table-list li {
+  position: relative;
+  padding-left: 18px;
+  margin-bottom: 6px;
+  font-size: 12px;
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.ac-table-list li::before {
+  content: '▹';
+  position: absolute;
+  left: 0;
+  color: var(--green);
+}
+
+/* ========== PROJECT CARD ========== */
+.project-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 32px;
+    margin-bottom: 32px;
+    transition: all 0.3s ease;
+}
+
+.project-card:hover {
+    border-color: var(--cyan);
+}
+
+.project-header {
+    margin-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 20px;
+}
+
+.project-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.project-name {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text-bright);
+    flex: 1;
+}
+
+.project-context {
+    background: var(--cyan-dim);
+    color: var(--cyan);
+    border: 1px solid var(--cyan);
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-family: var(--font-mono);
+}
+
+.project-school {
+    margin-top: 8px;
+    font-size: 14px;
+    color: var(--text-dim);
+}
+
+.project-objective {
+    background: var(--surface2);
+    border-left: 3px solid var(--cyan);
+    padding: 12px 16px;
+    border-radius: 4px;
+    margin-bottom: 24px;
+    font-size: 14px;
+    color: var(--text);
+}
+
+.project-realizations h4 {
+    font-family: var(--font-display);
+    font-size: 14px;
+    color: var(--cyan);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+}
+
+.project-realizations ul {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 24px;
+}
+
+.project-realizations li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.project-realizations li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--cyan);
+}
+
+.project-tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+.tech-badge {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-size: 11px;
+    transition: all 0.2s ease;
+}
+
+.tech-badge:hover {
+    border-color: var(--cyan);
+    color: var(--text-bright);
+}
+
+.soft-skills-box {
+    border-top: 1px solid var(--border);
+    padding-top: 16px;
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+}
+
+.soft-skills-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--green);
+    letter-spacing: 0.5px;
+}
+
+.soft-skills-box p {
+    font-size: 12px;
+    color: var(--text-dim);
+}
     </style>
 </head>
 <body>
@@ -885,7 +1251,7 @@
             <div class="sidebar-sub">IUT DE COLMAR — RÉSEAUX & TÉLÉCOMMUNICATIONS PARCOURS CYBERSÉCURITÉ</div>
             <div class="status-badge">
                 <div class="status-dot"></div>
-                Promotion 2024–2025
+                Promotion 2025–2026
             </div>
         </div>
 
@@ -895,16 +1261,13 @@
                 <a class="nav-item active" href="#hero">
                     <span class="nav-icon">⌂</span> Accueil
                 </a>
-                <a class="nav-item" href="#cv">
-                    <span class="nav-icon">📄</span> CV
-                </a>
-                <a class="nav-item" href="#stages">
-                    <span class="nav-icon">💼</span> Stages
+                <a class="nav-item" href="#competences">
+                    <span class="nav-icon">🛠</span> Compétences
                 </a>
             </div>
 
             <div class="nav-section">
-                <div class="nav-label">Compétences</div>
+                <div class="nav-label">Détail des Compétences</div>
                 <a class="nav-item" href="#comp1">
                     <span class="nav-icon">🛠</span> Administrer
                     <span class="nav-comp-num">C1</span>
@@ -926,6 +1289,22 @@
                     <span class="nav-comp-num">C5</span>
                 </a>
             </div>
+
+            <div class="nav-section">
+                <div class="nav-label">Documents &amp; Expériences</div>
+                <a class="nav-item" href="#cv">
+                    <span class="nav-icon">📄</span> CV
+                </a>
+                <a class="nav-item" href="#formations">
+                    <span class="nav-icon">🎓</span> Formations
+                </a>
+                <a class="nav-item" href="#stages">
+                    <span class="nav-icon">💼</span> Stages
+                </a>
+                <a class="nav-item" href="#projets">
+                    <span class="nav-icon">🎓</span> Projets
+                </a>
+            </div>
         </nav>
 
         <div class="sidebar-footer">
@@ -945,101 +1324,17 @@
             <div class="hero-meta">
                 <div class="hero-meta-item"><span>●</span> IUT de Colmar</div>
                 <div class="hero-meta-item"><span>●</span> BUT R&amp;T — Parcours Cybersécurité</div>
-                <div class="hero-meta-item"><span>●</span> 2ème Année — 2024/2025</div>
+                <div class="hero-meta-item"><span>●</span> 2ème Année — 2025/2026</div>
                 <div class="hero-meta-item"><span>🔗</span> <a href="https://github.com/erenakra" style="color:var(--cyan); text-decoration:none;">Github</a></div>
             </div>
         </section>
 
-        <section class="section" id="cv">
-            <div class="section-title">
-                <h2>Curriculum Vitae</h2>
-                <div class="section-line"></div>
-                <div class="section-num">01</div>
-            </div>
-            <div class="cv-grid">
-                <a class="cv-card" href="cv_anglais.pdf" target="_blank">
-                    <div class="cv-card-icon">EN</div>
-                    <div class="cv-card-info">
-                        <h3>CV en Anglais</h3>
-                        <p>Télécharger le PDF (EN)</p>
-                    </div>
-                    <span class="cv-card-badge badge-required">Obligatoire</span>
-                </a>
-                <a class="cv-card" href="cv_francais.pdf" target="_blank">
-                    <div class="cv-card-icon">🇫🇷</div>
-                    <div class="cv-card-info">
-                        <h3>CV en Français</h3>
-                        <p>Télécharger le PDF (FR)</p>
-                    </div>
-                    <span class="cv-card-badge badge-optional">Optionnel</span>
-                </a>
-            </div>
-        </section>
-
-        <section class="section" id="stages">
-            <div class="section-title">
-                <h2>Stages &amp; Expériences</h2>
-                <div class="section-line"></div>
-                <div class="section-num">02</div>
-            </div>
-
-            <div class="experience-card">
-                <div class="exp-header">
-                    <div class="exp-title-row">
-                        <h3 class="exp-role">Stagiaire Technicien Réseaux &amp; Support</h3>
-                        <span class="exp-duration">8 Semaines</span>
-                    </div>
-                    <div class="exp-company">
-                        <span class="company-name">CIRTEL (Cernay, Alsace)</span>
-                        <span class="company-loc">PME spécialisée IT &amp; Télécoms</span>
-                    </div>
-                </div>
-
-                <div class="exp-body">
-                    <div class="exp-objective">
-                        <strong>Objectif :</strong> Allier théorie et pratique en administration système, support IT et cybersécurité.
-                    </div>
-
-                    <div class="exp-section-grid">
-                        <div class="exp-main-missions">
-                            <h4>Développement &amp; Sécurité</h4>
-                            <ul>
-                                <li>Développement d'outils d'aide à la décision et refonte du portail SAV interne.</li>
-                                <li>Sécurisation des accès au portail via une connexion Active Directory (AD).</li>
-                                <li>Amélioration de l'UX/UI avec routage ciblé (Gain de productivité : ~1 min/ticket).</li>
-                            </ul>
-                        </div>
-                        <div class="exp-sub-missions">
-                            <h4>Administration &amp; Support</h4>
-                            <ul>
-                                <li><strong>Automatisation :</strong> Scripts PowerShell de gestion des groupes AD via CSV et nettoyage des doublons.</li>
-                                <li><strong>Dépannage :</strong> Diagnostic pannes matérielles/logicielles (Win 11) et mise à niveau SSD/Wi-Fi.</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="exp-tech-stack">
-                        <strong>Stack &amp; Outils :</strong>
-                        <span>Visual Studio Code</span> •
-                        <span>Docker (Web local)</span> •
-                        <span>VM Windows Server (AD)</span>
-                    </div>
-
-                    <div class="exp-tags">
-                        <span class="exp-tag">Docker</span>
-                        <span class="exp-tag">Active Directory</span>
-                        <span class="exp-tag">Scripts</span>
-                        <span class="exp-tag">Support IT</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
+        <!-- SECTION COMPÉTENCES -->
         <section class="section" id="competences">
             <div class="section-title">
                 <h2>Compétences</h2>
                 <div class="section-line"></div>
-                <div class="section-num">03</div>
+                <div class="section-num">01</div>
             </div>
 
             <div class="competence-card" id="comp1">
@@ -1047,45 +1342,71 @@
                     <div class="comp-num-badge comp-1">C1</div>
                     <div class="comp-header-info">
                         <div class="comp-title">[Administrer] - Administrer les réseaux et l'Internet</div>
-                        <div class="comp-subtitle">Administration système · Haute Disponibilité · Interconnexion LAN/WAN</div>
+                        <div class="comp-subtitle">
+                            <span class="ue-badge">[SAÉ 3.02 &amp; 3.Cyber.03]</span>
+                            Administration système · Haute Disponibilité · Interconnexion LAN/WAN
+                        </div>
                     </div>
-                    <div class="comp-toggle">▾</div>
+                    <div class="comp-toggle-wrap">
+                        <span class="toggle-text"></span>
+                        <svg class="comp-toggle-icon" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
                 </div>
                 <div class="comp-body">
-
                     <div class="comp-section">
                         <div class="comp-section-title">
-
                             <h4>1. Contexte de la compétence</h4>
                         </div>
                         <div class="context-grid">
-                            <div class="context-item"><div class="context-key">Quoi</div><div class="context-val">Conception et déploiement de l'infrastructure LAN multi-sites (UC Exchange) avec topologie hiérarchique.</div></div>
-                            <div class="context-item"><div class="context-key">Pourquoi</div><div class="context-val">Assurer une connectivité robuste, sécurisée et tolérante aux pannes pour les utilisateurs et serveurs.</div></div>
-                            <div class="context-item"><div class="context-key">Où</div><div class="context-val">Environnement virtualisé EVE-NG avec interconnexion physique en mode Bridged.</div></div>
-                            <div class="context-item"><div class="context-key">Quand</div><div class="context-val">Semestre 3.</div></div>
-                            <div class="context-item"><div class="context-key">Qui</div><div class="context-val">En groupe, rôle d'Administrateur LAN et Interconnexion.</div></div>
-                            <div class="context-item"><div class="context-key">Comment</div><div class="context-val">Via des équipements Cisco (VRRP, MSTP, VTP, IP SLA) et un serveur Linux Debian.</div></div>
+                            <div class="context-item"><div class="context-key">Quoi</div><div class="context-val">Conception, installation et administration de l'infrastructure et des services d'un réseau informatique.</div></div>
+                            <div class="context-item"><div class="context-key">Pourquoi</div><div class="context-val">Répondre aux besoins de communication, assurer la continuité de service et garantir la sécurité du SI.</div></div>
+                            <div class="context-item"><div class="context-key">Où</div><div class="context-val">Au sein de l'infrastructure interne d'une entreprise ou sur les équipements d'accès d'un opérateur.</div></div>
+                            <div class="context-item"><div class="context-key">Quand</div><div class="context-val">Lors du déploiement initial, pour la maintenance quotidienne ou en urgence (dysfonctionnements).</div></div>
+                            <div class="context-item"><div class="context-key">Qui</div><div class="context-val">L'administrateur réseaux (seul ou en équipe), en collaboration avec les métiers de l'IT.</div></div>
+                            <div class="context-item"><div class="context-key">Comment</div><div class="context-val">En choisissant les technologies adaptées et en assurant une veille technologique constante.</div></div>
                         </div>
                     </div>
 
                     <div class="comp-section">
                         <div class="comp-section-title">
-
                             <h4>2. Actions &amp; Preuves</h4>
                         </div>
                         <div class="preuve-item">
                             <div class="preuve-icon-wrap">▪</div>
                             <div class="preuve-content">
-                                <h5>SAÉ 3.Cyber.03 — Concevoir un réseau informatique sécurisé multi-sites</h5>
-                                <p>Déploiement d'une architecture hiérarchique avec segmentation en VLANs gérée par VTP. Mise en œuvre de MSTP (répartition de charge) et VRRP (redondance des passerelles). Installation d'un serveur DHCP sous Debian avec relais IP Helper. Configuration du routage de bordure sécurisé par une surveillance IP SLA pour le basculement dynamique des routes.</p>
-                                <a class="preuve-link" href="#">↗ Voir le schéma d'architecture et rapport technique</a>
+                                <h5>SAE3.02_FI — Développer des applications communicantes</h5>
+                                <p>Conception et développement d'outils logiciels et d'applications communicantes.</p>
+                                <ul class="preuve-links-list">
+                                    <li><a class="preuve-link" href="./SAE3.02_FI.pdf">↗ Consulter le rapport technique (PDF)</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="preuve-item">
+                            <div class="preuve-icon-wrap">▪</div>
+                            <div class="preuve-content">
+                                <h5>SAE3.Cyber.03_FI — Concevoir un réseau informatique sécurisé multi-sites</h5>
+                                <p>Déploiement d'une architecture hiérarchique sécurisée avec segmentation VLAN et haute disponibilité.</p>
+                                <ul class="preuve-links-list">
+                                    <li><a class="preuve-link" href="./SAE3.Cyber.03_FI.pdf">↗ Consulter le rapport technique (PDF)</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="preuve-item">
+                            <div class="preuve-icon-wrap">▪</div>
+                            <div class="preuve-content">
+                                <h5>Projet de fin d'études BTS CIEL ER - Table Interactive IoT</h5>
+                                <p>Conception complète d'une interface visuelle et tactile basée sur un ESP32, intégrant le développement C++, le routage de PCB, et le contrôle à distance via Wi-Fi pour un Escape Game.</p>
+                                <ul class="preuve-links-list">
+                                    <li><a class="preuve-link" href="./PROJET_PRESENTATION_KARA.pdf">↗ Consulter la présentation du projet (PDF)</a></li>
+                                </ul>
                             </div>
                         </div>
                     </div>
 
                     <div class="comp-section">
                         <div class="comp-section-title">
-
                             <h4>3. Apprentissages Critiques &amp; Indicateurs</h4>
                         </div>
                         <table class="ac-table">
@@ -1116,7 +1437,6 @@
 
                     <div class="comp-section">
                         <div class="comp-section-title">
-
                             <h4>4. Bilan &amp; Réflexivité</h4>
                         </div>
                         <div class="reflex-block">
@@ -1133,6 +1453,10 @@
                                 <div class="reflex-text">J'ai fait le choix délibéré de dissocier le service DHCP des équipements de routage en le déployant sur un serveur Linux dédié (Debian 12). Cela m'a permis de centraliser l'administration et de mieux gérer notre environnement hétérogène.</div>
                             </div>
                             <div class="reflex-item">
+                                <div class="reflex-label">▪ Posture professionnelle &amp; Règles</div>
+                                <div class="reflex-text">Lors de ce projet, j'ai veillé au strict respect des normes de sécurité et des bonnes pratiques de configuration. La communication régulière avec les membres de l'équipe et la documentation technique ont été essentielles pour assurer la validation par notre superviseur.</div>
+                            </div>
+                            <div class="reflex-item">
                                 <div class="reflex-label">▪ Généralisation</div>
                                 <div class="reflex-text">Déployer des protocoles de haute disponibilité (VRRP, MSTP) et de la surveillance de liens (IP SLA) garantit la continuity de service. Savoir sécuriser et interconnecter des environnements hétérogènes (Cisco et Linux) est une compétence d'administration système absolument indispensable pour concevoir des réseaux d'entreprise modernes et résilients.</div>
                             </div>
@@ -1145,46 +1469,72 @@
                 <div class="comp-header" onclick="toggleComp(this)">
                     <div class="comp-num-badge comp-2">C2</div>
                     <div class="comp-header-info">
-                        <div class="comp-title">[Programmer] - Créer des outils et applications informatiques pour les R&T</div>
-                        <div class="comp-subtitle">Réseaux LAN/WAN · Conception IoT · PCB & Transmission</div>
+                        <div class="comp-title">[Connecter] - Connecter les entreprises et les usagers</div>
+                        <div class="comp-subtitle">
+                            <span class="ue-badge">[SAÉ 3.01 &amp; 3.Cyber.03]</span>
+                            Réseaux LAN/WAN · Conception IoT · PCB & Transmission
+                        </div>
                     </div>
-                    <div class="comp-toggle">▾</div>
+                    <div class="comp-toggle-wrap">
+                        <span class="toggle-text"></span>
+                        <svg class="comp-toggle-icon" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
                 </div>
                 <div class="comp-body">
-
                     <div class="comp-section">
                         <div class="comp-section-title">
-
                             <h4>1. Contexte de la compétence</h4>
                         </div>
                         <div class="context-grid">
-                            <div class="context-item"><div class="context-key">Quoi</div><div class="context-val">Conception de la carte électronique d'une prise connectée WiFi.</div></div>
-                            <div class="context-item"><div class="context-key">Pourquoi</div><div class="context-val">Créer un dispositif répondant à des critères de compacité, de coût optimisé et de sécurité électrique (isolation 230V/basse tension).</div></div>
-                            <div class="context-item"><div class="context-key">Où</div><div class="context-val">Sur la plateforme web EasyEDA (Conception CAO).</div></div>
-                            <div class="context-item"><div class="context-key">Quand</div><div class="context-val">Semestre 3 (SAÉ 3.01).</div></div>
-                            <div class="context-item"><div class="context-key">Qui</div><div class="context-val">Rôle de développeur technique en autonomie.</div></div>
-                            <div class="context-item"><div class="context-key">Comment</div><div class="context-val">Par l'analyse des besoins, la conception schématique, et le routage PCB.</div></div>
+                            <div class="context-item"><div class="context-key">Quoi</div><div class="context-val">Déploiement des supports et systèmes de transmission (fixe, mobile, sans fil).</div></div>
+                            <div class="context-item"><div class="context-key">Pourquoi</div><div class="context-val">Assurer la liaison physique et logique entre les entreprises, les usagers et les services.</div></div>
+                            <div class="context-item"><div class="context-key">Où</div><div class="context-val">Sur les réseaux d'accès, les cœurs de réseaux ou les infrastructures IoT.</div></div>
+                            <div class="context-item"><div class="context-key">Quand</div><div class="context-val">Lors de l'extension d'une couverture réseau ou de la mise en service de nouveaux équipements.</div></div>
+                            <div class="context-item"><div class="context-key">Qui</div><div class="context-val">Le technicien de transmission ou l'ingénieur télécom, en contact avec le client.</div></div>
+                            <div class="context-item"><div class="context-key">Comment</div><div class="context-val">Par une démarche scientifique, en choisissant des solutions respectueuses de l'environnement.</div></div>
                         </div>
                     </div>
 
                     <div class="comp-section">
                         <div class="comp-section-title">
-
                             <h4>2. Actions &amp; Preuves</h4>
                         </div>
                         <div class="preuve-item">
                             <div class="preuve-icon-wrap">▪</div>
                             <div class="preuve-content">
-                                <h5>SAÉ 3.01 — Mettre en oeuvre un système de transmission (Prise Connectée)</h5>
-                                <p>Conception schématique et routage double couche intégrant un ESP8266 (WiFi), un capteur de température DS18B20 et un relais de puissance 230V/16A. Application stricte de règles de routage : pistes secteur de 3mm et signaux de 0.3mm.</p>
-                                <a class="preuve-link" href="https://github.com/AnonymousApexio/SAE-Mise-En-Oeuvre-Systeme-De-Transmission/blob/main/PCB%20PROJET%202025.json" target="_blank">↗ Voir le routage PCB sur GitHub</a>
+                                <h5>SAE3.01_FI — Mettre en oeuvre un système de transmission</h5>
+                                <p>Déploiement des supports et systèmes de transmission (fixe, mobile, sans fil).</p>
+                                <ul class="preuve-links-list">
+                                    <li><a class="preuve-link" href="./SAE3.01_FI.pdf">↗ Consulter le rapport technique (PDF)</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="preuve-item">
+                            <div class="preuve-icon-wrap">▪</div>
+                            <div class="preuve-content">
+                                <h5>SAE3.Cyber.03_FI — Concevoir un réseau informatique sécurisé multi-sites</h5>
+                                <p>Déploiement d'une architecture hiérarchique sécurisée avec segmentation VLAN et haute disponibilité.</p>
+                                <ul class="preuve-links-list">
+                                    <li><a class="preuve-link" href="./SAE3.Cyber.03_FI.pdf">↗ Consulter le rapport technique (PDF)</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="preuve-item">
+                            <div class="preuve-icon-wrap">▪</div>
+                            <div class="preuve-content">
+                                <h5>Projet de fin d'études BTS CIEL ER - Table Interactive IoT</h5>
+                                <p>Conception complète d'une interface visuelle et tactile basée sur un ESP32, intégrant le développement C++, le routage de PCB, et le contrôle à distance via Wi-Fi pour un Escape Game.</p>
+                                <ul class="preuve-links-list">
+                                    <li><a class="preuve-link" href="./PROJET_PRESENTATION_KARA.pdf">↗ Consulter la présentation du projet (PDF)</a></li>
+                                </ul>
                             </div>
                         </div>
                     </div>
 
                     <div class="comp-section">
                         <div class="comp-section-title">
-
                             <h4>3. Apprentissages Critiques &amp; Indicateurs</h4>
                         </div>
                         <table class="ac-table">
@@ -1210,7 +1560,6 @@
 
                     <div class="comp-section">
                         <div class="comp-section-title">
-
                             <h4>4. Bilan &amp; Réflexivité</h4>
                         </div>
                         <div class="reflex-block">
@@ -1227,12 +1576,15 @@
                                 <div class="reflex-text">Lors du routage, j'ai pris l'initiative d'optimiser le placement des composants critiques en priorisant les pistes secteur et en minimisant la longueur des pistes pour les signaux sensibles afin d'éviter les interférences.</div>
                             </div>
                             <div class="reflex-item">
+                                <div class="reflex-label">▪ Posture professionnelle &amp; Règles</div>
+                                <div class="reflex-text">Lors de ce projet, j'ai veillé au strict respect des normes de sécurité et des bonnes pratiques de configuration. La communication régulière avec les membres de l'équipe et la documentation technique ont été essentielles pour assurer la validation par notre superviseur.</div>
+                            </div>
+                            <div class="reflex-item">
                                 <div class="reflex-label">▪ Généralisation</div>
-                                <div class="reflex-text">Travailler sur ce PCB m'a permis de comprendre l'importance critique de l'isolation galvanique pour la sécurité. Comprendre l'architecture matérielle (Hardware) des objets connectés est une compétence très précieuse en cybersécurité pour mener à bien des audits d'équipements IoT.</div>
+                                <div class="reflex-text">Travailler sur ce PCB m'a permis de comprendre l'importance critique de l'isolation galvanique for la sécurité. Comprendre l'architecture matérielle (Hardware) des objets connectés est une compétence très précieuse en cybersécurité pour mener à bien des audits d'équipements IoT.</div>
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
 
@@ -1241,45 +1593,51 @@
                     <div class="comp-num-badge comp-3">C3</div>
                     <div class="comp-header-info">
                         <div class="comp-title">[Programmer] - Créer des outils et applications informatiques pour les R&T</div>
-                        <div class="comp-subtitle">Scripts · Développement · Automatisation</div>
+                        <div class="comp-subtitle">
+                            <span class="ue-badge">[SAÉ 3.02]</span>
+                            Scripts · Développement · Automatisation
+                        </div>
                     </div>
-                    <div class="comp-toggle">▾</div>
+                    <div class="comp-toggle-wrap">
+                        <span class="toggle-text"></span>
+                        <svg class="comp-toggle-icon" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
                 </div>
                 <div class="comp-body">
-
                     <div class="comp-section">
                         <div class="comp-section-title">
-
                             <h4>1. Contexte de la compétence</h4>
                         </div>
                         <div class="context-grid">
-                            <div class="context-item"><div class="context-key">Quoi</div><div class="context-val">Développement d'applications communicantes et gestion de bases de données.</div></div>
-                            <div class="context-item"><div class="context-key">Pourquoi</div><div class="context-val">Pour automatiser des processus réseau et créer des outils logiciels adaptés.</div></div>
-                            <div class="context-item"><div class="context-key">Où</div><div class="context-val">Environnement de développement (IUT / Domicile).</div></div>
-                            <div class="context-item"><div class="context-key">Quand</div><div class="context-val">Semestre 3.</div></div>
-                            <div class="context-item"><div class="context-key">Qui</div><div class="context-val">Travail d'équipe collaboratif.</div></div>
-                            <div class="context-item"><div class="context-key">Comment</div><div class="context-val">En utilisant la programmation événementielle (R3.09) et le langage SQL (R3.10).</div></div>
+                            <div class="context-item"><div class="context-key">Quoi</div><div class="context-val">Conception et développement d'outils logiciels et d'applications communicantes.</div></div>
+                            <div class="context-item"><div class="context-key">Pourquoi</div><div class="context-val">Automatiser le déploiement, maintenir le système d'information et créer des outils internes.</div></div>
+                            <div class="context-item"><div class="context-key">Où</div><div class="context-val">Dans l'environnement de développement de l'entreprise ou directement sur les serveurs.</div></div>
+                            <div class="context-item"><div class="context-key">Quand</div><div class="context-val">Pour répondre à un besoin spécifique d'automatisation ou faire évoluer le SI.</div></div>
+                            <div class="context-item"><div class="context-key">Qui</div><div class="context-val">Le développeur d'outils réseaux (DevOps/DevSecOps) à l'écoute du client.</div></div>
+                            <div class="context-item"><div class="context-key">Comment</div><div class="context-val">En utilisant les outils de développement adaptés et en intégrant la sécurité par défaut.</div></div>
                         </div>
                     </div>
 
                     <div class="comp-section">
                         <div class="comp-section-title">
-
                             <h4>2. Actions &amp; Preuves</h4>
                         </div>
                         <div class="preuve-item">
                             <div class="preuve-icon-wrap">▪</div>
                             <div class="preuve-content">
-                                <h5>SAÉ 3.02 — Développer des applications communicantes</h5>
-                                <p>Création d'un outil logiciel capable d'interagir sur le réseau. Intégration d'une base de données (R3.10) pour stocker les informations, et utilisation de la programmation événementielle (R3.09) pour l'interface logicielle.</p>
-                                <a class="preuve-link" href="#">↗ Voir le code source du projet</a>
+                                <h5>SAE3.02_FI — Développer des applications communicantes</h5>
+                                <p>Conception et développement d'outils logiciels et d'applications communicantes.</p>
+                                <ul class="preuve-links-list">
+                                    <li><a class="preuve-link" href="./SAE3.02_FI.pdf">↗ Consulter le rapport technique (PDF)</a></li>
+                                </ul>
                             </div>
                         </div>
                     </div>
 
                     <div class="comp-section">
                         <div class="comp-section-title">
-
                             <h4>3. Apprentissages Critiques &amp; Indicateurs</h4>
                         </div>
                         <table class="ac-table">
@@ -1311,7 +1669,6 @@
 
                     <div class="comp-section">
                         <div class="comp-section-title">
-
                             <h4>4. Bilan &amp; Réflexivité</h4>
                         </div>
                         <div class="reflex-block">
@@ -1328,6 +1685,10 @@
                                 <div class="reflex-text">J'ai suggéré d'implémenter des requêtes SQL préparées pour interroger notre SGBD afin d'éviter les failles d'injection, faisant ainsi le pont avec ma spécialisation Cyber.</div>
                             </div>
                             <div class="reflex-item">
+                                <div class="reflex-label">▪ Posture professionnelle &amp; Règles</div>
+                                <div class="reflex-text">Lors de ce projet, j'ai veillé au strict respect des normes de sécurité et des bonnes pratiques de configuration. La communication régulière avec les membres de l'équipe et la documentation technique ont été essentielles pour assurer la validation par notre superviseur.</div>
+                            </div>
+                            <div class="reflex-item">
                                 <div class="reflex-label">▪ Généralisation</div>
                                 <div class="reflex-text">Savoir coder des outils communicants et manipuler des données (SQL) est une compétence très recherchée pour la création de scripts d'automatisation ou d'outils de sécurité personnalisés (DevSecOps).</div>
                             </div>
@@ -1341,45 +1702,61 @@
                     <div class="comp-num-badge comp-4">C4</div>
                     <div class="comp-header-info">
                         <div class="comp-title">[Sécuriser] - Administrer un système d’information sécurisé</div>
-                        <div class="comp-subtitle">Cybersécurité · Audit · Pentest · SIEM</div>
+                        <div class="comp-subtitle">
+                            <span class="ue-badge">[SAÉ 3.Cyber.03 &amp; 3.Cyber.04]</span>
+                            Cybersécurité · Audit · Pentest · SIEM
+                        </div>
                     </div>
-                    <div class="comp-toggle">▾</div>
+                    <div class="comp-toggle-wrap">
+                        <span class="toggle-text"></span>
+                        <svg class="comp-toggle-icon" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
                 </div>
                 <div class="comp-body">
-
                     <div class="comp-section">
                         <div class="comp-section-title">
-
                             <h4>1. Contexte de la compétence</h4>
                         </div>
                         <div class="context-grid">
-                            <div class="context-item"><div class="context-key">Quoi</div><div class="context-val">Audit de sécurité et initiation aux méthodes de test d'intrusion (Pentesting).</div></div>
-                            <div class="context-item"><div class="context-key">Pourquoi</div><div class="context-val">Pour identifier, exploiter et corriger les vulnérabilités d'un système.</div></div>
-                            <div class="context-item"><div class="context-key">Où</div><div class="context-val">Environnements virtuels dédiés et réseaux isolés.</div></div>
-                            <div class="context-item"><div class="context-key">Quand</div><div class="context-val">Semestre 3 (Parcours Cybersécurité).</div></div>
-                            <div class="context-item"><div class="context-key">Qui</div><div class="context-val">En totale autonomie et en groupe.</div></div>
-                            <div class="context-item"><div class="context-key">Comment</div><div class="context-val">Méthodologie stricte de pentesting (R3.Cyber.16) et outils de sécurité offensifs.</div></div>
+                            <div class="context-item"><div class="context-key">Quoi</div><div class="context-val">Administration et sécurisation d'un système d'information complet.</div></div>
+                            <div class="context-item"><div class="context-key">Pourquoi</div><div class="context-val">Protéger les données, assurer la conformité et minimiser les risques d'attaques.</div></div>
+                            <div class="context-item"><div class="context-key">Où</div><div class="context-val">Dans toute structure traitant des données sensibles ou critiques.</div></div>
+                            <div class="context-item"><div class="context-key">Quand</div><div class="context-val">En continu, de l'analyse des besoins de sécurité à la mise en conformité.</div></div>
+                            <div class="context-item"><div class="context-key">Qui</div><div class="context-val">L'administrateur sécurité ou consultant, travaillant en équipe.</div></div>
+                            <div class="context-item"><div class="context-key">Comment</div><div class="context-val">Par le compromis entre sécurité et utilisation, en respectant les normes juridiques.</div></div>
                         </div>
                     </div>
 
                     <div class="comp-section">
                         <div class="comp-section-title">
-
                             <h4>2. Actions &amp; Preuves</h4>
                         </div>
                         <div class="preuve-item">
-                            <div class="preuve-icon-wrap">🔒</div>
+                            <div class="preuve-icon-wrap">▪</div>
                             <div class="preuve-content">
-                                <h5>SAÉ 3.Cyber.04 — Découvrir le pentesting</h5>
-                                <p>Application concrète de la méthodologie de pentesting (R3.Cyber.16) : phase de reconnaissance, scan de vulnérabilités, exploitation de failles et rédaction d'un rapport d'audit détaillé.</p>
-                                <a class="preuve-link" href="#">↗ Voir le rapport d'audit de sécurité</a>
+                                <h5>SAE3.Cyber.03_FI — Concevoir un réseau informatique sécurisé multi-sites</h5>
+                                <p>Déploiement d'une architecture hiérarchique sécurisée avec segmentation VLAN et haute disponibilité.</p>
+                                <ul class="preuve-links-list">
+                                    <li><a class="preuve-link" href="./SAE3.Cyber.03_FI.pdf">↗ Consulter le rapport technique (PDF)</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="preuve-item">
+                            <div class="preuve-icon-wrap">▪</div>
+                            <div class="preuve-content">
+                                <h5>SAE3.Cyber.04_FI — Découvrir le pentesting</h5>
+                                <p>Audit de sécurité, scan de vulnérabilités et exploitation de failles selon une méthodologie rigoureuse.</p>
+                                <ul class="preuve-links-list">
+                                    <li><a class="preuve-link" href="./SAE3.Cyber.04_FI.pdf">↗ Consulter le rapport technique (PDF)</a></li>
+                                </ul>
                             </div>
                         </div>
                     </div>
 
                     <div class="comp-section">
                         <div class="comp-section-title">
-
                             <h4>3. Apprentissages Critiques &amp; Indicateurs</h4>
                         </div>
                         <table class="ac-table">
@@ -1405,7 +1782,6 @@
 
                     <div class="comp-section">
                         <div class="comp-section-title">
-
                             <h4>4. Bilan &amp; Réflexivité</h4>
                         </div>
                         <div class="reflex-block">
@@ -1422,6 +1798,10 @@
                                 <div class="reflex-text">Au-delà de l'exploitation, j'ai tenu à inclure dans notre rapport final des recommandations de remédiation claires (patch management, règles firewall) pour chaque faille trouvée.</div>
                             </div>
                             <div class="reflex-item">
+                                <div class="reflex-label">▪ Posture professionnelle &amp; Règles</div>
+                                <div class="reflex-text">Lors de ce projet, j'ai veillé au strict respect des normes de sécurité et des bonnes pratiques de configuration. La communication régulière avec les membres de l'équipe et la documentation technique ont été essentielles pour assurer la validation par notre superviseur.</div>
+                            </div>
+                            <div class="reflex-item">
                                 <div class="reflex-label">▪ Généralisation</div>
                                 <div class="reflex-text">L'état d'esprit offensif acquis ici (Red Team) est fondamental pour comprendre comment concevoir et durcir les infrastructures (Blue Team) dans mon futur métier de consultant ou d'ingénieur sécurité.</div>
                             </div>
@@ -1435,45 +1815,61 @@
                     <div class="comp-num-badge comp-5">C5</div>
                     <div class="comp-header-info">
                         <div class="comp-title">[Surveiller] - Surveiller un système d’information sécurisé</div>
-                        <div class="comp-subtitle">Monitoring · Métrologie · Gestion des incidents</div>
+                        <div class="comp-subtitle">
+                            <span class="ue-badge">[SAÉ 3.Cyber.03 &amp; 3.Cyber.04]</span>
+                            Monitoring · Métrologie · Gestion des incidents
+                        </div>
                     </div>
-                    <div class="comp-toggle">▾</div>
+                    <div class="comp-toggle-wrap">
+                        <span class="toggle-text"></span>
+                        <svg class="comp-toggle-icon" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
                 </div>
                 <div class="comp-body">
-
                     <div class="comp-section">
                         <div class="comp-section-title">
-
                             <h4>1. Contexte de la compétence</h4>
                         </div>
                         <div class="context-grid">
-                            <div class="context-item"><div class="context-key">Quoi</div><div class="context-val">Surveillance des flux, détection d'intrusions et suivi d'un système d'information.</div></div>
-                            <div class="context-item"><div class="context-key">Pourquoi</div><div class="context-val">Pour réagir de manière proactive aux anomalies et aux attaques réseau.</div></div>
-                            <div class="context-item"><div class="context-key">Où</div><div class="context-val">Réseau simulé de l'IUT.</div></div>
-                            <div class="context-item"><div class="context-key">Quand</div><div class="context-val">Semestre 3.</div></div>
-                            <div class="context-item"><div class="context-key">Qui</div><div class="context-val">Travail d'équipe (simulation Blue Team).</div></div>
-                            <div class="context-item"><div class="context-key">Comment</div><div class="context-val">Croisement des données réseaux (SAÉ 3.Cyber.03) et analyse des traces d'attaques (SAÉ 3.Cyber.04).</div></div>
+                            <div class="context-item"><div class="context-key">Quoi</div><div class="context-val">Surveillance des flux, détection d'intrusions et gestion des incidents de sécurité.</div></div>
+                            <div class="context-item"><div class="context-key">Pourquoi</div><div class="context-val">Réagir proactivement aux anomalies et maintenir l'intégrité du réseau.</div></div>
+                            <div class="context-item"><div class="context-key">Où</div><div class="context-val">Au sein d'un SOC (Security Operations Center) ou d'une équipe Blue Team.</div></div>
+                            <div class="context-item"><div class="context-key">Quand</div><div class="context-val">En permanence, via des outils de monitoring et de SIEM.</div></div>
+                            <div class="context-item"><div class="context-key">Qui</div><div class="context-val">L'analyste SOC ou l'opérateur de surveillance réseau.</div></div>
+                            <div class="context-item"><div class="context-key">Comment</div><div class="context-val">Par l'automatisation, les mises à jour critiques et l'analyse comportementale.</div></div>
                         </div>
                     </div>
 
                     <div class="comp-section">
                         <div class="comp-section-title">
-
                             <h4>2. Actions &amp; Preuves</h4>
                         </div>
                         <div class="preuve-item">
-                            <div class="preuve-icon-wrap">📡</div>
+                            <div class="preuve-icon-wrap">▪</div>
                             <div class="preuve-content">
-                                <h5>Projets Cybersécurité croisés (SAÉ 3.03 / SAÉ 3.04)</h5>
-                                <p>Observation et analyse des logs générés lors de la mise en place du réseau multi-sites sécurisé, et identification des traces réseau laissées lors des phases de pentesting actives.</p>
-                                <a class="preuve-link" href="#">↗ Voir les extractions de journaux/logs</a>
+                                <h5>SAE3.Cyber.03_FI — Concevoir un réseau informatique sécurisé multi-sites</h5>
+                                <p>Déploiement d'une architecture hiérarchique sécurisée avec segmentation VLAN et haute disponibilité.</p>
+                                <ul class="preuve-links-list">
+                                    <li><a class="preuve-link" href="./SAE3.Cyber.03_FI.pdf">↗ Consulter le rapport technique (PDF)</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="preuve-item">
+                            <div class="preuve-icon-wrap">▪</div>
+                            <div class="preuve-content">
+                                <h5>SAE3.Cyber.04_FI — Découvrir le pentesting</h5>
+                                <p>Audit de sécurité, scan de vulnérabilités et exploitation de failles selon une méthodologie rigoureuse.</p>
+                                <ul class="preuve-links-list">
+                                    <li><a class="preuve-link" href="./SAE3.Cyber.04_FI.pdf">↗ Consulter le rapport technique (PDF)</a></li>
+                                </ul>
                             </div>
                         </div>
                     </div>
 
                     <div class="comp-section">
                         <div class="comp-section-title">
-
                             <h4>3. Apprentissages Critiques &amp; Indicateurs</h4>
                         </div>
                         <table class="ac-table">
@@ -1499,7 +1895,6 @@
 
                     <div class="comp-section">
                         <div class="comp-section-title">
-
                             <h4>4. Bilan &amp; Réflexivité</h4>
                         </div>
                         <div class="reflex-block">
@@ -1516,6 +1911,10 @@
                                 <div class="reflex-text">Durant le projet réseau (SAÉ 3.03), j'ai suggéré la mise en place d'un serveur Syslog centralisé pour éviter que les journaux locaux ne soient effacés ou corrompus.</div>
                             </div>
                             <div class="reflex-item">
+                                <div class="reflex-label">▪ Posture professionnelle &amp; Règles</div>
+                                <div class="reflex-text">Lors de ce projet, j'ai veillé au strict respect des normes de sécurité et des bonnes pratiques de configuration. La communication régulière avec les membres de l'équipe et la documentation technique ont été essentielles pour assurer la validation par notre superviseur.</div>
+                            </div>
+                            <div class="reflex-item">
                                 <div class="reflex-label">▪ Généralisation</div>
                                 <div class="reflex-text">La maîtrise de la surveillance et de l'analyse des logs est la pierre angulaire des métiers en SOC (Security Operations Center). Cette compétence de visibilité réseau me servira tout au long de ma carrière.</div>
                             </div>
@@ -1525,22 +1924,236 @@
             </div>
         </section>
 
+        <!-- SECTION CV -->
+        <section class="section" id="cv">
+            <div class="section-title">
+                <h2>Curriculum Vitae</h2>
+                <div class="section-line"></div>
+                <div class="section-num">02</div>
+            </div>
+            <div class="cv-grid">
+                <a class="cv-card" href="cv_anglais.pdf" target="_blank">
+                    <div class="cv-card-icon">EN</div>
+                    <div class="cv-card-info">
+                        <h3>CV en Anglais</h3>
+                        <p>Télécharger le PDF (EN)</p>
+                    </div>
+                    <span class="cv-card-badge badge-optional">Optionnel</span>
+                </a>
+                <a class="cv-card" href="cv_francais.pdf" target="_blank">
+                    <div class="cv-card-icon">🇫🇷</div>
+                    <div class="cv-card-info">
+                        <h3>CV en Français</h3>
+                        <p>Télécharger le PDF (FR)</p>
+                    </div>
+                    <span class="cv-card-badge badge-required">Obligatoire</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- SECTION FORMATIONS -->
+        <details class="section-accordion" id="formations">
+            <summary class="section-trigger">
+                <span style="display:flex; align-items:center; gap:16px;">
+                    <span class="section-num">03</span>
+                    <span class="trigger-title">Formations</span>
+                </span>
+                <span class="trigger-icon">▾</span>
+            </summary>
+
+            <div class="section-content">
+                <div style="padding: 20px; background: var(--surface2); border: 1px solid var(--border); border-radius: 8px;">
+                    <p style="font-size: 13px; color: var(--text); line-height: 1.6;">
+                        <strong>Formation :</strong> BTS Cybersécurité, Informatique et Électronique (CIEL) - Option ER (2024-2025) — Lycée Louis Armand, Mulhouse.
+                    </p>
+                    <a href="#projets" onclick="document.getElementById('projets').setAttribute('open', '')" style="display: inline-flex; align-items: center; gap: 8px; margin-top: 12px; padding: 6px 12px; background: var(--cyan-dim); border: 1px solid var(--cyan); border-radius: 4px; color: var(--cyan); text-decoration: none; font-size: 11px; font-weight: 600;">
+                        <span>🎓</span> Projet de fin d'études : Table Interactive IoT (Escape Game)
+                    </a>
+                </div>
+            </div>
+        </details>
+
+        <!-- SECTION STAGES -->
+        <details class="section-accordion" id="stages">
+            <summary class="section-trigger">
+                <span style="display:flex; align-items:center; gap:16px;">
+                    <span class="section-num">04</span>
+                    <span class="trigger-title">Stages &amp; Expériences</span>
+                </span>
+                <span class="trigger-icon">▾</span>
+            </summary>
+
+            <div class="section-content">
+                <article class="experience-card">
+                    <!-- EN-TÊTE RÉSUMÉ -->
+                    <header class="exp-header">
+                        <div class="exp-title-row">
+                            <h3 class="exp-role">Stagiaire Technicien Réseaux &amp; Support</h3>
+                            <span class="exp-duration">8 Semaines</span>
+                        </div>
+                        <div class="exp-company">
+                            <a href="https://cirtel.net/" target="_blank" class="company-name">CIRTEL (Cernay, Alsace)</a>
+                            <span class="company-loc">PME spécialisée IT &amp; Télécoms</span>
+                        </div>
+                    </header>
+
+                    <!-- CONTENU PRINCIPAL -->
+                    <div class="exp-body">
+                        <div class="exp-objective">
+                            <strong>Objectif :</strong> Allier théorie et pratique en administration système, support IT et cybersécurité.
+                        </div>
+
+                        <p class="exp-summary">
+                            <strong>Missions Principales :</strong> Refonte et sécurisation du portail SAV interne, intégration avec Active Directory, automatisation PowerShell et support utilisateur.
+                        </p>
+
+                        <div class="exp-tech-stack">
+                            <strong>Stack &amp; Outils :</strong>
+                            <span class="tech-tag">Visual Studio Code</span>
+                            <span class="tech-tag">Docker</span>
+                            <span class="tech-tag">Windows Server</span>
+                            <span class="tech-tag">PHP</span>
+                            <span class="tech-tag">API Zammad</span>
+                        </div>
+
+                        <div class="exp-badges">
+                            <span class="badge badge-docker">Docker</span>
+                            <span class="badge badge-ad">Active Directory</span>
+                            <span class="badge badge-sast">SAST</span>
+                            <span class="badge badge-ui">UI/UX</span>
+                            <span class="badge badge-auto">Automatisation</span>
+                            <span class="badge badge-support">Support IT</span>
+                        </div>
+                    </div>
+
+                    <!-- ACCORDÉON INTERACTIF (CHANGELOG) -->
+                    <details class="changelog-accordion">
+                        <summary class="changelog-trigger">
+                            <span class="trigger-text">Historique et Évolution du Projet (Changelog)</span>
+                            <span class="trigger-icon">▾</span>
+                        </summary>
+
+                        <div class="changelog-content">
+                            <h2>Historique et Évolution du Projet (Changelog)</h2>
+
+                            <h3>✅ Modifications et Améliorations Réalisées</h3>
+
+                            <h4>Audits &amp; Patchs de Sécurité :</h4>
+                            <ul>
+                                <li><strong>Audit SAST réalisé :</strong> Correction d'une vulnérabilité critique d'injection LDAP dans le module d'authentification.</li>
+                                <li>Mise en place d'un jeton cryptographique anti-CSRF pour sécuriser les transactions vers l'API Zammad.</li>
+                            </ul>
+
+                            <h4>Sécurité &amp; Authentification :</h4>
+                            <ul>
+                                <li>Mise en place de la connexion with l'Active Directory (AD) pour accéder au site.</li>
+                                <li>Création d'une page de connexion obligatoire avant l'accès au portail.</li>
+                                <li>Conversion de tous les fichiers en PHP pour imposer le contrôle de session.</li>
+                                <li>Sécurisation stricte des liens d'accès aux documents (nécessite une session active).</li>
+                                <li>Implémentation d'un bouclier anti-bruteforce : tentative de connexion limitée à 3 essais, blocage temporaire de l'accès après 3 échecs consécutifs et affichage en temps réel du nombre de tentatives échouées.</li>
+                                <li>Gestion des sessions : expiration configurée à 30 jours (la session survit à la fermeture du navigateur).</li>
+                            </ul>
+
+                            <h4>Refonte du Système de Tickets (SAV / Zammad) :</h4>
+                            <ul>
+                                <li>Redesign complet de la page de création de ticket.</li>
+                                <li>Envoi direct des tickets à l'API Zammad (suppression du passage par Outlook), with structuration automatique du corps du ticket et synchronisation native du paramètre de priorité.</li>
+                                <li>Intégration de menus préconfigurés et de sujets pré-intégrés pour faciliter la saisie, with questions dynamiques et boîtes de dialogue "Astuces".</li>
+                                <li>Ajout d'une zone de dépôt de pièces jointes (tout type de fichier, limite 15 Mo, visuel réactif).</li>
+                                <li>UI/UX Formulaire : Confirmation de succès, prévention de la perte de données (blocage de l'actualisation si champs remplis), boutons d'action with alertes ("Accueil", "Effacer tout").</li>
+                            </ul>
+
+                            <h4>Interface &amp; Expérience Utilisateur (UI/UX) :</h4>
+                            <ul>
+                                <li>Redesign global de la page d'accueil with optimisation du temps de chargement des ressources et compression des images.</li>
+                                <li>Affichage personnalisé des initiales du client connecté.</li>
+                                <li>Intégration d'une barre de recherche web Ecosia directement sur la page d'accueil.</li>
+                                <li>Rendu 100% mobile-friendly.</li>
+                            </ul>
+
+                            <h3>🚀 Roadmap et Suggestions d'Améliorations</h3>
+                            <ul>
+                                <li><strong>Création d'une base de connaissances (FAQ) :</strong> Page dédiée with astuces par sujet, images explicatives (.avif) et barre de recherche interne.</li>
+                                <li><strong>Traçabilité des accès (Logs) :</strong> Fichier de log serveur horodaté pour surveiller les connexions/déconnexions.</li>
+                                <li><strong>Optimisation CSS :</strong> Harmonisation des unités de mesure responsive (rem/vw/vh) sur l'ensemble du projet.</li>
+                            </ul>
+                        </div>
+                    </details>
+                </article>
+            </div>
+        </details>
+
+        <!-- SECTION PROJETS ACADÉMIQUES -->
+        <details class="section-accordion" id="projets">
+            <summary class="section-trigger">
+                <span style="display:flex; align-items:center; gap:16px;">
+                    <span class="section-num">05</span>
+                    <span class="trigger-title">Projets Académiques</span>
+                </span>
+                <span class="trigger-icon">▾</span>
+            </summary>
+
+            <div class="section-content">
+                <article class="project-card">
+                    <header class="project-header">
+                        <div class="project-title-row">
+                            <h3 class="project-name">Table Interactive IoT - Escape Game Futuriste</h3>
+                            <span class="project-context">BTS CIEL (2025)</span>
+                        </div>
+                        <div class="project-school">
+                            <span>Projet de fin d'études — Lycée Louis Armand</span>
+                        </div>
+                    </header>
+
+                    <div class="project-body">
+                        <div class="project-objective">
+                            <strong>Objectif :</strong> Conception de A à Z d'une table de jeu interactive réagissant au toucher capacitif, intégrant des animations lumineuses et contrôlable à distance via Wi-Fi.
+                        </div>
+
+                        <div class="project-realizations">
+                            <h4>Réalisations Techniques</h4>
+                            <ul>
+                                <li><strong>Hardware &amp; PCB :</strong> Modélisation et routage d'un circuit imprimé sur mesure (ESP32, bus I2C, alimentation USB).</li>
+                                <li><strong>Développement Embarqué (C++) :</strong> Programmation ESP32 sous PlatformIO, gestion MPR121 et animations FastLED.</li>
+                                <li><strong>Connectivité &amp; IoT :</strong> Serveur Web asynchrone pour contrôle temps réel via interface HTML/CSS et requêtes JSON.</li>
+                                <li><strong>Ingénierie Système :</strong> Modélisation SysML (Exigences, Séquences, Déploiement) et planification via Gantt.</li>
+                            </ul>
+                        </div>
+
+                        <div class="project-tech-stack">
+                            <span class="tech-badge">ESP32</span>
+                            <span class="tech-badge">C++</span>
+                            <span class="tech-badge">PlatformIO</span>
+                            <span class="tech-badge">Conception PCB</span>
+                            <span class="tech-badge">I2C</span>
+                            <span class="tech-badge">FastLED</span>
+                            <span class="tech-badge">SysML</span>
+                            <span class="tech-badge">Wi-Fi</span>
+                        </div>
+
+                        <footer class="soft-skills-box">
+                            <span class="soft-skills-label">Soft Skills :</span>
+                            <p>Innovation, Gestion de projet, Résolution de problèmes complexes.</p>
+                        </footer>
+                    </div>
+                </article>
+            </div>
+        </details>
+
         <footer class="footer">
             <div class="footer-left">
                 <span style="color:var(--green)">●</span>
                 Portfolio BUT R&amp;T Cybersécurité — IUT de Colmar — 2025/2026
             </div>
-            <div>Généré avec GitHub Pages</div>
         </footer>
 
     </main></div><script>
     function toggleComp(header) {
       const body = header.nextElementSibling;
-      const toggle = header.querySelector('.comp-toggle');
-      const isOpen = body.classList.contains('open');
+      const isOpen = header.classList.contains('open');
 
+      header.classList.toggle('open', !isOpen);
       body.classList.toggle('open', !isOpen);
-      toggle.classList.toggle('open', !isOpen);
     }
 
     // Active nav highlighting on scroll
