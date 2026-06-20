@@ -230,9 +230,8 @@
 
         /* ========== HERO ========== */
         .hero {
-          padding: 60px 0 48px;
-          border-bottom: 1px solid var(--border);
-          margin-bottom: 48px;
+          padding: 10px 0 32px;
+          margin-bottom: 40px;
           animation: fadeIn 0.8s ease;
         }
 
@@ -1235,6 +1234,118 @@
     font-size: 12px;
     color: var(--text-dim);
 }
+
+/* ========== THEME RETRO-INGENIERIE (APK) ========== */
+#loisirs .section-trigger {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(90deg, var(--surface2), #0a140d);
+    border: 1px solid rgba(57,211,83,0.1);
+}
+
+#loisirs .section-trigger::after {
+    content: "APK";
+    position: absolute;
+    right: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 140px;
+    font-weight: 900;
+    font-family: var(--font-mono);
+    color: var(--green);
+    opacity: 0.04;
+    pointer-events: none;
+    letter-spacing: -8px;
+    z-index: 0;
+}
+
+#loisirs .trigger-title {
+    font-family: var(--font-mono) !important;
+    font-weight: 700;
+    letter-spacing: 1px;
+    position: relative;
+    z-index: 1;
+}
+
+#loisirs[open] .section-trigger {
+    border-bottom: 1px solid var(--green);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+}
+
+/* APK Content Styles */
+.apk-container h3 {
+    font-family: var(--font-display);
+    color: var(--green);
+    margin: 24px 0 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.apk-container h4 {
+    font-size: 14px;
+    color: var(--cyan);
+    margin: 20px 0 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.apk-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.apk-list li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 8px;
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--text);
+}
+
+.apk-list li::before {
+    content: '›';
+    position: absolute;
+    left: 0;
+    color: var(--green);
+    font-weight: bold;
+}
+
+.apk-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.framework-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+    margin-top: 32px;
+}
+
+.framework-card {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-bright);
+    transition: all 0.2s ease;
+}
+
+.framework-card:hover {
+    border-color: var(--green);
+    transform: translateY(-2px);
+    background: rgba(57,211,83,0.05);
+}
+
+@media (max-width: 768px) {
+    .apk-grid-2 { grid-template-columns: 1fr; }
+}
     </style>
 </head>
 <body>
@@ -1970,6 +2081,12 @@
                         <span>🎓</span> Projet de fin d'études : Table Interactive IoT (Escape Game)
                     </a>
                 </div>
+
+                <div style="margin-top: 16px; padding: 20px; background: var(--surface2); border: 1px solid var(--border); border-radius: 8px;">
+                    <p style="font-size: 13px; color: var(--text); line-height: 1.6;">
+                        <strong>Diplôme :</strong> Baccalauréat technologique-STI, Terminale (2022 - 2023) — Lycée Théodore Deck, Guebwiller.
+                    </p>
+                </div>
             </div>
         </details>
 
@@ -1984,101 +2101,54 @@
             </summary>
 
             <div class="section-content">
+                <!-- EXPÉRIENCE 1 : STAGE -->
                 <article class="experience-card">
-                    <!-- EN-TÊTE RÉSUMÉ -->
                     <header class="exp-header">
                         <div class="exp-title-row">
-                            <h3 class="exp-role">Stagiaire Technicien Réseaux &amp; Support</h3>
-                            <span class="exp-duration">8 Semaines</span>
+                            <h3 class="exp-role">Stage en milieu professionnel (BTS CIEL 1ère année)</h3>
+                            <span class="exp-duration">13/05/24 – 06/07/24</span>
                         </div>
                         <div class="exp-company">
-                            <a href="https://cirtel.net/" target="_blank" class="company-name">CIRTEL (Cernay, Alsace)</a>
-                            <span class="company-loc">PME spécialisée IT &amp; Télécoms</span>
+                            <span class="company-name">CIRTEL (Cernay)</span>
+                            <span class="company-loc">Cybersécurité, informatique, électronique</span>
                         </div>
                     </header>
 
-                    <!-- CONTENU PRINCIPAL -->
                     <div class="exp-body">
                         <div class="exp-objective">
-                            <strong>Objectif :</strong> Allier théorie et pratique en administration système, support IT et cybersécurité.
+                            <strong>Objectif :</strong> Immersion professionnelle et mise en pratique des compétences réseaux et cybersécurité.
                         </div>
 
-                        <p class="exp-summary">
-                            <strong>Missions Principales :</strong> Refonte et sécurisation du portail SAV interne, intégration avec Active Directory, automatisation PowerShell et support utilisateur.
-                        </p>
-
-                        <div class="exp-tech-stack">
-                            <strong>Stack &amp; Outils :</strong>
-                            <span class="tech-tag">Visual Studio Code</span>
-                            <span class="tech-tag">Docker</span>
-                            <span class="tech-tag">Windows Server</span>
-                            <span class="tech-tag">PHP</span>
-                            <span class="tech-tag">API Zammad</span>
-                        </div>
-
-                        <div class="exp-badges">
-                            <span class="badge badge-docker">Docker</span>
-                            <span class="badge badge-ad">Active Directory</span>
-                            <span class="badge badge-sast">SAST</span>
-                            <span class="badge badge-ui">UI/UX</span>
-                            <span class="badge badge-auto">Automatisation</span>
-                            <span class="badge badge-support">Support IT</span>
-                        </div>
+                        <a href="./KARA_Rapport de stage.pdf" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background: var(--cyan-dim); border: 1px solid var(--cyan); border-radius: 6px; color: var(--cyan); text-decoration: none; font-size: 13px; font-weight: 700; transition: opacity 0.2s;">
+                            <span>↗</span> Consulter mon rapport de stage (PDF)
+                        </a>
                     </div>
+                </article>
 
-                    <!-- ACCORDÉON INTERACTIF (CHANGELOG) -->
-                    <details class="changelog-accordion">
-                        <summary class="changelog-trigger">
-                            <span class="trigger-text">Historique et Évolution du Projet (Changelog)</span>
-                            <span class="trigger-icon">▾</span>
-                        </summary>
-
-                        <div class="changelog-content">
-                            <h2>Historique et Évolution du Projet (Changelog)</h2>
-
-                            <h3>✅ Modifications et Améliorations Réalisées</h3>
-
-                            <h4>Audits &amp; Patchs de Sécurité :</h4>
-                            <ul>
-                                <li><strong>Audit SAST réalisé :</strong> Correction d'une vulnérabilité critique d'injection LDAP dans le module d'authentification.</li>
-                                <li>Mise en place d'un jeton cryptographique anti-CSRF pour sécuriser les transactions vers l'API Zammad.</li>
-                            </ul>
-
-                            <h4>Sécurité &amp; Authentification :</h4>
-                            <ul>
-                                <li>Mise en place de la connexion with l'Active Directory (AD) pour accéder au site.</li>
-                                <li>Création d'une page de connexion obligatoire avant l'accès au portail.</li>
-                                <li>Conversion de tous les fichiers en PHP pour imposer le contrôle de session.</li>
-                                <li>Sécurisation stricte des liens d'accès aux documents (nécessite une session active).</li>
-                                <li>Implémentation d'un bouclier anti-bruteforce : tentative de connexion limitée à 3 essais, blocage temporaire de l'accès après 3 échecs consécutifs et affichage en temps réel du nombre de tentatives échouées.</li>
-                                <li>Gestion des sessions : expiration configurée à 30 jours (la session survit à la fermeture du navigateur).</li>
-                            </ul>
-
-                            <h4>Refonte du Système de Tickets (SAV / Zammad) :</h4>
-                            <ul>
-                                <li>Redesign complet de la page de création de ticket.</li>
-                                <li>Envoi direct des tickets à l'API Zammad (suppression du passage par Outlook), with structuration automatique du corps du ticket et synchronisation native du paramètre de priorité.</li>
-                                <li>Intégration de menus préconfigurés et de sujets pré-intégrés pour faciliter la saisie, with questions dynamiques et boîtes de dialogue "Astuces".</li>
-                                <li>Ajout d'une zone de dépôt de pièces jointes (tout type de fichier, limite 15 Mo, visuel réactif).</li>
-                                <li>UI/UX Formulaire : Confirmation de succès, prévention de la perte de données (blocage de l'actualisation si champs remplis), boutons d'action with alertes ("Accueil", "Effacer tout").</li>
-                            </ul>
-
-                            <h4>Interface &amp; Expérience Utilisateur (UI/UX) :</h4>
-                            <ul>
-                                <li>Redesign global de la page d'accueil with optimisation du temps de chargement des ressources et compression des images.</li>
-                                <li>Affichage personnalisé des initiales du client connecté.</li>
-                                <li>Intégration d'une barre de recherche web Ecosia directement sur la page d'accueil.</li>
-                                <li>Rendu 100% mobile-friendly.</li>
-                            </ul>
-
-                            <h3>🚀 Roadmap et Suggestions d'Améliorations</h3>
-                            <ul>
-                                <li><strong>Création d'une base de connaissances (FAQ) :</strong> Page dédiée with astuces par sujet, images explicatives (.avif) et barre de recherche interne.</li>
-                                <li><strong>Traçabilité des accès (Logs) :</strong> Fichier de log serveur horodaté pour surveiller les connexions/déconnexions.</li>
-                                <li><strong>Optimisation CSS :</strong> Harmonisation des unités de mesure responsive (rem/vw/vh) sur l'ensemble du projet.</li>
-                            </ul>
+                <!-- EXPÉRIENCE 2 : JOB ÉTÉ BUTACHIMIE -->
+                <article class="experience-card">
+                    <header class="exp-header">
+                        <div class="exp-title-row">
+                            <h3 class="exp-role">Job d’été</h3>
+                            <span class="exp-duration">Août 2021</span>
                         </div>
-                    </details>
+                        <div class="exp-company">
+                            <span class="company-name">Butachimie (Chalampé)</span>
+                        </div>
+                    </header>
+                </article>
+
+                <!-- EXPÉRIENCE 3 : JOB ÉTÉ MAIRIE -->
+                <article class="experience-card" style="margin-bottom: 0;">
+                    <header class="exp-header">
+                        <div class="exp-title-row">
+                            <h3 class="exp-role">Job d’été</h3>
+                            <span class="exp-duration">Juillet 2023</span>
+                        </div>
+                        <div class="exp-company">
+                            <span class="company-name">Mairie de Blodelsheim</span>
+                        </div>
+                    </header>
                 </article>
             </div>
         </details>
@@ -2135,6 +2205,130 @@
                             <span class="soft-skills-label">Soft Skills :</span>
                             <p>Innovation, Gestion de projet, Résolution de problèmes complexes.</p>
                         </footer>
+                    </div>
+                </article>
+            </div>
+        </details>
+
+        <!-- SECTION PROJETS LOISIRS -->
+        <details class="section-accordion" id="loisirs">
+            <summary class="section-trigger">
+                <span style="display:flex; align-items:center; gap:16px;">
+                    <span class="section-num">06</span>
+                    <span class="trigger-title">Projets Loisirs — Rétro-ingénierie</span>
+                </span>
+                <span class="trigger-icon">▾</span>
+            </summary>
+
+            <div class="section-content">
+                <div class="apk-container">
+                    <h3>🔓 Déblocage de fonctionnalités Premium (Opcodes Dalvik / Smali)</h3>
+
+                    <div class="apk-grid-2">
+                        <div>
+                            <h4>🔍 Phase d'Analyse et de Recherche</h4>
+                            <ul class="apk-list">
+                                <li>Recherche dans le fichier DEX (méthodes ou mots spécifiques).</li>
+                                <li>Recherche et extraction de chaînes de caractères (DEX > Strings).</li>
+                                <li>Copie d'ID de ressource (XML) et recherche croisée dans le DEX.</li>
+                                <li>Inspection d'ID d'éléments d'interface (Boutons, Layouts) et traçage dans le DEX.</li>
+                                <li>Inspection ciblée au sein des Classes et des Activities.</li>
+                                <li>Analyse des Content Providers / DocumentProviders.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4>🛠️ Phase d'Édition et de Patch</h4>
+                            <ul class="apk-list">
+                                <li>Manipulation booléenne : forçage de valeurs via const/4.</li>
+                                <li>Ajout de valeurs temporelles dynamiques (const-wide).</li>
+                                <li>Détournement des conditions de contrôle (goto).</li>
+                                <li>Forçage de retour d'état (return-void).</li>
+                                <li>Injection ou altération d'instructions sput-object / iput-object.</li>
+                                <li>Modification de fichiers JavaScript embarqués (WebViews).</li>
+                                <li>Patching spécifique aux moteurs Unity.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h3>🛡️ Opérations Avancées de Rétro-ingénierie</h3>
+                    <div class="apk-grid-2">
+                        <ul class="apk-list">
+                            <li>Contournement de protections et signatures.</li>
+                            <li>Éradication des traqueurs et régies publicitaires.</li>
+                            <li>Suppression et modification des permissions système.</li>
+                            <li>Désobfuscation manuelle de code Smali.</li>
+                            <li>Contournement des vérifications serveurs distants.</li>
+                        </ul>
+                        <ul class="apk-list">
+                            <li>Accès au contenu racine sans privilèges Root.</li>
+                            <li>Optimisation des performances globales de l'APK.</li>
+                            <li>Analyse manuelle de code malveillant (Malware).</li>
+                            <li>Désactivation des obligations de mise à jour.</li>
+                            <li>Injection de logs pour le débogage dynamique.</li>
+                        </ul>
+                    </div>
+
+                    <h2 style="font-family: var(--font-display); color: var(--cyan); margin-top: 48px; text-align: center; font-size: 24px;">🧩 Frameworks &amp; Compétences Spécifiques</h2>
+                    <div class="framework-grid">
+                        <div class="framework-card">React Native</div>
+                        <div class="framework-card">Flutter</div>
+                        <div class="framework-card">JavaScript / Cordova</div>
+                        <div class="framework-card">Xamarin</div>
+                        <div class="framework-card">
+                            Assembly (.so lib)
+                            <a href="./ymusic_radare2_script.pdf" target="_blank" style="display:block; font-size:9px; color:var(--green); text-decoration:none; margin-top:8px;">↗ Script Radare2 (YMusic)</a>
+                        </div>
+                        <div class="framework-card">
+                            Lucky Patcher Custom Patchs
+                            <a href="./termux_radare2_tutorial.pdf" target="_blank" style="display:block; font-size:9px; color:var(--green); text-decoration:none; margin-top:8px;">↗ Tuto Termux &amp; Radare2</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </details>
+
+        <!-- SECTION PROJETS DEV -->
+        <details class="section-accordion" id="dev">
+            <summary class="section-trigger">
+                <span style="display:flex; align-items:center; gap:16px;">
+                    <span class="section-num">07</span>
+                    <span class="trigger-title">Projets Dev</span>
+                </span>
+                <span class="trigger-icon">▾</span>
+            </summary>
+
+            <div class="section-content">
+                <article class="project-card">
+                    <header class="project-header">
+                        <div class="project-title-row">
+                            <h3 class="project-name">Manifest Patcher - Éditeur &amp; Patcher d'APK</h3>
+                            <span class="project-context">Projet Solo</span>
+                        </div>
+                    </header>
+
+                    <div class="project-body">
+                        <p class="exp-summary" style="margin-bottom: 20px;">
+                            Application conçue pour l'analyse et la modification de fichiers APK. Son objectif principal est de permettre la suppression automatique des traqueurs (trackers) en appliquant un patch direct au fichier AndroidManifest.xml en un seul clic. L'outil offre également un mode avancé permettant à l'utilisateur de supprimer ou modifier manuellement des permissions spécifiques.
+                        </p>
+
+                        <!-- CAPTURE D'ÉCRAN -->
+                        <div style="margin-bottom: 24px; display: flex; justify-content: center;">
+                            <div style="max-width: 280px; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+                                <img src="./manifest_patcher_main.jpg" alt="Interface Manifest Patcher" style="width: 100%; height: auto; display: block;">
+                            </div>
+                        </div>
+
+                        <div class="project-tech-stack">
+                            <span class="tech-badge">Android</span>
+                            <span class="tech-badge">APK</span>
+                            <span class="tech-badge">XML</span>
+                            <span class="tech-badge">Rétro-ingénierie</span>
+                            <span class="tech-badge">Privacy</span>
+                        </div>
+
+                        <a href="https://github.com/Cawca-Fr/AMEditor" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background: var(--green); color: var(--bg); border-radius: 6px; text-decoration: none; font-size: 13px; font-weight: 700; transition: opacity 0.2s;">
+                            <span>↗</span> Code source sur GitHub
+                        </a>
                     </div>
                 </article>
             </div>
