@@ -1,75 +1,49 @@
 /**
- * Simple translation logic for the portfolio website.
+ * Network-based translation logic using Google Translate Widget.
  */
-
-const translations = {};
 
 /**
- * Load a translation file.
- * @param {string} lang Language code (en, tr, de).
- * @returns {Promise<Object>} The translation data.
+ * Trigger Google Translate Widget
  */
-async function loadLanguage(lang) {
-    if (translations[lang]) return translations[lang];
-
-    try {
-        const response = await fetch(`./locales/${lang}.json`);
-        if (!response.ok) throw new Error(`Could not load ${lang} translation.`);
-        const data = await response.json();
-        translations[lang] = data;
-        return data;
-    } catch (error) {
-        console.error(error);
-        return null;
+function triggerGoogleTranslate(langCode) {
+    const googleSelect = document.querySelector('.goog-te-combo');
+    if (googleSelect) {
+        googleSelect.value = langCode;
+        googleSelect.dispatchEvent(new Event('change'));
+    } else {
+        // If widget not ready yet, retry
+        setTimeout(() => {
+            const retrySelect = document.querySelector('.goog-te-combo');
+            if (retrySelect) {
+                retrySelect.value = langCode;
+                retrySelect.dispatchEvent(new Event('change'));
+            }
+        }, 1000);
     }
 }
 
 /**
- * Apply translations to the page.
- * @param {string} lang Language code.
+ * Apply language selection
  */
-async function applyLanguage(lang) {
-    const data = await loadLanguage(lang);
-    if (!data) return;
-
-    document.querySelectorAll('[data-i18n]').forEach(element => {
-        const key = element.getAttribute('data-i18n');
-        const translation = key.split('.').reduce((obj, i) => (obj ? obj[i] : null), data);
-
-        if (translation) {
-            if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
-                element.placeholder = translation;
-            } else {
-                // If element has nested elements (like icons), we might want to be careful.
-                // But usually we target the specific text node or an element without children for translation.
-                // For nav items, they have a span.nav-icon.
-                // Let's check if there's a nav-icon and preserve it if so.
-                const icon = element.querySelector('.nav-icon');
-                if (icon) {
-                    const iconHtml = icon.outerHTML;
-                    element.innerHTML = iconHtml + ' ' + translation;
-                } else {
-                    element.innerHTML = translation;
-                }
-            }
-        }
-    });
-
+function applyLanguage(lang) {
     document.documentElement.setAttribute('lang', lang);
     localStorage.setItem('preferredLanguage', lang);
+    triggerGoogleTranslate(lang);
 }
 
-// Expose to window for index.html script access
+// Expose to window
 window.applyLanguage = applyLanguage;
 
 // Event listener for language selection
 document.addEventListener('DOMContentLoaded', () => {
     const select = document.getElementById('language-select');
-    const savedLang = localStorage.getItem('preferredLanguage') || navigator.language.split('-')[0] || 'en';
 
-    // Ensure we support the detected/saved language
-    const supportedLangs = ['en', 'tr', 'de'];
-    const finalLang = supportedLangs.includes(savedLang) ? savedLang : 'en';
+    // 1. Determine target language: Priority to Saved, then Browser, default to 'fr'
+    const browserLang = navigator.language.split('-')[0];
+    const savedLang = localStorage.getItem('preferredLanguage');
+
+    // We only auto-translate if it's not French
+    const finalLang = savedLang || (browserLang !== 'fr' ? browserLang : 'fr');
 
     if (select) {
         select.value = finalLang;
@@ -78,5 +52,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    applyLanguage(finalLang);
+    // 2. Initial trigger if not French
+    if (finalLang !== 'fr') {
+        setTimeout(() => applyLanguage(finalLang), 1000);
+    }
 });
